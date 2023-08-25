@@ -11,9 +11,14 @@ public class Board {
 
         for (int y = 0; y < 10; y++) {
             for (int x = 0; x < 10; x++) {
-                if (players.get(0).getY() == y && players.get(0).getX() == x) {
-                    System.out.print(players.get(0).getName());
-                } else {
+                boolean isPlayer = false;
+                for (Player player : players) {
+                    if (player.getY() == y && player.getX() == x) {
+                        System.out.print(player.getName());
+                        isPlayer = true;
+                    }
+                }
+                if(!isPlayer){
                     System.out.print(" * ");
                 }
             }
@@ -23,8 +28,17 @@ public class Board {
 
 
     public void createPlayer() {
-        Player player1 = new Player(" K ", 1, 1);
+        Player player1 = new Player(" K ", 0, 0);
         players.add(player1);
+
+        Player player2 = new Player(" W ", 0, 9);
+        players.add(player2);
+
+        Player player3 = new Player(" D ", 9, 9);
+        players.add(player3);
+
+        Player player4 = new Player(" P ", 9, 0);
+        players.add(player4);
     }
 
 
