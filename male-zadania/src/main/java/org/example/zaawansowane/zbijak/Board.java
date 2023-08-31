@@ -7,18 +7,22 @@ public class Board {
 
     final private List<Player> players = new ArrayList<>();
 
+    final static int WIDTH = 10;
+    final static int HEIGHT = 10;
+
     public void start() {
         createPlayer();
         printBoard();
         for (Player player : players) {
+            System.out.println("It's turn of player: " + player.getName());
             player.readMove();
             printBoard();
         }
     }
 
     public void printBoard() {
-        for (int y = 0; y < 10; y++) {
-            for (int x = 0; x < 10; x++) {
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
                 boolean isPlayer = false;
                 for (Player player : players) {
                     if (player.getY() == y && player.getX() == x) {
@@ -35,7 +39,7 @@ public class Board {
     }
 
     public void createPlayer() {
-        Player player1 = new Player(" K ", 0, 0);
+        Player player1 = new Player(" K ", 0, 1);
         players.add(player1);
 
         Player player2 = new Player(" W ", 0, 9);
