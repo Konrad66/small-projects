@@ -2,6 +2,7 @@ package org.example.zaawansowane.zbijak;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Board {
 
@@ -18,14 +19,13 @@ public class Board {
                         isPlayer = true;
                     }
                 }
-                if(!isPlayer){
+                if (!isPlayer) {
                     System.out.print(" * ");
                 }
             }
             System.out.println();
         }
     }
-
 
     public void createPlayer() {
         Player player1 = new Player(" K ", 0, 0);
@@ -41,12 +41,31 @@ public class Board {
         players.add(player4);
     }
 
+    public void readMove() {
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Chose your move: W, A, S, D");
+        switch (reader.next()) {
+            case "W":
+                System.out.println("Go up");
+                break;
+            case "S":
+                System.out.println("Go down");
+                break;
+            case "A":
+                System.out.println("Go to the left");
+                break;
+            case "D":
+                System.out.println("Go to the right");
+                break;
+            default:
+                System.out.println("Insert one of those move: W, A, S, D");
+        }
+    }
 
     public static void main(String[] args) {
         Board board = new Board();
         board.createPlayer();
         board.printBoard();
+        board.readMove();
     }
-
-
 }
