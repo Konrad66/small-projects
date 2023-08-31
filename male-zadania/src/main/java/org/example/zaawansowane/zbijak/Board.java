@@ -15,7 +15,7 @@ public class Board {
         printBoard();
         for (Player player : players) {
             System.out.println("It's turn of player: " + player.getName());
-            player.readMove();
+            player.move();
             printBoard();
         }
     }
