@@ -1,6 +1,5 @@
-package org.example.zaawansowane.zad6;
+package org.example.advanced.exe6;
 
-import javax.lang.model.element.Name;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

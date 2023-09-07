@@ -1,6 +1,4 @@
-package org.example.zaawansowane.zad6;
-
-import java.util.Objects;
+package org.example.advanced.exe6;
 
 public abstract class Citizen {
 

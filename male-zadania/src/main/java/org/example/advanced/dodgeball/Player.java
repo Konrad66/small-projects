@@ -1,4 +1,4 @@
-package org.example.zaawansowane.zbijak;
+package org.example.advanced.dodgeball;
 
 import java.util.Scanner;
 

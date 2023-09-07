@@ -1,4 +1,4 @@
-package org.example.zad40;
+package org.example.basics.exe40;
 
 public class Line {
 

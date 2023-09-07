@@ -1,6 +1,5 @@
-package org.example.zaawansowane.zad6;
+package org.example.advanced.exe6;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

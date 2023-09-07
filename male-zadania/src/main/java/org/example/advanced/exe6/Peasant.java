@@ -1,4 +1,4 @@
-package org.example.zaawansowane.zad6;
+package org.example.advanced.exe6;
 
 public class Peasant extends Citizen {
 
