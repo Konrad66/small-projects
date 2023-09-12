@@ -11,15 +11,17 @@ public class HumanPlayer extends Player {
     //TODO // usunąc powtórzenie kodu pomiędzy klasami human i computer obie używają tej samej pętli
     @Override
     public void move() {
-        boolean correctMove;
-        do {
-            Scanner reader = new Scanner(System.in);
-            System.out.println("Chose your move: W, A, S, D");
-            String input = reader.next();
-            correctMove = executeMove(input);
-            if (!correctMove) {
-                System.out.println("Choose other direction");
-            }
-        } while (!correctMove);
+        for (int i = 0; i < 2; i++) {
+            boolean correctMove;
+            do {
+                Scanner reader = new Scanner(System.in);
+                System.out.println("Chose your move: W, A, S, D");
+                String input = reader.next();
+                correctMove = executeMove(input);
+                if (!correctMove) {
+                    System.out.println("Choose other direction");
+                }
+            } while (!correctMove);
+        }
     }
 }
