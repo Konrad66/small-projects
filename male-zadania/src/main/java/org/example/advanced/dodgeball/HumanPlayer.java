@@ -7,6 +7,8 @@ public class HumanPlayer extends Player {
         super(name, x, y);
     }
 
+
+    //TODO // usunąc powtórzenie kodu pomiędzy klasami human i computer obie używają tej samej pętli
     @Override
     public void move() {
         boolean correctMove;

@@ -17,12 +17,7 @@ public abstract class Player {
         this.y = y;
     }
 
-    public void move(){
-
-    }
-
-
-
+    public abstract void move();
 
     public boolean executeMove(String input) {
         switch (input) {
@@ -56,7 +51,6 @@ public abstract class Player {
         return false;
     }
 
-
     public String getName() {
         return name;
     }
@@ -69,3 +63,6 @@ public abstract class Player {
         return y;
     }
 }
+
+
+//w abstrakcyjnej klasie są dwie cechy które odróżniają ją od zwykłej klasy 1. może mieć abstrakcyjne metody oraz nie można tworzyć obiektu tej klasy
