@@ -1,5 +1,6 @@
 package org.example.advanced.dodgeball;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
@@ -25,6 +26,16 @@ public class Player {
             if (!correctMove) {
                 System.out.println("Choose other direction");
             }
+        } while (!correctMove);
+    }
+
+    public void computerMove(){
+        boolean correctMove;
+        do {
+            Random random = new Random();
+            String[] directions = {"W", "A", "S", "D"};
+            String input = directions[random.nextInt(4)];
+            correctMove = executeMove(input);
         } while (!correctMove);
     }
 

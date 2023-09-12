@@ -11,35 +11,37 @@ public class Board {
     final static int HEIGHT = 10;
 
     public void start() {
-        createPlayer();
-        printBoard();
+        createPlayers();
+        System.out.println(composeBoardView());
         for (Player player : players) {
             System.out.println("It's turn of player: " + player.getName());
-            player.move();
-            printBoard();
+            player.computerMove();
+            System.out.println(composeBoardView());
         }
     }
 
-    public void printBoard() {
+    public String composeBoardView() {
+        String board = "";
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
                 boolean isPlayer = false;
                 for (Player player : players) {
                     if (player.getY() == y && player.getX() == x) {
-                        System.out.print(player.getName());
+                        board = board + player.getName();
                         isPlayer = true;
                     }
                 }
                 if (!isPlayer) {
-                    System.out.print(" * ");
+                    board += " * ";
                 }
             }
-            System.out.println();
+            board =board + "\n";
         }
+        return board;
     }
 
-    public void createPlayer() {
-        Player player1 = new Player(" K ", 0, 1);
+    public void createPlayers() {
+        Player player1 = new Player(" K ", 0,0 );
         players.add(player1);
 
         Player player2 = new Player(" W ", 0, 9);
@@ -50,6 +52,10 @@ public class Board {
 
         Player player4 = new Player(" P ", 9, 0);
         players.add(player4);
+    }
+
+    public int numberOfPlayers(){
+        return players.size();
     }
 
     public static void main(String[] args) {
