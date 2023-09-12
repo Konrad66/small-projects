@@ -15,6 +15,13 @@ public class Board {
         for (Player player : players) {
             System.out.println("It's turn of player: " + player.getName());
             player.move();
+            for(Player other : players) {
+                if (player.getX() == other.getX() && player.getY() == other.getY()) {
+                    System.out.println("zbicie");
+                }
+            }
+
+
             System.out.println(composeBoardView());
         }
     }
@@ -35,13 +42,13 @@ public class Board {
                     board += " * ";
                 }
             }
-            board =board + "\n";
+            board = board + "\n";
         }
         return board;
     }
 
     public void createPlayers() {
-        Player player1 = new HumanPlayer(" K ", 0,0);
+        Player player1 = new HumanPlayer(" K ", 0, 0);
         players.add(player1);
 
         Player player2 = new ComputerPlayer(" W ", 0, 9);
@@ -50,11 +57,12 @@ public class Board {
         Player player3 = new ComputerPlayer(" D ", 9, 9);
         players.add(player3);
 
-        Player player4 = new ComputerPlayer(" P ", 9, 0);
+        Player player4 = new ComputerPlayer(" P ", 2, 0);
         players.add(player4);
     }
 
-    public int numberOfPlayers(){
+
+    public int numberOfPlayers() {
         return players.size();
     }
 

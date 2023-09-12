@@ -19,6 +19,7 @@ public abstract class Player {
 
     public abstract void move();
 
+
     public boolean executeMove(String input) {
         switch (input) {
             case "W":
