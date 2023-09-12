@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTestSuite {
 
-    static Player player = new Player("Player1", 1, 0);
+    static Player player = new Player("Player1", 1, 0, true);
 
 
     @ParameterizedTest
@@ -26,7 +26,7 @@ class PlayerTestSuite {
 
     @Test
     public void newPlayerShouldStoreData() {
-        Player newplayer = new Player("newPlayer", 1, 0);
+        Player newplayer = new Player("newPlayer", 1, 0, true);
         Assertions.assertEquals(1, newplayer.getX());
         Assertions.assertEquals(0, newplayer.getY());
         Assertions.assertEquals("newPlayer", newplayer.getName());
@@ -35,7 +35,7 @@ class PlayerTestSuite {
     @ParameterizedTest
     @CsvSource({"W,0,0", "A,0,0", "S,9,9", "D,9,9"})
     public void shouldNotAllowCrossingBorder(String input, int startingX, int startingY) {
-        Player cornerPlayer = new Player(null, startingX, startingY);
+        Player cornerPlayer = new Player(null, startingX, startingY, true);
         boolean correctMove = cornerPlayer.executeMove(input);
         Assertions.assertEquals(startingX, cornerPlayer.getX());
         Assertions.assertEquals(startingY, cornerPlayer.getY());

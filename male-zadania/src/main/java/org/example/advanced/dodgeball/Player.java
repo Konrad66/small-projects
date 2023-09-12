@@ -6,17 +6,27 @@ import java.util.Scanner;
 public class Player {
 
     private String name;
+    private boolean isComputer;
     private int x;
     private int y;
 
 
-    public Player(String name, int x, int y) {
+    public Player(String name, int x, int y, boolean isComputer) {
         this.name = name;
         this.x = x;
         this.y = y;
+        this.isComputer = isComputer;
     }
 
-    public void move() {
+    public void move(){
+        if(isComputer()){
+            computerMove();
+        } else {
+            humanMove();
+        }
+    }
+
+    public void humanMove() {
         boolean correctMove;
         do {
             Scanner reader = new Scanner(System.in);
@@ -29,7 +39,7 @@ public class Player {
         } while (!correctMove);
     }
 
-    public void computerMove(){
+    public void computerMove() {
         boolean correctMove;
         do {
             Random random = new Random();
@@ -71,6 +81,7 @@ public class Player {
         return false;
     }
 
+
     public String getName() {
         return name;
     }
@@ -81,5 +92,9 @@ public class Player {
 
     public int getY() {
         return y;
+    }
+
+    public boolean isComputer() {
+        return isComputer;
     }
 }
