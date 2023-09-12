@@ -3,51 +3,26 @@ package org.example.advanced.dodgeball;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Player {
+public abstract class Player {
 
     private String name;
-    private boolean isComputer;
+
     private int x;
     private int y;
 
 
-    public Player(String name, int x, int y, boolean isComputer) {
+    public Player(String name, int x, int y) {
         this.name = name;
         this.x = x;
         this.y = y;
-        this.isComputer = isComputer;
     }
 
     public void move(){
-        if(isComputer()){
-            computerMove();
-        } else {
-            humanMove();
-        }
+
     }
 
-    public void humanMove() {
-        boolean correctMove;
-        do {
-            Scanner reader = new Scanner(System.in);
-            System.out.println("Chose your move: W, A, S, D");
-            String input = reader.next();
-            correctMove = executeMove(input);
-            if (!correctMove) {
-                System.out.println("Choose other direction");
-            }
-        } while (!correctMove);
-    }
 
-    public void computerMove() {
-        boolean correctMove;
-        do {
-            Random random = new Random();
-            String[] directions = {"W", "A", "S", "D"};
-            String input = directions[random.nextInt(4)];
-            correctMove = executeMove(input);
-        } while (!correctMove);
-    }
+
 
     public boolean executeMove(String input) {
         switch (input) {
@@ -92,9 +67,5 @@ public class Player {
 
     public int getY() {
         return y;
-    }
-
-    public boolean isComputer() {
-        return isComputer;
     }
 }

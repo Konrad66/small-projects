@@ -41,16 +41,16 @@ public class Board {
     }
 
     public void createPlayers() {
-        Player player1 = new Player(" K ", 0,0, true);
+        Player player1 = new HumanPlayer(" K ", 0,0);
         players.add(player1);
 
-        Player player2 = new Player(" W ", 0, 9, true);
+        Player player2 = new ComputerPlayer(" W ", 0, 9);
         players.add(player2);
 
-        Player player3 = new Player(" D ", 9, 9, true);
+        Player player3 = new ComputerPlayer(" D ", 9, 9);
         players.add(player3);
 
-        Player player4 = new Player(" P ", 9, 0, false);
+        Player player4 = new ComputerPlayer(" P ", 9, 0);
         players.add(player4);
     }
 
