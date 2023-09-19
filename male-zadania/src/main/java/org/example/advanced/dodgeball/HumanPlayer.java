@@ -1,5 +1,6 @@
 package org.example.advanced.dodgeball;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class HumanPlayer extends Player {
@@ -23,5 +24,9 @@ public class HumanPlayer extends Player {
                 }
             } while (!correctMove);
         }
+    }
+
+    public void playerMethod() {
+        System.out.println("player method");
     }
 }

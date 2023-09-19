@@ -15,17 +15,19 @@ public class Board {
         for (Player player : players) {
             System.out.println("It's turn of player: " + player.getName());
             player.move();
-            for(Player other : players) {
-                if (player.getX() == other.getX() && player.getY() == other.getY()) {
-                    System.out.println("zbicie");
-                }
-            }
-
-
+            beat(player);
             System.out.println(composeBoardView());
         }
     }
 
+    public void beat(Player player) {
+        //TODO //zaimplementować zbijanie
+        for (Player other : players) {
+            if (player.getX() == other.getX() && player.getY() == other.getY()) {
+                System.out.println("zbicie");
+            }
+        }
+    }
 
     public String composeBoardView() {
         String board = "";
@@ -48,7 +50,7 @@ public class Board {
     }
 
     public void createPlayers() {
-        Player player1 = new HumanPlayer(" K ", 0, 0);
+        HumanPlayer player1 = new HumanPlayer(" K ", 0, 0);
         players.add(player1);
 
         Player player2 = new ComputerPlayer(" W ", 0, 9);
@@ -71,3 +73,18 @@ public class Board {
         board.start();
     }
 }
+
+//TODO
+//dzidziczenie i abstract poczytać + dodatkowo zadanie z dziedziczenia
+// zadanie z escape room strona 9
+
+/*
+*   if (player instanceof HumanPlayer) {
+                System.out.println("instanceof");
+            }
+            if (player.getClass() == HumanPlayer.class) {
+                System.out.println("same class");
+            }
+*
+*
+* */
