@@ -4,67 +4,53 @@ import java.util.Scanner;
 
 public class EscapeRoom {
 
-    public String input;
-    public Boolean keyTaken = false;
-    public Boolean windowOpen = false;
-    public Boolean door;
-    public Scanner scanner = new Scanner(System.in);
+    private String input;
+    private Boolean keyTaken = false;
+    private Boolean windowOpen = false;
+    private Boolean door;
+    private Scanner scanner = new Scanner(System.in);
 
-    public void start() {
-        room();
-        action();
-
-
-    }
-
-    public void room() {
+    private void start() {
         System.out.println("Hello you have to escape room. You have to find key and open the door. ");
-        System.out.println("Escape room: window, key, door");
+        action();
     }
 
-
-    public void action() {
+    private void action() {
         System.out.println("Window is closed.");
         do {
+            showItems();
             input = scanner.next();
             if (input.equals("window")) {
-                if (!windowOpen) {
-                    System.out.println("Window are open");
-                    windowOpen = true;
-                } else {
-                    System.out.println("Window are closed");
-                    windowOpen = false;
-                }
+                windowAction();
             } else if (input.equals("key")) {
-                if (!keyTaken) {
-                    System.out.println("You taken key");
-                    keyTaken = true;
-                }
-            }
-            if (keyTaken == true) {
-                System.out.println("Escape room: window, door");
-            } else {
-                System.out.println("Escape room: window, key, door");
+                keyAction();
             }
         } while (true);
     }
 
-
-    public boolean executeInteraction() {
-        switch (input) {
-            case "key":
-                System.out.println("Key was taken");
-                break;
-            case "door":
-                System.out.println("Door are closed");
-                break;
-            case "window":
-                System.out.println("Window are opened");
-                break;
-            default:
-                System.out.println("Do action!");
+    private void windowAction() {
+        if (!windowOpen) {
+            System.out.println("Window are open");
+            windowOpen = true;
+        } else {
+            System.out.println("Window are closed");
+            windowOpen = false;
         }
-        return false;
+    }
+
+    private void keyAction() {
+        if (!keyTaken) {
+            System.out.println("You taken key");
+            keyTaken = true;
+        }
+    }
+
+    private void showItems() {
+        if (keyTaken) {
+            System.out.println("Escape room: window, door");
+        } else {
+            System.out.println("Escape room: window, key, door");
+        }
     }
 
 
