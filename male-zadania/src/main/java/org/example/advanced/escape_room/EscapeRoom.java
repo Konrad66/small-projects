@@ -7,7 +7,7 @@ public class EscapeRoom {
     private String input;
     private Boolean keyTaken = false;
     private Boolean windowOpen = false;
-    private Boolean door;
+    private Boolean doorOpen = false;
     private Scanner scanner = new Scanner(System.in);
 
     private void start() {
@@ -24,8 +24,10 @@ public class EscapeRoom {
                 windowAction();
             } else if (input.equals("key")) {
                 keyAction();
+            } else if (input.equals("door")) {
+                doorAction();
             }
-        } while (true);
+        } while (!doorOpen);
     }
 
     private void windowAction() {
@@ -53,6 +55,14 @@ public class EscapeRoom {
         }
     }
 
+    private void doorAction() {
+        if (keyTaken) {
+            System.out.println("Door are open. You won!");
+            doorOpen = true;
+        } else {
+            System.out.println("You can't open the door");
+        }
+    }
 
     public static void main(String[] args) {
         EscapeRoom escapeRoom = new EscapeRoom();
