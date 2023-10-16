@@ -1,14 +1,14 @@
 package org.example.advanced.escape_room;
 
-public class KeyAction extends Action{
+public class KeyItem extends Item {
 
 
-    public KeyAction() {
+    public KeyItem() {
         super("key");
     }
 
     @Override
-    public void action() {
+    public void use() {
 
     }
 }

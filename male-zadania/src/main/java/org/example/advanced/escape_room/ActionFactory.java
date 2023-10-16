@@ -1,15 +1,13 @@
 package org.example.advanced.escape_room;
 
-import java.util.List;
-
 public class ActionFactory {
 
 
-    public Action createAction(String item) {
+    public Item createAction(String item) {
         if (item.equals("window")) {
-            return new WindowAction();
+            return new WindowItem();
         } else if (item.equals("key")) {
-            return new KeyAction();
+            return new KeyItem();
         }
         throw new IllegalStateException("Nie przewidziano przedmiotu o nazwie " + item);
     }

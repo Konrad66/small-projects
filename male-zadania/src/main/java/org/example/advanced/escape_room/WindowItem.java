@@ -1,15 +1,15 @@
 package org.example.advanced.escape_room;
 
-public class WindowAction extends Action{
+public class WindowItem extends Item {
 
-    private Boolean open;
+    private boolean open;
 
-    public WindowAction() {
+    public WindowItem() {
         super("window");
     }
 
     @Override
-    public void action() {
+    public void use() {
         if (!open) {
             System.out.println("Window are open");
             open = true;
