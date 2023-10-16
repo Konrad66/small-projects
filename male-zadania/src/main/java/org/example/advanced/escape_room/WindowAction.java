@@ -4,6 +4,10 @@ public class WindowAction extends Action{
 
     private Boolean open;
 
+    public WindowAction() {
+        super("window");
+    }
+
     @Override
     public void action() {
         if (!open) {

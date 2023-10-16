@@ -15,13 +15,13 @@ public class EscapeRoom {
     private Boolean doorOpen = false;
     private Scanner scanner = new Scanner(System.in);
 
-    private Action[] actions;
+    private List<Action> actions;
 
     private void start() {
         System.out.println("Hello you have to escape room. You have to find key and open the door. ");
         List<String> items = readCSV();
-        System.out.println(items);
-        createActions(items);
+        //System.out.println(items);
+        actions = createActions(items);
         action();
     }
 
@@ -31,11 +31,7 @@ public class EscapeRoom {
             showItems();
             input = scanner.next();
             if (input.equals("window")) {
-                windowAction();
-            } else if (input.equals("key")) {
-                keyAction();
-            } else if (input.equals("door")) {
-                doorAction();
+
             }
         } while (!doorOpen);
     }
@@ -49,11 +45,7 @@ public class EscapeRoom {
     }
 
     private void showItems() {
-        if (keyTaken) {
-            System.out.println("Escape room: window, door");
-        } else {
-            System.out.println("Escape room: window, key, door");
-        }
+        System.out.println(actions);
     }
 
     private void doorAction() {
@@ -65,13 +57,13 @@ public class EscapeRoom {
         }
     }
 
-    private List<String> readCSV(){
+    private List<String> readCSV() {
         List<String> itemNames = new ArrayList<>();
         try {
             Scanner reader = new Scanner(new File("items.csv"));
             String text = reader.next();
             String[] texts = text.split(";");
-            for(String name : texts){
+            for (String name : texts) {
                 itemNames.add(name);
             }
         } catch (FileNotFoundException exception) {
@@ -82,14 +74,13 @@ public class EscapeRoom {
         return itemNames;
     }
 
-    private List<Action> createActions(List<String> items){
+    private List<Action> createActions(List<String> items) {
         List<Action> actionList = new ArrayList<>();
-        for (String item : items){
+        for (String item : items) {
             ActionFactory factory = new ActionFactory();
             actionList.add(factory.createAction(item));
         }
         //TODO różnica między metodą equals a 2 x ==
-
         return actionList;
     }
 
