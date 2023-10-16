@@ -1,5 +1,10 @@
 package org.example.advanced.escape_room;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class EscapeRoom {
@@ -10,8 +15,13 @@ public class EscapeRoom {
     private Boolean doorOpen = false;
     private Scanner scanner = new Scanner(System.in);
 
+    private Action[] actions;
+
     private void start() {
         System.out.println("Hello you have to escape room. You have to find key and open the door. ");
+        List<String> items = readCSV();
+        System.out.println(items);
+        createActions(items);
         action();
     }
 
@@ -30,15 +40,6 @@ public class EscapeRoom {
         } while (!doorOpen);
     }
 
-    private void windowAction() {
-        if (!windowOpen) {
-            System.out.println("Window are open");
-            windowOpen = true;
-        } else {
-            System.out.println("Window are closed");
-            windowOpen = false;
-        }
-    }
 
     private void keyAction() {
         if (!keyTaken) {
@@ -64,8 +65,40 @@ public class EscapeRoom {
         }
     }
 
+    private List<String> readCSV(){
+        List<String> itemNames = new ArrayList<>();
+        try {
+            Scanner reader = new Scanner(new File("items.csv"));
+            String text = reader.next();
+            String[] texts = text.split(";");
+            for(String name : texts){
+                itemNames.add(name);
+            }
+        } catch (FileNotFoundException exception) {
+            System.out.println("File doesn't exist");
+            exception.printStackTrace();
+        }
+
+        return itemNames;
+    }
+
+    private List<Action> createActions(List<String> items){
+        List<Action> actionList = new ArrayList<>();
+        for (String item : items){
+            ActionFactory factory = new ActionFactory();
+            actionList.add(factory.createAction(item));
+        }
+        //TODO różnica między metodą equals a 2 x ==
+
+        return actionList;
+    }
+
     public static void main(String[] args) {
         EscapeRoom escapeRoom = new EscapeRoom();
         escapeRoom.start();
+
     }
 }
+
+
+// 5 pomysłów na różne aplikacje i zacząć tworzyć
