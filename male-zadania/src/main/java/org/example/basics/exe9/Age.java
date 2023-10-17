@@ -12,19 +12,18 @@ public class Age {
         String inputName = name.next();
 
         System.out.println("What's your surname?");
+
         Scanner surname = new Scanner(System.in);
         String inputSurname = surname.next();
 
         System.out.println("Hello " + inputName + " " + inputSurname + "! How old are you?");
-        Scanner age = new Scanner(System.in);
-        String inputAge = age.next();
+        Scanner ageInput = new Scanner(System.in);
+        int age = ageInput.nextInt();
 
-/*
-        if (inputAge > 18){
-            System.out.println("You are ");
+        if (age >= 18){
+            System.out.println("I already know if you are of legal age: " + true);
+        } else {
+            System.out.println("I already know if you are of legal age: " + false);
         }
-
-
- */
     }
 }
