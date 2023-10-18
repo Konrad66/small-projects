@@ -15,9 +15,7 @@ public class RandomNumbers {
         Random random = new Random();
         int randomNumber = random.nextInt(wallNumber);
         System.out.println("I got: " + randomNumber);
-
         System.out.println("Now we roll the same dice again, but give me a range for the result drawn: ");
-
 
         Random random1 = new Random();
         int start = cube.nextInt();
