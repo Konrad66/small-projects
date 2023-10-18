@@ -9,14 +9,19 @@ public class OddOrEven {
         System.out.println("Give me a number: ");
         Scanner scanner = new Scanner(System.in);
         int number = scanner.nextInt();
-        System.out.println(number);
 
         if (number < 0 ){
-            System.out.println("number is negative");
+            System.out.println("number " + number + " is negative");
         } else if (number == 0) {
-            System.out.println("Number is equals 0");
+            System.out.println("number " + number + " is equals 0");
         } else {
-            System.out.println("Number is positive");
+            System.out.println("number " + number + " is positive");
+        }
+
+        if (number % 2 == 0){
+            System.out.println("number " + number + " is even");
+        } else {
+            System.out.println("number " + number + " is odd");
         }
 
 
