@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class RandomNumbers {
-
+//TODO do sprawdzenia
     public static void main(String[] args) {
 
         System.out.println("The program will roll the dice for you and draw the teams! Please tell me how many sides the dice you are throwing have? ");
