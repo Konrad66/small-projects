@@ -76,7 +76,7 @@ public class Board {
 
 //TODO
 //dzidziczenie i abstract poczytać + dodatkowo zadanie z dziedziczenia
-// zadanie z escape room strona 9
+
 
 /*
 *   if (player instanceof HumanPlayer) {
