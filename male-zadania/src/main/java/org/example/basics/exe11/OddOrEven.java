@@ -3,7 +3,7 @@ package org.example.basics.exe11;
 import java.util.Scanner;
 
 public class OddOrEven {
-//TODO do sprawdzenia
+    //TODO do sprawdzenia
     public static void main(String[] args) {
 
         System.out.println("Give me a number: ");
@@ -29,15 +29,13 @@ public class OddOrEven {
         int number2 = scanner.nextInt();
         int number3 = scanner.nextInt();
 
-        if (number1 > number2 && number3 < number1) {
+        //TODO sprawdzić inne sposoby
+        if (number1 > number2 && number1 > number3) {
             System.out.println("Number " + number1 + " is the biggest ");
-        } else if (number2 > number1 && number3 < number2) {
+        } else if (number2 > number1 && number2 > number3) {
             System.out.println("Number " + number2 + " is the biggest ");
-        } else if (number3 > number1 && number3 > number2) {
-            System.out.println("Number " + number3 + " is the biggest ");
         } else {
-            System.out.println("x");
+            System.out.println("Number " + number3 + " is the biggest ");
         }
-
     }
 }

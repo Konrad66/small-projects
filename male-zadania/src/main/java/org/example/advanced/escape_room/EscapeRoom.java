@@ -9,10 +9,9 @@ import java.util.Scanner;
 public class EscapeRoom {
 
     private String input;
-    private Boolean keyTaken = false;
-    private Boolean windowOpen = false;
     private Boolean doorOpen = false;
     private Scanner scanner = new Scanner(System.in);
+
 
     private List<Item> items;
 
@@ -30,7 +29,7 @@ public class EscapeRoom {
             showItems();
             input = scanner.next();
             for (Item item : items) {
-                if(item.getName().equals(input)){
+                if (item.getName().equals(input)) {
                     item.use();
                 }
             }
@@ -38,17 +37,14 @@ public class EscapeRoom {
     }
 
 
-    private void keyAction() {
-        if (!keyTaken) {
-            System.out.println("You taken key");
-            keyTaken = true;
+    private void showItems() {
+        for (Item item : items){
+            //TODO
+            item.visible();
+            System.out.println(item);
         }
     }
-
-    private void showItems() {
-        System.out.println(items);
-    }
-
+/*
     private void doorAction() {
         if (keyTaken) {
             System.out.println("Door are open. You won!");
@@ -57,6 +53,8 @@ public class EscapeRoom {
             System.out.println("You can't open the door");
         }
     }
+
+ */
 
     private List<String> readCSV() {
         List<String> itemNames = new ArrayList<>();

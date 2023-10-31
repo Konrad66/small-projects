@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Age {
 
-    //TODO do sprawdzenia
     public static void main(String[] args) {
 
         System.out.println("Hello, what's your name?");

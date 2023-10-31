@@ -9,6 +9,7 @@ public abstract class Item {
     }
 
     public abstract void use();
+    public abstract boolean visible();
 
     public String getName() {
         return name;

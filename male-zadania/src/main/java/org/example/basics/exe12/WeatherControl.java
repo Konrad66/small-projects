@@ -9,13 +9,13 @@ public class WeatherControl {
         boolean sunShines = false;
 
 
-        if(rain == true && sunShines == true ){
+        if (rain && sunShines) {
             System.out.println("Rainbow!");
-        } else if (rain == false && sunShines == true) {
+        } else if (!rain && sunShines) {
             System.out.println("It's clear");
-        } else if (rain == false && sunShines == false) {
+        } else if (!rain && !sunShines) {
             System.out.println("It's cloudy");
-        } else if (rain == true && sunShines == false) {
+        } else {
             System.out.println("Heavy rain");
         }
 

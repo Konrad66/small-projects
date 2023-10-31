@@ -18,4 +18,9 @@ public class WindowItem extends Item {
             open = false;
         }
     }
+
+    @Override
+    public boolean visible() {
+        return true;
+    }
 }
