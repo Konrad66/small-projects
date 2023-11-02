@@ -21,6 +21,9 @@ public class KeyItem extends Item {
        return !keyTaken;
     }
 
+    public boolean isKeyTaken() {
+        return keyTaken;
+    }
 
     //problem: jak klucz ma przestac byc wyswietlany bez modyfikowania kodu wyswietlania
     //rozwiazanie 1: wyswietlane sa tylko te przedmioty ktore sa widoczne

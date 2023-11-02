@@ -10,10 +10,15 @@ public class EscapeRoom {
 
     private String input;
     private Boolean doorOpen = false;
-    private Scanner scanner = new Scanner(System.in);
+
+    private InputGenerator inputGenerator;
 
 
     private List<Item> items;
+
+    public EscapeRoom(InputGenerator inputGenerator) {
+        this.inputGenerator = inputGenerator;
+    }
 
     private void start() {
         System.out.println("Hello you have to escape room. You have to find key and open the door. ");
@@ -24,10 +29,9 @@ public class EscapeRoom {
     }
 
     private void action() {
-        System.out.println("Window is closed.");
         do {
             showItems();
-            input = scanner.next();
+            input = inputGenerator.readText();
             for (Item item : items) {
                 if (item.getName().equals(input)) {
                     item.use();
@@ -38,10 +42,21 @@ public class EscapeRoom {
 
 
     private void showItems() {
-        for (Item item : items){
+        for (Item item : items) {
+            boolean taken = false;
+            if (item instanceof KeyItem) {
+                KeyItem key = (KeyItem) item;
+                if (key.isKeyTaken()) {
+                    taken = true;
+                }
+            }
+            if (!taken) {
+                System.out.println(item);
+            }
             //TODO
-            item.visible();
-            System.out.println(item);
+
+            //item.visible();
+
         }
     }
 /*
@@ -84,11 +99,25 @@ public class EscapeRoom {
     }
 
     public static void main(String[] args) {
-        EscapeRoom escapeRoom = new EscapeRoom();
-        escapeRoom.start();
+        InputGenerator inputGenerator;
 
+        if (args[0].equals("gui")) {
+            inputGenerator = new InputGeneratorGui();
+        } else if (args[0].equals("console")) {
+            inputGenerator = new InputGeneratorConsole();
+        } else {
+            throw new IllegalStateException();
+        }
+
+        EscapeRoom escapeRoom = new EscapeRoom(inputGenerator);
+        System.out.println(args[0]);
+        escapeRoom.start();
     }
 }
 
 
 // 5 pomysłów na różne aplikacje i zacząć tworzyć
+
+//javac EscapeRoom.java
+//java EscapeRoom gui
+//java EscapeRoom console
