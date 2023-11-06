@@ -1,12 +1,17 @@
 package org.example.basics.exe12;
 
-public class WeatherControl {
+import java.util.Scanner;
 
+public class WeatherControl {
 
     public static void main(String[] args) {
 
-        boolean rain = false;
-        boolean sunShines = false;
+        //TODO poprawione do sprawdzenia
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Did it rain today? Write true or false: ");
+        boolean rain = scanner.nextBoolean();
+        System.out.println("Did it sunshine today? Write true or false: ");
+        boolean sunShines = scanner.nextBoolean();
 
 
         if (rain && sunShines) {
@@ -18,9 +23,5 @@ public class WeatherControl {
         } else {
             System.out.println("Heavy rain");
         }
-
-
-
-
     }
 }
