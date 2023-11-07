@@ -3,7 +3,6 @@ package org.example.basics.exe11;
 import java.util.Scanner;
 
 public class OddOrEven {
-    //TODO do sprawdzenia
     public static void main(String[] args) {
 
         System.out.println("Give me a number: ");
