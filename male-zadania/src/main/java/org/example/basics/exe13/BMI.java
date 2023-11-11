@@ -15,7 +15,9 @@ public class BMI {
         System.out.println("How much you weight?");
         double weight = scanner.nextDouble();
 
+
+
+
+
     }
-
-
 }
