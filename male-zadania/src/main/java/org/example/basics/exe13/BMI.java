@@ -6,7 +6,6 @@ public class BMI {
 
     public static void main(String[] args) {
 
-
         Scanner scanner = new Scanner(System.in);
         System.out.println("How old are you?");
         int age = scanner.nextInt();
@@ -14,9 +13,6 @@ public class BMI {
         double growth = scanner.nextDouble();
         System.out.println("How much you weight?");
         double weight = scanner.nextDouble();
-
-
-
 
 
     }
