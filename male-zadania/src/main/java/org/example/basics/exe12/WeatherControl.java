@@ -6,7 +6,6 @@ public class WeatherControl {
 
     public static void main(String[] args) {
 
-        //TODO poprawione do sprawdzenia
         Scanner scanner = new Scanner(System.in);
         System.out.println("Did it rain today? Write true or false: ");
         boolean rain = scanner.nextBoolean();

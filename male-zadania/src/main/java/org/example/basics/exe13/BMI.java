@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class BMI {
 
+    //TODO do sprawdzenia
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
