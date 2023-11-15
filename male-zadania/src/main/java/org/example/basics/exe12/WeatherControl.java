@@ -12,7 +12,6 @@ public class WeatherControl {
         System.out.println("Did it sunshine today? Write true or false: ");
         boolean sunShines = scanner.nextBoolean();
 
-
         if (rain && sunShines) {
             System.out.println("Rainbow!");
         } else if (!rain && sunShines) {
