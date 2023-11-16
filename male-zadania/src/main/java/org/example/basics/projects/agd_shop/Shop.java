@@ -17,12 +17,9 @@ public class Shop {
                 System.out.println("Incorrect amount");
                 System.out.println("The installment system supports amounts from PLN 100 to PLN 10,000");
                 System.out.println("Enter again correct price:");
-            } else {
-                System.out.println("Your price is: " + price);
             }
-        }
-        while (price <= 100 || price >= 10000);
-
+        } while (price <= 100 || price >= 10000);
+        System.out.println("Your price is: " + price);
 
         System.out.println("Specify how many installments you want to buy the product");
         int installment = scanner.nextInt();
@@ -40,3 +37,4 @@ public class Shop {
 
     }
 }
+//zmienić linie 21 i 16 na wykorzystująca zmienną boolean

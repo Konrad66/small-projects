@@ -15,6 +15,8 @@ public class BMI {
         System.out.println("How much you weight? Enter in kg:");
         double weight = scanner.nextDouble();
 
+
+
         if (age < 0 || growth <= 0 || weight <= 0) {
             System.out.println("We do not provide advice for absurd values.");
         } else if (age > 100) {
