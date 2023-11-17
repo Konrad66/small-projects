@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Shop {
 
+    //TODO do sprawdzenia
+
     public static void main(String[] args) {
 
          Scanner scanner = new Scanner(System.in);
