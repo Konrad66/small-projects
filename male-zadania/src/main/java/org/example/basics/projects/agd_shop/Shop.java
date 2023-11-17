@@ -6,36 +6,42 @@ public class Shop {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+         Scanner scanner = new Scanner(System.in);
+         double productPrice;
+         int installmentNumbers;
 
         System.out.println("Welcome to the appliances store.");
-        System.out.println("Enter the price:");
-        double price;
-        do {
-            price = scanner.nextDouble();
-            if (price >= 100 || price <= 10000) {
+        System.out.println("Enter the price (from 100 PLN to 10 000 PLN):");
+        productPrice = scanner.nextDouble();
 
-                System.out.println("Incorrect amount");
-                System.out.println("The installment system supports amounts from PLN 100 to PLN 10,000");
-                System.out.println("Enter again correct price:");
-            }
-        } while (price <= 100 || price >= 10000);
-        System.out.println("Your price is: " + price);
+        System.out.println("Specify how many installments you want to buy the product (from 6 to 48)");
+        installmentNumbers = scanner.nextInt();
 
-        System.out.println("Specify how many installments you want to buy the product");
-        int installment = scanner.nextInt();
-        if (installment > 6 || installment < 48) {
-            System.out.println("Incorrect number of installments");
-            System.out.println("The number of installments you can choose is 6 to 48");
+        if(!checkingInputData(productPrice, installmentNumbers)){
+            System.out.println("Provide data are incorrect. Please provide right data.");
+            return;
         }
 
-        if (installment >= 6 || installment <= 12) {
-            double interest = (price / installment) + (price * 0.025);
-
-            System.out.println("Your installment is: " + interest);
+        double interest;
+        if (installmentNumbers >= 6 && installmentNumbers <=12 ){
+            interest = 0.025;
+        } else if (installmentNumbers >= 13 && installmentNumbers <= 24) {
+            interest = 0.05;
+        } else {
+            interest = 0.1;
         }
 
+        double monthlyInterest = interest / 12;
+        double installment = calculateInstallment(productPrice, installmentNumbers, monthlyInterest);
 
+        System.out.println("Your installment equals: " + installment + " PLN.");
+    }
+
+    private static boolean checkingInputData(double price, int installment){
+        return (price >= 100 && price <= 10000) && (installment >= 6 && installment <= 48);
+    }
+
+    private static double calculateInstallment(double price, int installment, double monthlyInterest){
+        return (price * monthlyInterest) / (1 - (Math.pow(1 + monthlyInterest, - installment)));
     }
 }
-//zmienić linie 21 i 16 na wykorzystująca zmienną boolean
