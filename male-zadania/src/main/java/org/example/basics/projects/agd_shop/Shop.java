@@ -14,6 +14,7 @@ public class Shop {
         do {
             price = scanner.nextDouble();
             if (price >= 100 || price <= 10000) {
+
                 System.out.println("Incorrect amount");
                 System.out.println("The installment system supports amounts from PLN 100 to PLN 10,000");
                 System.out.println("Enter again correct price:");
