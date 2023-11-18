@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class Loops {
 
+    //TODO do sprawdzenia
+
     public static void main(String[] args) {
 
         Random random = new Random();
