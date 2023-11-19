@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class CountingPoints {
 
+    //TODO do sprawdzenia, zapytac o wariant trudniejszy
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -16,7 +17,7 @@ public class CountingPoints {
             System.out.println("Enter a number (enter 0 to break): ");
             points = scanner.nextInt();
             sum+=points;
-            if(points == -1){
+            if(points == 0){
                 System.out.println("Your sum of points equals: " + sum);
                 break;
             }
