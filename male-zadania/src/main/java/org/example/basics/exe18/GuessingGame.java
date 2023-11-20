@@ -19,12 +19,12 @@ public class GuessingGame {
         do {
             counter++;
             guess = scanner.nextInt();
-            if (guess < number){
+            if (guess < number) {
                 System.out.println("Cold!");
             } else if (guess > number) {
                 System.out.println("Warm!");
             } else {
-            System.out.println("You did it!");
+                System.out.println("You did it!");
             }
         } while (number != guess);
         System.out.println("You guessed it after " + counter + " shots");

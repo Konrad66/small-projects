@@ -13,7 +13,7 @@ public class SecretMessage {
         while (true) {
             System.out.println("Password: ");
             password = scanner.next();
-            if(password.equals("1234")){
+            if (password.equals("1234")) {
                 System.out.println("Hejka!");
                 break;
             }

@@ -12,12 +12,12 @@ public class Loops {
         int numbers;
         int counter = 0;
 
-        while (true){
+        while (true) {
             numbers = random.nextInt(11);
             counter++;
             System.out.println("You drew: " + numbers);
 
-            if(numbers == 10) {
+            if (numbers == 10) {
                 System.out.println("Congratulations, you drew 10. End of program after " + counter + " attempts.");
                 for (int i = 0; i < counter; i++) {
                     int secondDraw = random.nextInt(counter);
