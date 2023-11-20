@@ -43,6 +43,8 @@ public class BMI {
                 System.out.println("Correct data");
             }
             break;
+
+
         }
     }
 }

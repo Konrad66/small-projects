@@ -36,5 +36,8 @@ public class OddOrEven {
         } else {
             System.out.println("Number " + number3 + " is the biggest ");
         }
+
+        //int biggest = Math.max(Math.max(number1, number2), number3);
+        //System.out.println("The biggest number is: " + biggest);
     }
 }
