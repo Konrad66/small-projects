@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class Shop {
 
-    //TODO do poprawy
-
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -31,19 +29,15 @@ public class Shop {
             interest = 0.1;
         }
 
-        double monthlyInterest = interest / 12;
-        double installment = calculateInstallment(productPrice, installmentNumbers, monthlyInterest);
-
-        System.out.println("Your installment equals: " + installment + " PLN.");
-        double result = (productPrice + productPrice * interest) / installmentNumbers;
-        System.out.println("Wysokość raty z odsetkami: "+ result);
+        double result = calculateInstallment(productPrice, installmentNumbers, interest);
+        System.out.println("Wysokość raty z odsetkami: " + result);
     }
 
     private static boolean isDataOk(double price, int installment) {
         return (price >= 100 && price <= 10000) && (installment >= 6 && installment <= 48);
     }
 
-    private static double calculateInstallment(double price, int installment, double monthlyInterest) {
-        return (price * monthlyInterest) / (1 - (Math.pow(1 + monthlyInterest, -installment)));
+    private static double calculateInstallment(double price, int installment, double interest) {
+        return (price + price * interest) / installment;
     }
 }
