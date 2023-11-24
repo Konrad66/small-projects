@@ -1,7 +1,7 @@
 package org.example.basics.exe16;
 
 public class Loops2 {
-    //TODO do sprawdzenia
+
 
     public static void main(String[] args) {
         System.out.println("Numbers from 1 to 10");
@@ -12,8 +12,10 @@ public class Loops2 {
         for (int i = 99; i >= 66; i--) {
             System.out.println(i);
         }
+
+        //TODO jeszcze raz zobaczyc
         System.out.println("Even numbers from 20 to 40");
-        for (int i = 20; i <= 40; i++) {
+        for (int i = 20; i <= 40; i+=2) {
             if (i % 2 == 0) {
                 System.out.println(i);
             }

@@ -28,7 +28,6 @@ public class OddOrEven {
         int number2 = scanner.nextInt();
         int number3 = scanner.nextInt();
 
-        //TODO sprawdzić inne sposoby
         if (number1 > number2 && number1 > number3) {
             System.out.println("Number " + number1 + " is the biggest ");
         } else if (number2 > number1 && number2 > number3) {
