@@ -25,5 +25,12 @@ public class Exercise2 {
             }
         }
 
+        System.out.println();
+        double sum = 0;
+        for (int number : numbers) {
+            sum += number;
+        }
+        double average = sum / numbers.length;
+        System.out.println("Average from our numbers equals: " + average);
     }
 }
