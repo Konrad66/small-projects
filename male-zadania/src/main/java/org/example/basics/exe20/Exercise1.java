@@ -1,6 +1,7 @@
 package org.example.basics.exe20;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Exercise1 {
 
@@ -15,5 +16,10 @@ public class Exercise1 {
         System.out.println("Floating point array: " + Arrays.toString(number));
         System.out.println("Boolean array: " + Arrays.toString(booleans));
         System.out.println("Array of characters: " + Arrays.toString(chars));
+
+        Random[] randoms = {new Random(), new Random(), new Random()};
+        int randomNumber = randoms[1].nextInt(6);
+
+        System.out.println("The number drawn: " + randomNumber);
     }
 }
