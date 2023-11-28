@@ -2,7 +2,7 @@ package org.example.basics.exe21;
 
 import java.util.Arrays;
 
-public class Exercise2 {
+public class Exercise21 {
 
     //TODO do sprawdzenia
 

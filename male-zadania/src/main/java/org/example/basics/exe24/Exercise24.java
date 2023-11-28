@@ -2,8 +2,9 @@ package org.example.basics.exe24;
 
 import java.util.Random;
 
-public class Exercise2 {
+public class Exercise24 {
 
+    //TODO do sprawdzenia
     public static void main(String[] args) {
 
         Random random = new Random();

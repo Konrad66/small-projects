@@ -1,6 +1,6 @@
 package org.example.basics.exe23;
 
-public class Exercise1 {
+public class Exercise23 {
 
     public static void main(String[] args) {
 

@@ -3,7 +3,7 @@ package org.example.basics.exe20;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Exercise1 {
+public class Exercise20 {
 
     //TODO do sprawdzenia
 
