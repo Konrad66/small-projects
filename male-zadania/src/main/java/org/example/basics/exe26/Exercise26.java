@@ -8,12 +8,12 @@ public class Exercise26 {
 
         Scanner scanner = new Scanner(System.in);
 
-        String mark;
+        char mark;
         int length;
         int width;
 
-        System.out.println("Podaj znak");
-        mark = scanner.next();
+        System.out.println("Ente mark");
+        mark = scanner.next().charAt(0);
 
         System.out.println("Enter the length of the side of the rectangle: ");
         length = scanner.nextInt();
@@ -21,11 +21,11 @@ public class Exercise26 {
         System.out.println("Enter the width of the side of the rectangle");
         width = scanner.nextInt();
 
-        for(int i = 0; i < length; i++){
-            System.out.println(mark);
-            for (int j = 0; j < width; j++){
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
                 System.out.print(mark);
             }
+            System.out.println();
         }
 
     }
