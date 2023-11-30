@@ -27,6 +27,5 @@ public class Exercise26 {
             }
             System.out.println();
         }
-
     }
 }
