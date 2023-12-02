@@ -1,4 +1,4 @@
-package org.example.basics.projects.agd_shop;
+package org.example.basics.project.agd_shop;
 
 import java.util.Scanner;
 
