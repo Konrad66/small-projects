@@ -15,7 +15,9 @@ public class Lottery {
         int draw[] = new int[6];
 
         for (int i = 0; i <= 6; i++){
+            System.out.println(i);
         }
+
         //int draw = random.nextInt(24) +1;
 
 
