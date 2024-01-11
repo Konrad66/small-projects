@@ -4,8 +4,6 @@ import java.util.Arrays;
 
 public class Exercise21 {
 
-    //TODO do sprawdzenia
-
     public static void main(String[] args) {
         int[] numbers = {4, 20, 349, 571, 707, 501, 696, 83, 946, 851};
 

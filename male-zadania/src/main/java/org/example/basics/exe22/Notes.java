@@ -4,9 +4,6 @@ import java.util.Scanner;
 
 public class Notes {
 
-    //TODO do sprawdzenia
-
-
     public static void main(String[] args) {
 
         System.out.println("Enter number of notes: ");

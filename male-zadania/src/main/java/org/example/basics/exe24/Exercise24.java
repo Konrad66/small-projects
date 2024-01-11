@@ -4,11 +4,10 @@ import java.util.Random;
 
 public class Exercise24 {
 
-    //TODO do sprawdzenia
     public static void main(String[] args) {
 
         Random random = new Random();
-        int numbers[] = new int[1000000];
+        int[] numbers = new int[1000000];
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = random.nextInt(100) + 1;
         }
@@ -21,7 +20,7 @@ public class Exercise24 {
         }
         System.out.println("Number 25 occurred " + counter + " times.");
 
-        int occurrence[] = new int[100];
+        int[] occurrence = new int[100];
         for (int number : numbers) {
             occurrence[number - 1]++;
         }

@@ -12,7 +12,7 @@ public class Exercise26 {
         int length;
         int width;
 
-        System.out.println("Ente mark");
+        System.out.println("Enter mark");
         mark = scanner.next().charAt(0);
 
         System.out.println("Enter the length of the side of the rectangle: ");

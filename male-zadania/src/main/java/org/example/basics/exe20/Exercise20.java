@@ -5,8 +5,6 @@ import java.util.Random;
 
 public class Exercise20 {
 
-    //TODO do sprawdzenia
-
     public static void main(String[] args) {
 
         double[] number = {1.21, 2.25, 4.85, 6.75};

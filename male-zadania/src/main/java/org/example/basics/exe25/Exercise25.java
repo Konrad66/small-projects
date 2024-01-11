@@ -2,15 +2,15 @@ package org.example.basics.exe25;
 
 public class Exercise25 {
 
-    //TODO do sprawdzenia
+    //TODO do sprawdzenia - przeanalizowac
     public static void main(String[] args) {
-        int numbers[] = {-65, -60, -70, -38, 43, 6, 24, 97, -23, 27};
+        int numbers[] = {-65, -60, -70, -38, -43, -6, -24, -97, -23, -27};
 
-        double average = 0;
+        double sum = 0;
         for (int number : numbers) {
-            average = +number;
+            sum += number;
         }
-        System.out.println("Average of numbers equals: " + average / numbers.length);
+        System.out.println("Average of numbers equals: " + sum / numbers.length);
 
         //TODO zapytac dlaczego min a nie max value
         int maxNumber = Integer.MIN_VALUE;
