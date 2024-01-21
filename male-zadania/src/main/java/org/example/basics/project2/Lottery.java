@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Lottery {
 
-
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -19,8 +18,6 @@ public class Lottery {
         }
 
         //int draw = random.nextInt(24) +1;
-
-
 
     }
 }
