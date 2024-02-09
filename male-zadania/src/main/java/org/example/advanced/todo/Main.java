@@ -1,5 +1,6 @@
 package org.example.advanced.todo;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -75,6 +76,9 @@ public class Main {
 
     public static void main(String[] args) {
 
+        ArrayList<String> habits = new ArrayList<>();
+        String habitName;
+        boolean isDone;
 
         System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
         System.out.println("1. Dodaj nawyk");
@@ -89,6 +93,11 @@ public class Main {
         } else {
             System.out.println("Jeszcze nie działa");
         }
+
+    }
+
+
+    public static void habitDoneOrNot(boolean isDone){
 
     }
 
