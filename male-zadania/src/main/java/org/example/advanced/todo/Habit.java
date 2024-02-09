@@ -5,7 +5,4 @@ public class Habit {
     private String name;
      private boolean isDone;
 
-
-
-
 }
