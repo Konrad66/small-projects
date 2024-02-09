@@ -1,5 +1,7 @@
 package org.example.advanced.todo;
 
+import java.util.Scanner;
+
 public class Main {
 
     /*
@@ -14,6 +16,8 @@ public class Main {
      */
 
     /*
+
+    Działanie programu
     1. Dodaj nawyk
     2. Oznacz jak ci idzie
 
@@ -67,5 +71,25 @@ public class Main {
     3. Powrót do menu
     Gratulacje zrobiłeś dziś wszystkie nawyki!
      */
+
+
+    public static void main(String[] args) {
+
+
+        System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
+        System.out.println("1. Dodaj nawyk");
+        System.out.println("2. Twoje nawyki");
+
+        Scanner scanner = new Scanner(System.in);
+
+        String wybor = scanner.next();
+
+        if(wybor.equals("1")){
+            System.out.println("Przechodzimy dalej");
+        } else {
+            System.out.println("Jeszcze nie działa");
+        }
+
+    }
 
 }
