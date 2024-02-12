@@ -1,7 +1,6 @@
 package org.example.advanced.todo;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -77,20 +76,36 @@ public class Main {
     public static void main(String[] args) {
 
 
+        List<String> habits = new ArrayList<>();
 
-        System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
-        System.out.println("1. Dodaj nawyk");
-        System.out.println("2. Twoje nawyki");
+        while (true) {
+            System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
+            System.out.println("1. Dodaj nawyk");
+            System.out.println("2. Twoje nawyki");
 
-        Scanner scanner = new Scanner(System.in);
+            Scanner scanner = new Scanner(System.in);
 
-        String wybor = scanner.next();
+            String wybor = scanner.next();
 
-        if(wybor.equals("1")){
-            System.out.println("Przechodzimy dalej");
-        } else {
-            System.out.println("Jeszcze nie działa");
+            switch (wybor) {
+                case "1" -> {
+                    System.out.println("Podaj nazwe nawyku");
+                    String habitName = scanner.next();
+                    habits.add(habitName);
+                }
+                case "2" -> {
+                    System.out.println("Twoje nawyki");
+                    for (String habit : habits) {
+                        System.out.println(habit);
+
+                    }
+                }
+                case "3" -> {
+                    break;
+                }
+                default -> System.out.println("Zły wybór. Wybierz z listy poniżej");
+
+            }
         }
     }
-
 }
