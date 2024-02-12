@@ -16,8 +16,8 @@ public class Main {
      */
 
     /*
-
     Działanie programu
+
     1. Dodaj nawyk
     2. Oznacz jak ci idzie
 
@@ -40,15 +40,15 @@ public class Main {
     2
 
     Twoje nawyki:
-    1. Wypicie butelki wody - NZ
-    2. przeczytałeś książke - NZ
+    1. Wypicie butelki wody - NZ (0)
+    2. przeczytałeś książke - NZ (0)
     3. Powrót do menu
 
     2
 
     Twoje nawyki:
-    1. Wypicie butelki wody - NZ
-    2. przeczytałeś książke - Z
+    1. Wypicie butelki wody - NZ (0)
+    2. przeczytałeś książke - Z (1)
     3. Powrót do menu
 
     3
@@ -59,29 +59,36 @@ public class Main {
     2
 
     Twoje nawyki:
-    1. Wypicie butelki wody - NZ
-    2. przeczytałeś książke - Z
+    1. Wypicie butelki wody - NZ (0)
+    2. przeczytałeś książke - Z (1)
     3. Powrót do menu
 
     1
 
     Twoje nawyki:
-    1. Wypicie butelki wody - Z
-    2. przeczytałeś książke - Z
+    1. Wypicie butelki wody - Z (1)
+    2. przeczytałeś książke - Z (1)
     3. Powrót do menu
     Gratulacje zrobiłeś dziś wszystkie nawyki!
+
+    >wyzeruj dzień
+
+    Twoje nawyki:
+    1. Wypicie butelki wody - NZ (1)
+    2. przeczytałeś książke - NZ (1)
+    3. Powrót do menu
      */
 
 
     public static void main(String[] args) {
 
-
-        List<String> habits = new ArrayList<>();
+        List<Habit> habits = new ArrayList<>();
 
         while (true) {
             System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
             System.out.println("1. Dodaj nawyk");
             System.out.println("2. Twoje nawyki");
+            System.out.println("3. Wyjdź z asystenta");
 
             Scanner scanner = new Scanner(System.in);
 
@@ -91,17 +98,30 @@ public class Main {
                 case "1" -> {
                     System.out.println("Podaj nazwe nawyku");
                     String habitName = scanner.next();
-                    habits.add(habitName);
+                    habits.add(new Habit(habitName, false));
                 }
                 case "2" -> {
-                    System.out.println("Twoje nawyki");
-                    for (String habit : habits) {
-                        System.out.println(habit);
-
-                    }
+                        System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić:");
+                        int count = 1;
+                        for (Habit habit1 : habits) {
+                            System.out.println(count + ". " + habit1);
+                            count++;
+                        }
+                        int choice = scanner.nextInt();
+                        habits.get(choice - 1).isDone = true;
+                        boolean wszystkieZrobione = true;
+                        for (Habit habit : habits) {
+                            if (habit.isDone == false) {
+                                wszystkieZrobione = false;
+                            }
+                        }
+                        if (wszystkieZrobione) {
+                            System.out.println("Super, zrobiless wszystkie nawyki");
+                        }
                 }
                 case "3" -> {
-                    break;
+                    return;
+                // System.exit(0);
                 }
                 default -> System.out.println("Zły wybór. Wybierz z listy poniżej");
 
@@ -109,3 +129,20 @@ public class Main {
         }
     }
 }
+
+
+/*
+
+- dla każdego nawyku
+- sprawdź czy nie jest zrobiony
+- jak skonczysz przegladac :
+- czy byl jakis nawyk nie zrobiony
+ - jesli nie  wyśiwetl że wszystkie zrobione
+
+
+
+usunięcie nawyku
+nowy dzień - zmieniaja wszystkie na niezrobione
+licznik zrobionych nawykow
+
+ */
