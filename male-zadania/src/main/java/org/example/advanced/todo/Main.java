@@ -101,27 +101,27 @@ public class Main {
                     habits.add(new Habit(habitName, false));
                 }
                 case "2" -> {
-                        System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić:");
-                        int count = 1;
-                        for (Habit habit1 : habits) {
-                            System.out.println(count + ". " + habit1);
-                            count++;
+                    System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić:");
+                    int count = 1;
+                    for (Habit habit1 : habits) {
+                        System.out.println(count + ". " + habit1);
+                        count++;
+                    }
+                    int choice = scanner.nextInt();
+                    habits.get(choice - 1).isDone = true;
+                    boolean wszystkieZrobione = true;
+                    for (Habit habit : habits) {
+                        if (habit.isDone == false) {
+                            wszystkieZrobione = false;
                         }
-                        int choice = scanner.nextInt();
-                        habits.get(choice - 1).isDone = true;
-                        boolean wszystkieZrobione = true;
-                        for (Habit habit : habits) {
-                            if (habit.isDone == false) {
-                                wszystkieZrobione = false;
-                            }
-                        }
-                        if (wszystkieZrobione) {
-                            System.out.println("Super, zrobiless wszystkie nawyki");
-                        }
+                    }
+                    if (wszystkieZrobione) {
+                        System.out.println("Super, zrobiless wszystkie nawyki");
+                    }
                 }
                 case "3" -> {
                     return;
-                // System.exit(0);
+                    // System.exit(0);
                 }
                 default -> System.out.println("Zły wybór. Wybierz z listy poniżej");
 
