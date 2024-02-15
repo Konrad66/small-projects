@@ -87,8 +87,9 @@ public class Main {
         while (true) {
             System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
             System.out.println("1. Dodaj nawyk");
-            System.out.println("2. Twoje nawyki");
-            System.out.println("3. Wyjdź z asystenta");
+            System.out.println("2. Usuń nawyki");
+            System.out.println("3. Twoje nawyki");
+            System.out.println("4. Wyjdź z asystenta");
 
             Scanner scanner = new Scanner(System.in);
 
@@ -101,6 +102,11 @@ public class Main {
                     habits.add(new Habit(habitName, false));
                 }
                 case "2" -> {
+                    System.out.println("Który z nawyków chcesz usunąć?");
+                    int removeHabit = scanner.nextInt();
+                    habits.remove(removeHabit);
+                }
+                case "3" -> {
                     System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić:");
                     int count = 1;
                     for (Habit habit1 : habits) {
@@ -119,7 +125,7 @@ public class Main {
                         System.out.println("Super, zrobiless wszystkie nawyki");
                     }
                 }
-                case "3" -> {
+                case "4" -> {
                     return;
                     // System.exit(0);
                 }
