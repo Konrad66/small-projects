@@ -82,14 +82,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        List<Habit> habits = new ArrayList<>();
+
 
         while (true) {
             System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
             System.out.println("1. Dodaj nawyk");
             System.out.println("2. Usuń nawyki");
             System.out.println("3. Twoje nawyki");
-            System.out.println("4. Wyjdź z asystenta");
+            System.out.println("4. Nowy dzień");
+            System.out.println("9. Wyjdź z asystenta");
 
             Scanner scanner = new Scanner(System.in);
 
@@ -107,10 +108,6 @@ public class Main {
                     habits.remove(removeHabit);
                 }
                 case "3" -> {
-
-
-
-
                         System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić. Jesli chcesz wrócić do menu wpisz 0");
                         int count = 1;
                         for (Habit habit1 : habits) {
@@ -123,17 +120,10 @@ public class Main {
                         if (choice == 0) {
                             break;
                         }
-                        boolean wszystkieZrobione = true;
-                        for (Habit habit : habits) {
-                            if (habit.isDone == false) {
-                                wszystkieZrobione = false;
-                            }
-                        }
-                        if (wszystkieZrobione) {
-                            System.out.println("Super, zrobiless wszystkie nawyki");
-                        }
+                        allCompleted();
                     }
-                case "4" -> {
+                case "9" -> {
+
                     return;
                 }
                 default -> System.out.println("Zły wybór. Wybierz z listy poniżej");
@@ -141,6 +131,20 @@ public class Main {
             }
         }
     }
+    static List<Habit> habits = new ArrayList<>();
+
+    public static void allCompleted(){
+        boolean wszystkieZrobione = true;
+        for (Habit habit : habits) {
+            if (habit.isDone == false) {
+                wszystkieZrobione = false;
+            }
+        }
+        if (wszystkieZrobione) {
+            System.out.println("Super, zrobiless wszystkie nawyki");
+        }
+    }
+
 }
 
 
