@@ -83,7 +83,6 @@ public class Main {
     public static void main(String[] args) {
 
 
-
         while (true) {
             System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
             System.out.println("1. Dodaj nawyk");
@@ -108,20 +107,21 @@ public class Main {
                     habits.remove(removeHabit);
                 }
                 case "3" -> {
-                        System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić. Jesli chcesz wrócić do menu wpisz 0");
-                        int count = 1;
-                        for (Habit habit1 : habits) {
-                            System.out.println(count + ". " + habit1);
-                            count++;
-                        }
-                        int choice = scanner.nextInt();
-                        habits.get(choice - 1).isDone = true;
 
-                        if (choice == 0) {
-                            break;
-                        }
-                        allCompleted();
+                    System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić. Jesli chcesz wrócić do menu wpisz 0");
+                    int count = 1;
+                    for (Habit habit1 : habits) {
+                        System.out.println(count + ". " + habit1);
+                        count++;
                     }
+                    int choice = scanner.nextInt();
+                    habits.get(choice - 1).isDone = true;
+
+                    if (choice == 0) {
+                        break;
+                    }
+                    allCompleted();
+                }
                 case "9" -> {
 
                     return;
@@ -131,9 +131,10 @@ public class Main {
             }
         }
     }
+
     static List<Habit> habits = new ArrayList<>();
 
-    public static void allCompleted(){
+    public static void allCompleted() {
         boolean wszystkieZrobione = true;
         for (Habit habit : habits) {
             if (habit.isDone == false) {
