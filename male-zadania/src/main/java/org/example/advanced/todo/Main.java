@@ -109,11 +109,7 @@ public class Main {
                 case "3" -> {
 
                     System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić. Jesli chcesz wrócić do menu wpisz 0");
-                    int count = 1;
-                    for (Habit habit1 : habits) {
-                        System.out.println(count + ". " + habit1);
-                        count++;
-                    }
+                    printHabits();
                     int choice = scanner.nextInt();
                     habits.get(choice - 1).isDone = true;
 
@@ -143,6 +139,14 @@ public class Main {
         }
         if (wszystkieZrobione) {
             System.out.println("Super, zrobiless wszystkie nawyki");
+        }
+    }
+
+    public static void printHabits(){
+        int count = 1;
+        for (Habit habit1 : habits) {
+            System.out.println(count + ". " + habit1);
+            count++;
         }
     }
 
