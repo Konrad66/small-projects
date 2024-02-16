@@ -103,8 +103,10 @@ public class Main {
                 }
                 case "2" -> {
                     System.out.println("Który z nawyków chcesz usunąć?");
+                    printHabits();
                     int removeHabit = scanner.nextInt();
-                    habits.remove(removeHabit);
+                    habits.remove(removeHabit-1);
+                    printHabits();
                 }
                 case "3" -> {
 
