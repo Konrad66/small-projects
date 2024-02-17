@@ -106,24 +106,16 @@ public class Main {
                     printHabits();
                     int removeHabit = scanner.nextInt();
                     habits.remove(removeHabit-1);
-                    printHabits();
                 }
                 case "3" -> {
-
                     System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić. Jesli chcesz wrócić do menu wpisz 0");
                     printHabits();
                     int choice = scanner.nextInt();
                     habits.get(choice - 1).isDone = true;
-
-                    if (choice == 0) {
-                        break;
-                    }
                     allCompleted();
                 }
                 case "4" -> {
-                    if (wybor.equals("4")){
 
-                    }
                 }
                 case "9" -> {
 
@@ -145,7 +137,7 @@ public class Main {
             }
         }
         if (wszystkieZrobione) {
-            System.out.println("Super, zrobiless wszystkie nawyki");
+            System.out.println("Super, zrobiles wszystkie nawyki");
         }
     }
 

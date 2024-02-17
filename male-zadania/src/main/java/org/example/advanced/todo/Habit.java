@@ -23,7 +23,7 @@ public class Habit {
         } else {
             oznaczenie = "NZ";
         }
-        return habitName + " - " + oznaczenie + "(" + habitDoneCount + ")";
+        return habitName + " - " + oznaczenie + " (" + habitDoneCount + ")";
     }
 
 
