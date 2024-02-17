@@ -6,6 +6,8 @@ public class Habit {
 
     public boolean isDone;
 
+    public int habitDoneCount;
+
     public Habit(String habitName, boolean isDone) {
         this.habitName = habitName;
         this.isDone = isDone;
@@ -17,10 +19,11 @@ public class Habit {
         String oznaczenie;
         if(isDone == true){
             oznaczenie = "Z";
+            habitDoneCount++;
         } else {
             oznaczenie = "NZ";
         }
-        return habitName + " - " + oznaczenie;
+        return habitName + " - " + oznaczenie + "(" + habitDoneCount + ")";
     }
 
 

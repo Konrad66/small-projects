@@ -120,6 +120,11 @@ public class Main {
                     }
                     allCompleted();
                 }
+                case "4" -> {
+                    if (wybor.equals("4")){
+
+                    }
+                }
                 case "9" -> {
 
                     return;
