@@ -115,7 +115,9 @@ public class Main {
                     allCompleted();
                 }
                 case "4" -> {
-
+                    for (Habit habit : habits){
+                        habit.isDone = false;
+                    }
                 }
                 case "9" -> {
 
