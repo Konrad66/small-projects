@@ -79,9 +79,7 @@ public class Main {
     3. Powrót do menu
      */
 
-
     public static void main(String[] args) {
-
 
         while (true) {
             System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
@@ -105,17 +103,22 @@ public class Main {
                     System.out.println("Który z nawyków chcesz usunąć?");
                     printHabits();
                     int removeHabit = scanner.nextInt();
-                    habits.remove(removeHabit-1);
+                    habits.remove(removeHabit - 1);
                 }
                 case "3" -> {
-                    System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić. Jesli chcesz wrócić do menu wpisz 0");
-                    printHabits();
-                    int choice = scanner.nextInt();
-                    habits.get(choice - 1).isDone = true;
-                    allCompleted();
+                    while (true) {
+                        System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić. Jesli chcesz wrócić do menu wpisz 0");
+                        printHabits();
+                        int choice = scanner.nextInt();
+                        if (choice == 0) {
+                            break;
+                        }
+                        habits.get(choice - 1).isDone = true;
+                        allCompleted();
+                    }
                 }
                 case "4" -> {
-                    for (Habit habit : habits){
+                    for (Habit habit : habits) {
                         habit.isDone = false;
                     }
                 }
@@ -140,10 +143,11 @@ public class Main {
         }
         if (wszystkieZrobione) {
             System.out.println("Super, zrobiles wszystkie nawyki");
+
         }
     }
 
-    public static void printHabits(){
+    public static void printHabits() {
         int count = 1;
         for (Habit habit1 : habits) {
             System.out.println(count + ". " + habit1);
