@@ -126,6 +126,7 @@ public class Main {
                     for (Habit habit : habits) {
                         habit.isDone = false;
                     }
+                    System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
                 }
                 case "9" -> {
 
