@@ -100,10 +100,15 @@ public class Main {
                     habits.add(new Habit(habitName, false));
                 }
                 case "2" -> {
-                    System.out.println("Który z nawyków chcesz usunąć?");
-                    printHabits();
-                    int removeHabit = scanner.nextInt();
-                    habits.remove(removeHabit - 1);
+                    while (true) {
+                        System.out.println("Który z nawyków chcesz usunąć?");
+                        printHabits();
+                        int removeHabit = scanner.nextInt();
+                        habits.remove(removeHabit - 1);
+                        if (removeHabit == 0){
+                            break;
+                        }
+                    }
                 }
                 case "3" -> {
                     while (true) {
@@ -154,7 +159,6 @@ public class Main {
             count++;
         }
     }
-
 }
 
 
