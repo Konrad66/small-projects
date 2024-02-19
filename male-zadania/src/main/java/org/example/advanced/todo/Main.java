@@ -74,8 +74,8 @@ public class Main {
     >wyzeruj dzień
 
     Twoje nawyki:
-    1. Wypicie butelki wody - NZ (1)
-    2. przeczytałeś książke - NZ (1)
+    1. Wypicie butelki wody - NZ (30/30) -
+    2. przeczytałeś książke - NZ (1/2)
     3. Powrót do menu
      */
 
@@ -169,25 +169,23 @@ public class Main {
         }
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
     }
-
-
 }
 
-
 /*
-
 - dla każdego nawyku
 - sprawdź czy nie jest zrobiony
 - jak skonczysz przegladac :
 - czy byl jakis nawyk nie zrobiony
  - jesli nie  wyśiwetl że wszystkie zrobione
 
-
-
 usunięcie nawyku
 nowy dzień - zmieniaja wszystkie na niezrobione
 licznik zrobionych nawykow
-
+ile sukcesów na ile dni
+zapisywanie stanu programu - przy otwarciu niech pobierze z pliku, przy zamknieciu niech nadpisze plik
+1. Wczytywanie z pliku
+2. Zastąpienie w nowym pliku
+Jeśli aplikacja zobaczy że wykonałeś coś 30 razy w conajmniej 90% dobrze, zapyta czy chcemy robić nawyk dalej i przeniesie go do opanowanych nawyków
  */
 
 
@@ -198,4 +196,6 @@ w Java są 4 modyfikatory dostępu:
 - protected - plus dodatkowo klasy dziedziczące
 - public - dostępny w każdym pakiecie
  */
+
+
 
