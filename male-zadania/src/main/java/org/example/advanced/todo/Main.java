@@ -90,7 +90,6 @@ public class Main {
             System.out.println("9. Wyjdź z asystenta");
 
             Scanner scanner = new Scanner(System.in);
-
             String wybor = scanner.next();
 
             switch (wybor) {
@@ -101,13 +100,13 @@ public class Main {
                 }
                 case "2" -> {
                     while (true) {
-                        System.out.println("Który z nawyków chcesz usunąć?");
+                        System.out.println("Który z nawyków chcesz usunąć? Jak chcesz wrócic do menu wciśnij 0.");
                         printHabits();
                         int removeHabit = scanner.nextInt();
-                        habits.remove(removeHabit - 1);
-                        if (removeHabit == 0){
+                        if (removeHabit == 0) {
                             break;
                         }
+                        habits.remove(removeHabit - 1);
                     }
                 }
                 case "3" -> {
@@ -118,7 +117,7 @@ public class Main {
                         if (choice == 0) {
                             break;
                         }
-                        habits.get(choice - 1).isDone = true;
+                        habits.get(choice - 1).doHabit();
                         allCompleted();
                     }
                 }
@@ -129,11 +128,9 @@ public class Main {
                     System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
                 }
                 case "9" -> {
-
                     return;
                 }
                 default -> System.out.println("Zły wybór. Wybierz z listy poniżej");
-
             }
         }
     }
