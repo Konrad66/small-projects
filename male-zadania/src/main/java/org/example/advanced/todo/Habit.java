@@ -1,19 +1,19 @@
 package org.example.advanced.todo;
 
-public class Habit {
+class Habit {
 
     private String habitName;
 
-    public boolean isDone;
+    boolean isDone;
 
-    public int habitDoneCount;
+    private int habitDoneCount;
 
-    public Habit(String habitName, boolean isDone) {
+    Habit(String habitName, boolean isDone) {
         this.habitName = habitName;
         this.isDone = isDone;
     }
 
-    public void doHabit(){
+    void doHabit(){
         if(isDone == false){
             habitDoneCount++;
             isDone = true;
@@ -21,7 +21,6 @@ public class Habit {
             System.out.println("Ten nawyk jest już dziś zrobiony.");
         }
     }
-
 
     @Override
     public String toString() {
@@ -33,6 +32,4 @@ public class Habit {
         }
         return habitName + " - " + oznaczenie + " (" + habitDoneCount + ")";
     }
-
-
 }

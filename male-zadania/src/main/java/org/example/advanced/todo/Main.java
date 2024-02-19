@@ -79,65 +79,78 @@ public class Main {
     3. Powrót do menu
      */
 
+    private static List<Habit> habits = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+    private static boolean exitFromAssistant = false;
+
     public static void main(String[] args) {
-
-        while (true) {
-            System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
-            System.out.println("1. Dodaj nawyk");
-            System.out.println("2. Usuń nawyki");
-            System.out.println("3. Twoje nawyki");
-            System.out.println("4. Nowy dzień");
-            System.out.println("9. Wyjdź z asystenta");
-
-            Scanner scanner = new Scanner(System.in);
-            String wybor = scanner.next();
-
-            switch (wybor) {
-                case "1" -> {
-                    System.out.println("Podaj nazwe nawyku");
-                    String habitName = scanner.next();
-                    habits.add(new Habit(habitName, false));
-                }
-                case "2" -> {
-                    while (true) {
-                        System.out.println("Który z nawyków chcesz usunąć? Jak chcesz wrócic do menu wciśnij 0.");
-                        printHabits();
-                        int removeHabit = scanner.nextInt();
-                        if (removeHabit == 0) {
-                            break;
-                        }
-                        habits.remove(removeHabit - 1);
-                    }
-                }
-                case "3" -> {
-                    while (true) {
-                        System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić. Jesli chcesz wrócić do menu wpisz 0");
-                        printHabits();
-                        int choice = scanner.nextInt();
-                        if (choice == 0) {
-                            break;
-                        }
-                        habits.get(choice - 1).doHabit();
-                        allCompleted();
-                    }
-                }
-                case "4" -> {
-                    for (Habit habit : habits) {
-                        habit.isDone = false;
-                    }
-                    System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
-                }
-                case "9" -> {
-                    return;
-                }
-                default -> System.out.println("Zły wybór. Wybierz z listy poniżej");
-            }
+        while (!exitFromAssistant) {
+            printOptions();
+            doOption();
         }
     }
 
-    static List<Habit> habits = new ArrayList<>();
+    private static void printOptions() {
+        System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
+        System.out.println("1. Dodaj nawyk");
+        System.out.println("2. Usuń nawyki");
+        System.out.println("3. Oznacz nawyki");
+        System.out.println("4. Nowy dzień");
+        System.out.println("9. Wyjdź z asystenta");
+    }
 
-    public static void allCompleted() {
+    private static void doOption() {
+        String wybor = scanner.next();
+        switch (wybor) {
+            case "1" -> addHabit();
+            case "2" -> removeHabit();
+            case "3" -> markHabit();
+            case "4" -> newDay();
+            case "9" -> exitFromAssistant = true;
+            default -> System.out.println("Zły wybór. Wybierz z listy poniżej");
+        }
+    }
+
+    private static void addHabit() {
+        System.out.println("Podaj nazwe nawyku");
+        String habitName = scanner.next();
+        habits.add(new Habit(habitName, false));
+    }
+
+    private static void removeHabit() {
+        while (true) {
+            System.out.println("Który z nawyków chcesz usunąć? Jak chcesz wrócic do menu wciśnij 0.");
+            printHabits();
+            int removeHabit = scanner.nextInt();
+            if (removeHabit == 0) {
+                break;
+            }
+            habits.remove(removeHabit - 1);
+        }
+    }
+
+    private static void printHabits() {
+        int count = 1;
+        for (Habit habit1 : habits) {
+            System.out.println(count + ". " + habit1);
+            count++;
+        }
+    }
+
+    private static void markHabit() {
+        while (true) {
+            System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić. Jesli chcesz wrócić do menu wpisz 0");
+            printHabits();
+            int choice = scanner.nextInt();
+            if (choice == 0) {
+                break;
+            }
+            habits.get(choice - 1).doHabit();
+            allCompleted();
+        }
+    }
+
+    private static void allCompleted() {
         boolean wszystkieZrobione = true;
         for (Habit habit : habits) {
             if (habit.isDone == false) {
@@ -150,13 +163,14 @@ public class Main {
         }
     }
 
-    public static void printHabits() {
-        int count = 1;
-        for (Habit habit1 : habits) {
-            System.out.println(count + ". " + habit1);
-            count++;
+    private static void newDay() {
+        for (Habit habit : habits) {
+            habit.isDone = false;
         }
+        System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
     }
+
+
 }
 
 
@@ -175,3 +189,13 @@ nowy dzień - zmieniaja wszystkie na niezrobione
 licznik zrobionych nawykow
 
  */
+
+
+/*
+w Java są 4 modyfikatory dostępu:
+- private - zasięg w ramach jednej klasy
+- domyślny (dostęp pakietowy) - jest dostępny w ramach tego samego pakietu (w strukutrze projektu - package)
+- protected - plus dodatkowo klasy dziedziczące
+- public - dostępny w każdym pakiecie
+ */
+
