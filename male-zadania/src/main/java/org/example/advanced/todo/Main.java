@@ -196,6 +196,3 @@ w Java są 4 modyfikatory dostępu:
 - protected - plus dodatkowo klasy dziedziczące
 - public - dostępny w każdym pakiecie
  */
-
-
-
