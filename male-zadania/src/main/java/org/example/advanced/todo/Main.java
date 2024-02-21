@@ -95,7 +95,7 @@ public class Main {
         System.out.println("1. Dodaj nawyk");
         System.out.println("2. Usuń nawyki");
         System.out.println("3. Oznacz nawyki");
-        System.out.println("4. Nowy dzień");
+        System.out.println("5. Nowy dzień");
         System.out.println("9. Wyjdź z asystenta");
     }
 
@@ -166,13 +166,12 @@ public class Main {
     private static void newDay() {
         for (Habit habit : habits) {
             habit.isDone = false;
+            habit.dayCount++;
         }
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
     }
 
     private static void masteredHabits() {
-
-
 
     }
 }
