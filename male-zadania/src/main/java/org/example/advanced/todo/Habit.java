@@ -8,6 +8,8 @@ class Habit {
 
     private int habitDoneCount;
 
+    int dayCount;
+
     Habit(String habitName, boolean isDone) {
         this.habitName = habitName;
         this.isDone = isDone;
@@ -30,6 +32,6 @@ class Habit {
         } else {
             oznaczenie = "NZ";
         }
-        return habitName + " - " + oznaczenie + " (" + habitDoneCount + ")";
+        return habitName + " - " + oznaczenie + " (" + habitDoneCount + "/" + dayCount + ")";
     }
 }

@@ -105,7 +105,8 @@ public class Main {
             case "1" -> addHabit();
             case "2" -> removeHabit();
             case "3" -> markHabit();
-            case "4" -> newDay();
+            case "4" -> masteredHabits();
+            case "5" -> newDay();
             case "9" -> exitFromAssistant = true;
             default -> System.out.println("Zły wybór. Wybierz z listy poniżej");
         }
@@ -159,7 +160,6 @@ public class Main {
         }
         if (wszystkieZrobione) {
             System.out.println("Super, zrobiles wszystkie nawyki");
-
         }
     }
 
@@ -168,6 +168,12 @@ public class Main {
             habit.isDone = false;
         }
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
+    }
+
+    private static void masteredHabits() {
+
+
+
     }
 }
 
@@ -181,6 +187,8 @@ public class Main {
 usunięcie nawyku
 nowy dzień - zmieniaja wszystkie na niezrobione
 licznik zrobionych nawykow
+
+
 ile sukcesów na ile dni
 zapisywanie stanu programu - przy otwarciu niech pobierze z pliku, przy zamknieciu niech nadpisze plik
 1. Wczytywanie z pliku
