@@ -2,11 +2,11 @@ package org.example.advanced.todo;
 
 class Habit {
 
-     private String habitName;
+    private String habitName;
 
     boolean isDone;
 
-     int habitDoneCount;
+    int habitDoneCount;
 
     int dayCount;
 
@@ -15,8 +15,8 @@ class Habit {
         this.isDone = isDone;
     }
 
-    void doHabit(){
-        if(isDone == false){
+    void doHabit() {
+        if (isDone == false) {
             habitDoneCount++;
             isDone = true;
         } else {
@@ -31,7 +31,7 @@ class Habit {
     @Override
     public String toString() {
         String oznaczenie;
-        if(isDone == true){
+        if (isDone == true) {
             oznaczenie = "Z";
         } else {
             oznaczenie = "NZ";

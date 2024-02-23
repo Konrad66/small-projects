@@ -175,7 +175,7 @@ public class Main {
     private static void masteredHabits() {
         for (Habit habit : habits) {
             double completePercentage = (double) habit.habitDoneCount * 100 / habit.dayCount;
-            if(completePercentage >= 90){
+            if (completePercentage >= 90) {
             }
             System.out.println("Gratulacje! Nawyk " + habit.getHabitName() + " został opanowany.");
         }
