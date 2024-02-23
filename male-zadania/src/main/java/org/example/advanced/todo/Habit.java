@@ -2,13 +2,13 @@ package org.example.advanced.todo;
 
 class Habit {
 
-    private String habitName;
+     private String habitName;
 
     boolean isDone;
 
-    private int habitDoneCount;
+     int habitDoneCount = 28;
 
-    int dayCount;
+    int dayCount = 30;
 
     Habit(String habitName, boolean isDone) {
         this.habitName = habitName;
@@ -22,6 +22,10 @@ class Habit {
         } else {
             System.out.println("Ten nawyk jest już dziś zrobiony.");
         }
+    }
+
+    public String getHabitName() {
+        return habitName;
     }
 
     @Override

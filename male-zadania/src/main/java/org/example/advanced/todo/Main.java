@@ -95,6 +95,7 @@ public class Main {
         System.out.println("1. Dodaj nawyk");
         System.out.println("2. Usuń nawyki");
         System.out.println("3. Oznacz nawyki");
+        System.out.println("4. Opanowane nawyki");
         System.out.println("5. Nowy dzień");
         System.out.println("9. Wyjdź z asystenta");
     }
@@ -172,7 +173,12 @@ public class Main {
     }
 
     private static void masteredHabits() {
-
+        for (Habit habit : habits) {
+            double completePercentage = (double) habit.habitDoneCount * 100 / habit.dayCount;
+            if(completePercentage >= 90){
+            }
+            System.out.println("Gratulacje! Nawyk " + habit.getHabitName() + " został opanowany.");
+        }
     }
 }
 
