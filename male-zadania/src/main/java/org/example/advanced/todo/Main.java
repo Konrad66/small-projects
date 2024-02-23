@@ -152,6 +152,17 @@ public class Main {
         }
     }
 
+    private static void masteredHabits() {
+        for (Habit habit : habits) {
+            double completePercentage = (double) habit.habitDoneCount * 100 / habit.dayCount;
+            if (habit.dayCount >= 30) {
+                if (completePercentage >= 90) {
+                    System.out.println("Gratulacje! Nawyk " + habit.getHabitName() + " został opanowany.");
+                }
+            }
+        }
+    }
+
     private static void allCompleted() {
         boolean wszystkieZrobione = true;
         for (Habit habit : habits) {
@@ -172,14 +183,7 @@ public class Main {
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
     }
 
-    private static void masteredHabits() {
-        for (Habit habit : habits) {
-            double completePercentage = (double) habit.habitDoneCount * 100 / habit.dayCount;
-            if (completePercentage >= 90) {
-            }
-            System.out.println("Gratulacje! Nawyk " + habit.getHabitName() + " został opanowany.");
-        }
-    }
+
 }
 
 /*

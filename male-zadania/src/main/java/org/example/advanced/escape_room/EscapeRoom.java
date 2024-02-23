@@ -94,8 +94,8 @@ public class EscapeRoom {
             ActionFactory factory = new ActionFactory();
             itemList.add(factory.createAction(item));
         }
-        //TODO różnica między metodą equals a 2 x ==
         return itemList;
+        //TODO różnica między metodą equals a 2 x ==
     }
 
     public static void main(String[] args) {

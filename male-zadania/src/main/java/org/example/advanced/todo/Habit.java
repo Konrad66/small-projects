@@ -3,11 +3,8 @@ package org.example.advanced.todo;
 class Habit {
 
     private String habitName;
-
     boolean isDone;
-
     int habitDoneCount;
-
     int dayCount;
 
     Habit(String habitName, boolean isDone) {
