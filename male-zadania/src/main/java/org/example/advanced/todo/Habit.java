@@ -6,9 +6,9 @@ class Habit {
 
     boolean isDone;
 
-     int habitDoneCount = 28;
+     int habitDoneCount;
 
-    int dayCount = 30;
+    int dayCount;
 
     Habit(String habitName, boolean isDone) {
         this.habitName = habitName;
