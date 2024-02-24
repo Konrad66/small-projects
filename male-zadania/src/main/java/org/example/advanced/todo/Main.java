@@ -1,5 +1,7 @@
 package org.example.advanced.todo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Main {
@@ -84,6 +86,7 @@ public class Main {
     private static boolean exitFromAssistant = false;
 
     public static void main(String[] args) {
+        loadHabitsFromCSV("C:\\Users\\PC\\IdeaProjects\\small-projects\\habits.csv");
         while (!exitFromAssistant) {
             printOptions();
             doOption();
@@ -116,7 +119,7 @@ public class Main {
     private static void addHabit() {
         System.out.println("Podaj nazwe nawyku");
         String habitName = scanner.next();
-        habits.add(new Habit(habitName, false));
+        habits.add(new Habit(habitName, false, 0, 0));
     }
 
     private static void removeHabit() {
@@ -183,7 +186,42 @@ public class Main {
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
     }
 
+    List<String> readCSV(){
+        List<String> habitList = new ArrayList<>();
+        try {
+            Scanner reader = new Scanner(new File("habits.csv"));
+            String text = reader.next();
+            String[] texts = text.split(";");
+            for (String name : texts) {
+                habitList.add(name);
+            }
+        } catch (FileNotFoundException exception) {
+            System.out.println("File doesn't exist");
+            exception.printStackTrace();
+        }
+        return habitList;
+    }
 
+
+    private static void loadHabitsFromCSV(String filePath) {
+        try {
+            File file = new File(filePath);
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] data = line.split(";");
+                String habitName = data[0];
+                boolean isDone = Boolean.parseBoolean(data[1]);
+                int habitDoneCount = Integer.parseInt(data[2]);
+                int dayCount = Integer.parseInt(data[3]);
+                habits.add(new Habit(habitName, isDone, habitDoneCount, dayCount));
+            }
+            scanner.close();
+            System.out.println("Nawyki zostały wczytane z pliku.");
+        } catch (FileNotFoundException e) {
+            System.out.println("Nie znaleziono pliku: " + e.getMessage());
+        }
+    }
 }
 
 /*

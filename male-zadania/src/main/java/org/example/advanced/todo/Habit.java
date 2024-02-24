@@ -7,9 +7,11 @@ class Habit {
     int habitDoneCount;
     int dayCount;
 
-    Habit(String habitName, boolean isDone) {
+    Habit(String habitName, boolean isDone, int habitDoneCount, int dayCount) {
         this.habitName = habitName;
         this.isDone = isDone;
+        this.habitDoneCount = habitDoneCount;
+        this.dayCount = dayCount;
     }
 
     void doHabit() {
