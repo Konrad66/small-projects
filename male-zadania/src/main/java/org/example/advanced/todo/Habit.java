@@ -23,7 +23,7 @@ class Habit {
         }
     }
 
-    public String getHabitName() {
+    String getHabitName() {
         return habitName;
     }
 

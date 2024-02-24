@@ -6,90 +6,34 @@ import java.util.*;
 
 public class Main {
 
-    /*
-    Aplikacja ma pomóc w budowaniu nawyków i oznaczanie które zrobiliśmy
-
-    //możliwość dodania nawyku - nazwa, zrobiony/nie
-    //pokaze nawyki które dodaliśmy -> kolejny wybór jako nawyk skończony
-
-
-    1. Dodaj nawyk
-    2. Oznacz jak ci idzie - widzimy czy któreś są zrobione czy nie
-     */
-
-    /*
-    Działanie programu
-
-    1. Dodaj nawyk
-    2. Oznacz jak ci idzie
-
-    1
-
-    Podaj nazwe:
-    Wypicie butelki wody
-
-    1. Dodaj nawyk
-    2. Oznacz jak ci idzie
-
-    1
-
-    Podaj nazwe:
-    przeczytałeś książke
-
-    1. Dodaj nawyk
-    2. Oznacz jak ci idzie
-
-    2
-
-    Twoje nawyki:
-    1. Wypicie butelki wody - NZ (0)
-    2. przeczytałeś książke - NZ (0)
-    3. Powrót do menu
-
-    2
-
-    Twoje nawyki:
-    1. Wypicie butelki wody - NZ (0)
-    2. przeczytałeś książke - Z (1)
-    3. Powrót do menu
-
-    3
-
-    1. Dodaj nawyk
-    2. Oznacz jak ci idzie
-
-    2
-
-    Twoje nawyki:
-    1. Wypicie butelki wody - NZ (0)
-    2. przeczytałeś książke - Z (1)
-    3. Powrót do menu
-
-    1
-
-    Twoje nawyki:
-    1. Wypicie butelki wody - Z (1)
-    2. przeczytałeś książke - Z (1)
-    3. Powrót do menu
-    Gratulacje zrobiłeś dziś wszystkie nawyki!
-
-    >wyzeruj dzień
-
-    Twoje nawyki:
-    1. Wypicie butelki wody - NZ (30/30) -
-    2. przeczytałeś książke - NZ (1/2)
-    3. Powrót do menu
-     */
-
     private static List<Habit> habits = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
     private static boolean exitFromAssistant = false;
 
     public static void main(String[] args) {
-        loadHabitsFromCSV("C:\\Users\\PC\\IdeaProjects\\small-projects\\habits.csv");
+        readCSV("habits.csv");
         while (!exitFromAssistant) {
             printOptions();
             doOption();
+        }
+    }
+
+    private static void readCSV(String filePath) {
+        try {
+            Scanner scanner = new Scanner(new File(filePath));
+            while (scanner.hasNextLine()) {
+                String text = scanner.nextLine();
+                String[] data = text.split(";");
+                String habitName = data[0];
+                boolean isDone = Boolean.parseBoolean(data[1]);
+                int habitDoneCount = Integer.parseInt(data[2]);
+                int dayCount = Integer.parseInt(data[3]);
+                habits.add(new Habit(habitName, isDone, habitDoneCount, dayCount));
+            }
+            //scanner.close();
+            System.out.println("Nawyki zostały wczytane prawidłowo.");
+        } catch (FileNotFoundException e) {
+            System.out.println("Nie znaleziono pliku: " + e.getMessage());
         }
     }
 
@@ -186,68 +130,5 @@ public class Main {
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
     }
 
-    List<String> readCSV(){
-        List<String> habitList = new ArrayList<>();
-        try {
-            Scanner reader = new Scanner(new File("habits.csv"));
-            String text = reader.next();
-            String[] texts = text.split(";");
-            for (String name : texts) {
-                habitList.add(name);
-            }
-        } catch (FileNotFoundException exception) {
-            System.out.println("File doesn't exist");
-            exception.printStackTrace();
-        }
-        return habitList;
-    }
 
-
-    private static void loadHabitsFromCSV(String filePath) {
-        try {
-            File file = new File(filePath);
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] data = line.split(";");
-                String habitName = data[0];
-                boolean isDone = Boolean.parseBoolean(data[1]);
-                int habitDoneCount = Integer.parseInt(data[2]);
-                int dayCount = Integer.parseInt(data[3]);
-                habits.add(new Habit(habitName, isDone, habitDoneCount, dayCount));
-            }
-            scanner.close();
-            System.out.println("Nawyki zostały wczytane z pliku.");
-        } catch (FileNotFoundException e) {
-            System.out.println("Nie znaleziono pliku: " + e.getMessage());
-        }
-    }
 }
-
-/*
-- dla każdego nawyku
-- sprawdź czy nie jest zrobiony
-- jak skonczysz przegladac :
-- czy byl jakis nawyk nie zrobiony
- - jesli nie  wyśiwetl że wszystkie zrobione
-
-usunięcie nawyku
-nowy dzień - zmieniaja wszystkie na niezrobione
-licznik zrobionych nawykow
-
-
-ile sukcesów na ile dni
-zapisywanie stanu programu - przy otwarciu niech pobierze z pliku, przy zamknieciu niech nadpisze plik
-1. Wczytywanie z pliku
-2. Zastąpienie w nowym pliku
-Jeśli aplikacja zobaczy że wykonałeś coś 30 razy w conajmniej 90% dobrze, zapyta czy chcemy robić nawyk dalej i przeniesie go do opanowanych nawyków
- */
-
-
-/*
-w Java są 4 modyfikatory dostępu:
-- private - zasięg w ramach jednej klasy
-- domyślny (dostęp pakietowy) - jest dostępny w ramach tego samego pakietu (w strukutrze projektu - package)
-- protected - plus dodatkowo klasy dziedziczące
-- public - dostępny w każdym pakiecie
- */
