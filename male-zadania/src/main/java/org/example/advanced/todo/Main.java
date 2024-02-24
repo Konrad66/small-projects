@@ -21,7 +21,7 @@ public class Main {
     private static void readCSV(String filePath) {
         try {
             Scanner scanner = new Scanner(new File(filePath));
-            while (scanner.hasNextLine()) {
+            //while (scanner.hasNextLine()) {
                 String text = scanner.nextLine();
                 String[] data = text.split(";");
                 String habitName = data[0];
@@ -29,8 +29,7 @@ public class Main {
                 int habitDoneCount = Integer.parseInt(data[2]);
                 int dayCount = Integer.parseInt(data[3]);
                 habits.add(new Habit(habitName, isDone, habitDoneCount, dayCount));
-            }
-            //scanner.close();
+           // }
             System.out.println("Nawyki zostały wczytane prawidłowo.");
         } catch (FileNotFoundException e) {
             System.out.println("Nie znaleziono pliku: " + e.getMessage());
