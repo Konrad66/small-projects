@@ -19,6 +19,7 @@ public class Main {
             doOption();
         }
         //saveToCSV("habits.csv");
+        // tutaj może się automatycznie zapisywać bez case 6
     }
 
     private static void readCSV(String filePath) {
@@ -46,7 +47,7 @@ public class Main {
         System.out.println("3. Oznacz nawyki");
         System.out.println("4. Opanowane nawyki");
         System.out.println("5. Nowy dzień");
-        System.out.println("6. Zapisz progres");
+        System.out.println("6. Zapisz progres"); //raczej niepotrzene
         System.out.println("9. Wyjdź z asystenta");
     }
 
@@ -58,7 +59,7 @@ public class Main {
             case "3" -> markHabit();
             case "4" -> masteredHabits();
             case "5" -> newDay();
-            case "6" -> saveProgress();
+            case "6" -> saveProgress(); //tez nie potrzebne raczej
             case "9" -> exitFromAssistant = true;
             default -> System.out.println("Zły wybór. Wybierz z listy poniżej");
         }
@@ -68,7 +69,7 @@ public class Main {
         System.out.println("Podaj nazwe nawyku");
         String habitName = scanner.next();
         habits.add(new Habit(habitName, false, 0, 0));
-        saveToCSV("habits.csv");
+        saveToCSV("habits.csv"); //pytanie co z tym bo nie dziala
     }
 
     private static void removeHabit() {
@@ -135,6 +136,7 @@ public class Main {
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
     }
 
+    //metoda raczej nie potrzebna
     private static void saveProgress(){
         saveToCSV("habits.csv");
     }
@@ -145,9 +147,9 @@ public class Main {
             for (Habit habit : habits) {
                 fileWriter.write(habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + "\n");
             }
-            System.out.println("Stan nawyków został zapisany do pliku.");
+            System.out.println("Progres został zapisany w pliku.");
         } catch (IOException e) {
-            System.out.println("Wystąpił błąd podczas zapisywania stanu nawyków do pliku: " + e.getMessage());
+            System.out.println("Wystąpił błąd podczas zapisywania progresu do pliku: " + e.getMessage());
         }
     }
 }
