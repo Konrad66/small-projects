@@ -27,6 +27,18 @@ class Habit {
         return habitName;
     }
 
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public int getHabitDoneCount() {
+        return habitDoneCount;
+    }
+
+    public int getDayCount() {
+        return dayCount;
+    }
+
     @Override
     public String toString() {
         String oznaczenie;

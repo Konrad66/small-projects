@@ -2,6 +2,8 @@ package org.example.advanced.todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class Main {
@@ -16,6 +18,7 @@ public class Main {
             printOptions();
             doOption();
         }
+        //saveToCSV("habits.csv");
     }
 
     private static void readCSV(String filePath) {
@@ -43,6 +46,7 @@ public class Main {
         System.out.println("3. Oznacz nawyki");
         System.out.println("4. Opanowane nawyki");
         System.out.println("5. Nowy dzień");
+        System.out.println("6. Zapisz progres");
         System.out.println("9. Wyjdź z asystenta");
     }
 
@@ -54,6 +58,7 @@ public class Main {
             case "3" -> markHabit();
             case "4" -> masteredHabits();
             case "5" -> newDay();
+            case "6" -> saveProgress();
             case "9" -> exitFromAssistant = true;
             default -> System.out.println("Zły wybór. Wybierz z listy poniżej");
         }
@@ -63,6 +68,7 @@ public class Main {
         System.out.println("Podaj nazwe nawyku");
         String habitName = scanner.next();
         habits.add(new Habit(habitName, false, 0, 0));
+        saveToCSV("habits.csv");
     }
 
     private static void removeHabit() {
@@ -129,5 +135,19 @@ public class Main {
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
     }
 
+    private static void saveProgress(){
+        saveToCSV("habits.csv");
+    }
 
+
+    private static void saveToCSV(String filePath){
+        try(FileWriter fileWriter = new FileWriter(filePath)){
+            for (Habit habit : habits) {
+                fileWriter.write(habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + "\n");
+            }
+            System.out.println("Stan nawyków został zapisany do pliku.");
+        } catch (IOException e) {
+            System.out.println("Wystąpił błąd podczas zapisywania stanu nawyków do pliku: " + e.getMessage());
+        }
+    }
 }
