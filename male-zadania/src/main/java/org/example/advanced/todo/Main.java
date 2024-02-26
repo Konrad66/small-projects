@@ -9,6 +9,7 @@ import java.util.*;
 public class Main {
 
     private static List<Habit> habits = new ArrayList<>();
+    private static List<Habit> masteredHabits = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
     private static boolean exitFromAssistant = false;
 
@@ -19,13 +20,13 @@ public class Main {
             doOption();
         }
         //saveToCSV("habits.csv");
-        // tutaj może się automatycznie zapisywać bez case 6
+        // tutaj może się automatycznie zapisywać bez case 6, chyba?
     }
 
     private static void readCSV(String filePath) {
         try {
             Scanner scanner = new Scanner(new File(filePath));
-            //while (scanner.hasNextLine()) {
+            while (scanner.hasNextLine()) {
                 String text = scanner.nextLine();
                 String[] data = text.split(";");
                 String habitName = data[0];
@@ -33,7 +34,7 @@ public class Main {
                 int habitDoneCount = Integer.parseInt(data[2]);
                 int dayCount = Integer.parseInt(data[3]);
                 habits.add(new Habit(habitName, isDone, habitDoneCount, dayCount));
-           // }
+            }
             System.out.println("Nawyki zostały wczytane prawidłowo.");
         } catch (FileNotFoundException e) {
             System.out.println("Nie znaleziono pliku: " + e.getMessage());
@@ -69,7 +70,7 @@ public class Main {
         System.out.println("Podaj nazwe nawyku");
         String habitName = scanner.next();
         habits.add(new Habit(habitName, false, 0, 0));
-        saveToCSV("habits.csv"); //pytanie co z tym bo nie dziala
+        saveToCSV("habits.csv");
     }
 
     private static void removeHabit() {
@@ -111,6 +112,8 @@ public class Main {
             if (habit.dayCount >= 30) {
                 if (completePercentage >= 90) {
                     System.out.println("Gratulacje! Nawyk " + habit.getHabitName() + " został opanowany.");
+                    masteredHabits.add(habit);
+                    habits.remove(habit);
                 }
             }
         }
@@ -145,7 +148,7 @@ public class Main {
     private static void saveToCSV(String filePath){
         try(FileWriter fileWriter = new FileWriter(filePath)){
             for (Habit habit : habits) {
-                fileWriter.write(habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + "\n");
+                fileWriter.write(habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount()+ ";" + "\n");
             }
             System.out.println("Progres został zapisany w pliku.");
         } catch (IOException e) {
