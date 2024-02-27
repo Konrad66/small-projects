@@ -144,7 +144,6 @@ public class Main {
         saveToCSV("habits.csv");
     }
 
-
     private static void saveToCSV(String filePath){
         try(FileWriter fileWriter = new FileWriter(filePath)){
             for (Habit habit : habits) {
