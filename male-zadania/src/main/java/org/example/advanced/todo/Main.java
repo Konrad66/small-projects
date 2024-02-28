@@ -103,19 +103,20 @@ public class Main {
             }
             habits.get(choice - 1).doHabit();
             allCompleted();
+
+                double completePercentage = (double) habits.get(choice-1).habitDoneCount * 100 / habits.get(choice-1).dayCount;
+                if (habits.get(choice-1).dayCount >= 30) {
+                    if (completePercentage >= 90) {
+                        masteredHabits.add(habits.get(choice-1));
+                        habits.remove(habits.get(choice -1 ));
+                    }
+                }
         }
     }
 
     private static void masteredHabits() {
-        for (Habit habit : habits) {
-            double completePercentage = (double) habit.habitDoneCount * 100 / habit.dayCount;
-            if (habit.dayCount >= 30) {
-                if (completePercentage >= 90) {
-                    System.out.println("Gratulacje! Nawyk " + habit.getHabitName() + " został opanowany.");
-                    masteredHabits.add(habit);
-                    habits.remove(habit);
-                }
-            }
+        for (Habit habit1 : masteredHabits) {
+            System.out.println("Gratulacje! Nawyk " + habit1.getHabitName() + " został opanowany.");
         }
     }
 
