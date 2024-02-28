@@ -3,10 +3,10 @@ package org.example.advanced.todo;
 class Habit {
 
     private String habitName;
-   boolean done;
-   int habitDoneCount;
-   int dayCount;
-   boolean mastered;
+    boolean done;
+    int habitDoneCount;
+    int dayCount;
+    boolean mastered;
 
     Habit(String habitName, boolean done, int habitDoneCount, int dayCount, boolean mastered) {
         this.habitName = habitName;

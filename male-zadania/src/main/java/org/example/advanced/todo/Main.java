@@ -23,7 +23,6 @@ public class Main {
         saveToCSV();
     }
 
-
     private static void printOptions() {
         System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
         System.out.println("1. Dodaj nawyk");
@@ -126,6 +125,8 @@ public class Main {
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
     }
 
+    //todo metody do pracy na pliku do osobnej klasy
+
     private static void readCSV() {
         try {
             Scanner scanner = new Scanner(new File(FILE_PATH));
@@ -137,7 +138,7 @@ public class Main {
                 int habitDoneCount = Integer.parseInt(data[2]);
                 int dayCount = Integer.parseInt(data[3]);
                 boolean mastered = Boolean.parseBoolean(data[4]);
-                if (mastered) {
+                if (mastered) { //todo powtorka
                     masteredHabits.add(new Habit(habitName, isDone, habitDoneCount, dayCount, mastered));
                 } else {
                     habits.add(new Habit(habitName, isDone, habitDoneCount, dayCount, mastered));
@@ -151,7 +152,7 @@ public class Main {
 
     private static void saveToCSV() {
         try (FileWriter fileWriter = new FileWriter(FILE_PATH)) { //try with resource - wymaga zaimplementowanego AutoClosable
-            for (Habit habit : habits) {
+            for (Habit habit : habits) { //todo powtorka
                 fileWriter.write(habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + ";" + habit.mastered + ";" + "\n");
             }
             for (Habit habit : masteredHabits) {
