@@ -8,38 +8,21 @@ import java.util.*;
 
 public class Main {
 
+    private static final String FILE_PATH = "habits.csv";
     private static List<Habit> habits = new ArrayList<>();
     private static List<Habit> masteredHabits = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
     private static boolean exitFromAssistant = false;
 
     public static void main(String[] args) {
-        readCSV("habits.csv");
+        readCSV();
         while (!exitFromAssistant) {
             printOptions();
             doOption();
         }
-        //saveToCSV("habits.csv");
-        // tutaj może się automatycznie zapisywać bez case 6, chyba?
+        saveToCSV();
     }
 
-    private static void readCSV(String filePath) {
-        try {
-            Scanner scanner = new Scanner(new File(filePath));
-            while (scanner.hasNextLine()) {
-                String text = scanner.nextLine();
-                String[] data = text.split(";");
-                String habitName = data[0];
-                boolean isDone = Boolean.parseBoolean(data[1]);
-                int habitDoneCount = Integer.parseInt(data[2]);
-                int dayCount = Integer.parseInt(data[3]);
-                habits.add(new Habit(habitName, isDone, habitDoneCount, dayCount));
-            }
-            System.out.println("Nawyki zostały wczytane prawidłowo.");
-        } catch (FileNotFoundException e) {
-            System.out.println("Nie znaleziono pliku: " + e.getMessage());
-        }
-    }
 
     private static void printOptions() {
         System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
@@ -48,20 +31,18 @@ public class Main {
         System.out.println("3. Oznacz nawyki");
         System.out.println("4. Opanowane nawyki");
         System.out.println("5. Nowy dzień");
-        System.out.println("6. Zapisz progres"); //raczej niepotrzene
-        System.out.println("9. Wyjdź z asystenta");
+        System.out.println("0. Wyjdź z asystenta");
     }
 
     private static void doOption() {
-        String wybor = scanner.next();
-        switch (wybor) {
+        String choice = scanner.next();
+        switch (choice) {
             case "1" -> addHabit();
             case "2" -> removeHabit();
             case "3" -> markHabit();
             case "4" -> masteredHabits();
             case "5" -> newDay();
-            case "6" -> saveProgress(); //tez nie potrzebne raczej
-            case "9" -> exitFromAssistant = true;
+            case "0" -> exitFromAssistant = true;
             default -> System.out.println("Zły wybór. Wybierz z listy poniżej");
         }
     }
@@ -69,8 +50,8 @@ public class Main {
     private static void addHabit() {
         System.out.println("Podaj nazwe nawyku");
         String habitName = scanner.next();
-        habits.add(new Habit(habitName, false, 0, 0));
-        saveToCSV("habits.csv");
+        habits.add(new Habit(habitName, false, 0, 0, false));
+        saveToCSV();
     }
 
     private static void removeHabit() {
@@ -87,8 +68,8 @@ public class Main {
 
     private static void printHabits() {
         int count = 1;
-        for (Habit habit1 : habits) {
-            System.out.println(count + ". " + habit1);
+        for (Habit habit : habits) {
+            System.out.println(count + ". " + habit);
             count++;
         }
     }
@@ -101,30 +82,35 @@ public class Main {
             if (choice == 0) {
                 break;
             }
-            habits.get(choice - 1).doHabit();
+            Habit chosenHabit = habits.get(choice - 1);
+            chosenHabit.doHabit();
             allCompleted();
+            //alt + shift -> zaznaczanie wielu
+            masterHabit(chosenHabit);
+        }
+    }
 
-                double completePercentage = (double) habits.get(choice-1).habitDoneCount * 100 / habits.get(choice-1).dayCount;
-                if (habits.get(choice-1).dayCount >= 30) {
-                    if (completePercentage >= 90) {
-                        masteredHabits.add(habits.get(choice-1));
-                        habits.remove(habits.get(choice -1 ));
-                    }
-                }
+    private static void masterHabit(Habit chosenHabit) {
+        double completePercentage = chosenHabit.habitDoneCount * 100.0 / chosenHabit.dayCount;
+        if (chosenHabit.dayCount >= 30 && completePercentage >= 90) {
+            chosenHabit.mastered = true;
+            masteredHabits.add(chosenHabit);
+            habits.remove(chosenHabit);
         }
     }
 
     private static void masteredHabits() {
-        for (Habit habit1 : masteredHabits) {
-            System.out.println("Gratulacje! Nawyk " + habit1.getHabitName() + " został opanowany.");
+        for (Habit habit : masteredHabits) {
+            System.out.println("Gratulacje! Nawyk " + habit.getHabitName() + " został opanowany.");
         }
     }
 
     private static void allCompleted() {
         boolean wszystkieZrobione = true;
         for (Habit habit : habits) {
-            if (habit.isDone == false) {
+            if (!habit.done) {
                 wszystkieZrobione = false;
+                break;
             }
         }
         if (wszystkieZrobione) {
@@ -134,21 +120,42 @@ public class Main {
 
     private static void newDay() {
         for (Habit habit : habits) {
-            habit.isDone = false;
+            habit.done = false;
             habit.dayCount++;
         }
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
     }
 
-    //metoda raczej nie potrzebna
-    private static void saveProgress(){
-        saveToCSV("habits.csv");
+    private static void readCSV() {
+        try {
+            Scanner scanner = new Scanner(new File(FILE_PATH));
+            while (scanner.hasNextLine()) {
+                String text = scanner.nextLine();
+                String[] data = text.split(";");
+                String habitName = data[0];
+                boolean isDone = Boolean.parseBoolean(data[1]);
+                int habitDoneCount = Integer.parseInt(data[2]);
+                int dayCount = Integer.parseInt(data[3]);
+                boolean mastered = Boolean.parseBoolean(data[4]);
+                if (mastered) {
+                    masteredHabits.add(new Habit(habitName, isDone, habitDoneCount, dayCount, mastered));
+                } else {
+                    habits.add(new Habit(habitName, isDone, habitDoneCount, dayCount, mastered));
+                }
+            }
+            System.out.println("Nawyki zostały wczytane prawidłowo.");
+        } catch (FileNotFoundException e) {
+            System.out.println("Nie znaleziono pliku: " + e.getMessage());
+        }
     }
 
-    private static void saveToCSV(String filePath){
-        try(FileWriter fileWriter = new FileWriter(filePath)){
+    private static void saveToCSV() {
+        try (FileWriter fileWriter = new FileWriter(FILE_PATH)) { //try with resource - wymaga zaimplementowanego AutoClosable
             for (Habit habit : habits) {
-                fileWriter.write(habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount()+ ";" + "\n");
+                fileWriter.write(habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + ";" + habit.mastered + ";" + "\n");
+            }
+            for (Habit habit : masteredHabits) {
+                fileWriter.write(habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + ";" + habit.mastered + ";" + "\n");
             }
             System.out.println("Progres został zapisany w pliku.");
         } catch (IOException e) {
@@ -156,3 +163,10 @@ public class Main {
         }
     }
 }
+
+//ConcurentModificationException - doczytać kiedy występuje i jak sobie z nim radzić
+
+
+//Master habity tez maja byc utrwalane w CSV
+
+//

@@ -3,21 +3,23 @@ package org.example.advanced.todo;
 class Habit {
 
     private String habitName;
-    boolean isDone;
-    int habitDoneCount;
-    int dayCount;
+   boolean done;
+   int habitDoneCount;
+   int dayCount;
+   boolean mastered;
 
-    Habit(String habitName, boolean isDone, int habitDoneCount, int dayCount) {
+    Habit(String habitName, boolean done, int habitDoneCount, int dayCount, boolean mastered) {
         this.habitName = habitName;
-        this.isDone = isDone;
+        this.done = done;
         this.habitDoneCount = habitDoneCount;
         this.dayCount = dayCount;
+        this.mastered = mastered;
     }
 
     void doHabit() {
-        if (isDone == false) {
+        if (done == false) {
             habitDoneCount++;
-            isDone = true;
+            done = true;
         } else {
             System.out.println("Ten nawyk jest już dziś zrobiony.");
         }
@@ -28,7 +30,7 @@ class Habit {
     }
 
     public boolean isDone() {
-        return isDone;
+        return done;
     }
 
     public int getHabitDoneCount() {
@@ -42,11 +44,12 @@ class Habit {
     @Override
     public String toString() {
         String oznaczenie;
-        if (isDone == true) {
+        if (done == true) {
             oznaczenie = "Z";
         } else {
             oznaczenie = "NZ";
         }
         return habitName + " - " + oznaczenie + " (" + habitDoneCount + "/" + dayCount + ")";
     }
+
 }
