@@ -8,19 +8,19 @@ import java.util.*;
 
 public class Main {
 
-    private static final String FILE_PATH = "habits.csv";
-    private static List<Habit> habits = new ArrayList<>();
-    private static List<Habit> masteredHabits = new ArrayList<>();
+    static FileControl fileControl = new FileControl();
+    static List<Habit> habits = new ArrayList<>();
+    static List<Habit> masteredHabits = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
     private static boolean exitFromAssistant = false;
 
     public static void main(String[] args) {
-        readCSV();
+        fileControl.readCSV();
         while (!exitFromAssistant) {
             printOptions();
             doOption();
         }
-        saveToCSV();
+        fileControl.saveToCSV();
     }
 
     private static void printOptions() {
@@ -50,7 +50,7 @@ public class Main {
         System.out.println("Podaj nazwe nawyku");
         String habitName = scanner.next();
         habits.add(new Habit(habitName, false, 0, 0, false));
-        saveToCSV();
+        fileControl.saveToCSV();
     }
 
     private static void removeHabit() {
@@ -123,45 +123,6 @@ public class Main {
             habit.dayCount++;
         }
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
-    }
-
-    //todo metody do pracy na pliku do osobnej klasy
-
-    private static void readCSV() {
-        try {
-            Scanner scanner = new Scanner(new File(FILE_PATH));
-            while (scanner.hasNextLine()) {
-                String text = scanner.nextLine();
-                String[] data = text.split(";");
-                String habitName = data[0];
-                boolean isDone = Boolean.parseBoolean(data[1]);
-                int habitDoneCount = Integer.parseInt(data[2]);
-                int dayCount = Integer.parseInt(data[3]);
-                boolean mastered = Boolean.parseBoolean(data[4]);
-                if (mastered) { //todo powtorka
-                    masteredHabits.add(new Habit(habitName, isDone, habitDoneCount, dayCount, mastered));
-                } else {
-                    habits.add(new Habit(habitName, isDone, habitDoneCount, dayCount, mastered));
-                }
-            }
-            System.out.println("Nawyki zostały wczytane prawidłowo.");
-        } catch (FileNotFoundException e) {
-            System.out.println("Nie znaleziono pliku: " + e.getMessage());
-        }
-    }
-
-    private static void saveToCSV() {
-        try (FileWriter fileWriter = new FileWriter(FILE_PATH)) { //try with resource - wymaga zaimplementowanego AutoClosable
-            for (Habit habit : habits) { //todo powtorka
-                fileWriter.write(habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + ";" + habit.mastered + ";" + "\n");
-            }
-            for (Habit habit : masteredHabits) {
-                fileWriter.write(habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + ";" + habit.mastered + ";" + "\n");
-            }
-            System.out.println("Progres został zapisany w pliku.");
-        } catch (IOException e) {
-            System.out.println("Wystąpił błąd podczas zapisywania progresu do pliku: " + e.getMessage());
-        }
     }
 }
 
