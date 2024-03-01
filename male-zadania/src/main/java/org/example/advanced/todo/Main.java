@@ -110,6 +110,8 @@ public class Main {
         }
         if (wszystkieZrobione) {
             System.out.println("Super, zrobiles wszystkie nawyki");
+            newDay();
+            //todo w momencie zrobienia wszystkich nawyków automatycznie robi sie nowy dzien
         }
     }
 
