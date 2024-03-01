@@ -1,9 +1,5 @@
 package org.example.advanced.todo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 
 public class Main {
@@ -39,7 +35,7 @@ public class Main {
             case "1" -> addHabit();
             case "2" -> removeHabit();
             case "3" -> markHabit();
-            case "4" -> masteredHabits();
+            case "4" -> printMasteredHabits();
             case "5" -> newDay();
             case "0" -> exitFromAssistant = true;
             default -> System.out.println("Zły wybór. Wybierz z listy poniżej");
@@ -98,7 +94,7 @@ public class Main {
         }
     }
 
-    private static void masteredHabits() {
+    private static void printMasteredHabits() {
         for (Habit habit : masteredHabits) {
             System.out.println("Gratulacje! Nawyk " + habit.getHabitName() + " został opanowany.");
         }
