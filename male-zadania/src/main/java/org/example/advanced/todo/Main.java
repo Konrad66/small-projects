@@ -129,4 +129,5 @@ public class Main {
 
 //Master habity tez maja byc utrwalane w CSV
 
-//
+//todo mysl na temat czestotliwosci wykonywania nawykow - mozna by bylo dodac kolejny parametr frequency, ktory definiowalby w konkretnych momentach
+// czy nawyk ma byc wykonany lub nie
