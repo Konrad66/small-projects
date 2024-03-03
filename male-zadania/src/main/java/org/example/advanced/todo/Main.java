@@ -38,7 +38,7 @@ public class Main {
             case "4" -> printMasteredHabits();
             case "5" -> newDay();
             case "0" -> exitFromAssistant = true;
-            default -> System.out.println("Zły wybór. Wybierz z listy poniżej");
+            default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
         }
     }
 
@@ -80,12 +80,15 @@ public class Main {
             int choice = scanner.nextInt();
             if (choice == 0) {
                 break;
+            } else if (choice > 0 && choice <= habits.size() ) {
+                Habit chosenHabit = habits.get(choice - 1);
+                chosenHabit.doHabit();
+                allCompleted();
+                //alt + shift -> zaznaczanie wielu
+                masterHabit(chosenHabit);
+            } else {
+                System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
             }
-            Habit chosenHabit = habits.get(choice - 1);
-            chosenHabit.doHabit();
-            allCompleted();
-            //alt + shift -> zaznaczanie wielu
-            masterHabit(chosenHabit);
         }
     }
 
@@ -129,6 +132,8 @@ public class Main {
 }
 
 //ConcurentModificationException - doczytać kiedy występuje i jak sobie z nim radzić
+
+
 
 
 //Master habity tez maja byc utrwalane w CSV
