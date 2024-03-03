@@ -56,15 +56,12 @@ public class Main {
             int removeHabit = scanner.nextInt();
             if (removeHabit == 0) {
                 break;
+            } else if (removeHabit > 0 && removeHabit <= habits.size()) {
+                habits.remove(removeHabit - 1);
+                System.out.println("Nawyk został prawidłowo usunięty.");
+            } else {
+                System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
             }
-            boolean correctSize = true;
-            while (correctSize){
-
-            }
-            if(habits.size() > removeHabit){
-                System.out.println("Podałeś zły zakres. Spróbuj jeszcze raz!");
-            }
-            habits.remove(removeHabit - 1);
         }
     }
 
