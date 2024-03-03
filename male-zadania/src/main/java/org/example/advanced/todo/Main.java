@@ -57,6 +57,13 @@ public class Main {
             if (removeHabit == 0) {
                 break;
             }
+            boolean correctSize = true;
+            while (correctSize){
+
+            }
+            if(habits.size() > removeHabit){
+                System.out.println("Podałeś zły zakres. Spróbuj jeszcze raz!");
+            }
             habits.remove(removeHabit - 1);
         }
     }
