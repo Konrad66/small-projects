@@ -8,15 +8,14 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 //todo czy taka forma importu list jest poprawna?
-import static org.example.advanced.todo.Main.habits;
-import static org.example.advanced.todo.Main.masteredHabits;
 
 public class FileControl {
-    private static final String FILE_PATH = "habits.csv";
+    private static final String FILE_PATH_HABITS = "habits.csv";
+    private static final String FILE_PATH_DATE = "date.txt";
 
-    static void readCSV() {
-        try {
-            Scanner scanner = new Scanner(new File(FILE_PATH));
+     void readCSVHabits() {
+        try (Scanner scanner = new Scanner(new File(FILE_PATH_HABITS))){
+
             while (scanner.hasNextLine()) {
                 String text = scanner.nextLine();
                 String[] data = text.split(";");
@@ -28,9 +27,9 @@ public class FileControl {
                 Habit habit = new Habit(habitName, isDone, habitDoneCount, dayCount, mastered);
 
                 if (mastered) {
-                    masteredHabits.add(habit);
+                    Main.masteredHabits.add(habit);
                 } else {
-                    habits.add(habit);
+                   Main.habits.add(habit);
                 }
             }
             System.out.println("Nawyki zostały wczytane prawidłowo.");
@@ -39,27 +38,40 @@ public class FileControl {
         }
     }
 
-    static void saveToCSV() {
-        //zapisz dane programu
-        //....
+
+    LocalDate readLastStartDate(){
+        try(  Scanner scanner = new Scanner(new File(FILE_PATH_DATE))){
+            String text = scanner.nextLine();
+            LocalDate localDate = LocalDate.parse(text);
+            return localDate;
+        } catch (FileNotFoundException e){
+            System.out.println("Nie znaleziono pliku: " + e.getMessage());
+        }
+        return null;
+    }
+
+
+     void saveToCSV() {
         saveDate();
-        
-        //zapisz habity
         saveHabitsToCSV();
     }
 
-    private static void saveDate(){
+    private  void saveDate() {
         LocalDate localDate = LocalDate.now();
-
+        try (FileWriter fileWriter = new FileWriter(FILE_PATH_DATE)) {
+            fileWriter.write(localDate.toString());
+        } catch (IOException e) {
+            System.out.println("Wystąpił błąd podczas zapisywania daty do pliku:" + e.getMessage());
+        }
 
     }
 
-    private static void saveHabitsToCSV(){
-        try (FileWriter fileWriter = new FileWriter(FILE_PATH)) { //try with resource - wymaga zaimplementowanego AutoClosable
-            for (Habit habit : habits) {
+    private  void saveHabitsToCSV() {
+        try (FileWriter fileWriter = new FileWriter(FILE_PATH_HABITS)) { //try with resource - wymaga zaimplementowanego AutoClosable
+            for (Habit habit : Main.habits) {
                 fileWriter.write(composeCSVLine(habit));
             }
-            for (Habit habit : masteredHabits) {
+            for (Habit habit : Main.masteredHabits) {
                 fileWriter.write(composeCSVLine(habit));
             }
             System.out.println("Progres został zapisany w pliku.");
@@ -68,7 +80,7 @@ public class FileControl {
         }
     }
 
-    private static String composeCSVLine(Habit habit) {
+    private  String composeCSVLine(Habit habit) {
         return habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + ";" + habit.mastered + ";" + "\n";
     }
 }

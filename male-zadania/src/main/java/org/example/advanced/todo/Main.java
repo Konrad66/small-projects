@@ -1,5 +1,6 @@
 package org.example.advanced.todo;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Main {
@@ -11,9 +12,11 @@ public class Main {
     private static boolean exitFromAssistant = false;
 
     public static void main(String[] args) {
-        fileControl.readCSV();
+        fileControl.readCSVHabits();
         while (!exitFromAssistant) {
-            newDay();
+            if(fileControl.readLastStartDate().isBefore(LocalDate.now())) {
+                newDay();
+            }
             printOptions();
             doOption();
         }
