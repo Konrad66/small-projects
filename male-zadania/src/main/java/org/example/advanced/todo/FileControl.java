@@ -7,14 +7,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-//todo czy taka forma importu list jest poprawna?
 
 public class FileControl {
     private static final String FILE_PATH_HABITS = "habits.csv";
     private static final String FILE_PATH_DATE = "date.txt";
 
-     void readCSVHabits() {
-        try (Scanner scanner = new Scanner(new File(FILE_PATH_HABITS))){
+    void readCSVHabits() {
+        try (Scanner scanner = new Scanner(new File(FILE_PATH_HABITS))) {
 
             while (scanner.hasNextLine()) {
                 String text = scanner.nextLine();
@@ -29,7 +28,7 @@ public class FileControl {
                 if (mastered) {
                     Main.masteredHabits.add(habit);
                 } else {
-                   Main.habits.add(habit);
+                    Main.habits.add(habit);
                 }
             }
             System.out.println("Nawyki zostały wczytane prawidłowo.");
@@ -38,25 +37,24 @@ public class FileControl {
         }
     }
 
-
-    LocalDate readLastStartDate(){
-        try(  Scanner scanner = new Scanner(new File(FILE_PATH_DATE))){
+    LocalDate readLastStartDate() {
+        try (Scanner scanner = new Scanner(new File(FILE_PATH_DATE))) {
             String text = scanner.nextLine();
             LocalDate localDate = LocalDate.parse(text);
             return localDate;
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("Nie znaleziono pliku: " + e.getMessage());
         }
         return null;
     }
 
 
-     void saveToCSV() {
+    void saveToCSV() {
         saveDate();
         saveHabitsToCSV();
     }
 
-    private  void saveDate() {
+    private void saveDate() {
         LocalDate localDate = LocalDate.now();
         try (FileWriter fileWriter = new FileWriter(FILE_PATH_DATE)) {
             fileWriter.write(localDate.toString());
@@ -66,7 +64,7 @@ public class FileControl {
 
     }
 
-    private  void saveHabitsToCSV() {
+    private void saveHabitsToCSV() {
         try (FileWriter fileWriter = new FileWriter(FILE_PATH_HABITS)) { //try with resource - wymaga zaimplementowanego AutoClosable
             for (Habit habit : Main.habits) {
                 fileWriter.write(composeCSVLine(habit));
@@ -80,7 +78,7 @@ public class FileControl {
         }
     }
 
-    private  String composeCSVLine(Habit habit) {
+    private String composeCSVLine(Habit habit) {
         return habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + ";" + habit.mastered + ";" + "\n";
     }
 }

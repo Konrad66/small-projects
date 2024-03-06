@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         fileControl.readCSVHabits();
         while (!exitFromAssistant) {
-            if(fileControl.readLastStartDate().isBefore(LocalDate.now())) {
+            if (fileControl.readLastStartDate().isBefore(LocalDate.now())) {
                 newDay();
             }
             printOptions();
@@ -84,7 +84,7 @@ public class Main {
             int choice = scanner.nextInt();
             if (choice == 0) {
                 break;
-            } else if (choice > 0 && choice <= habits.size() ) {
+            } else if (choice > 0 && choice <= habits.size()) {
                 Habit chosenHabit = habits.get(choice - 1);
                 chosenHabit.doHabit();
                 boolean allCompleted = areAllCompleted();
@@ -157,7 +157,6 @@ Aby uniknąć ConcurrentModificationException, należy używać bezpiecznych mec
 Fail-Fast vs. Fail-Safe: Struktury danych w Java Collections Framework są zazwyczaj zaimplementowane jako "fail-fast", co oznacza, że natychmiastowo zgłaszają ConcurrentModificationException, gdy wykryją niezgodność podczas iteracji. Z drugiej strony, istnieją też struktury "fail-safe", które pozwalają na bezpieczne iterowanie po kolekcji, nawet jeśli jest ona modyfikowana w trakcie iteracji, ale niekoniecznie zapewniają aktualne widoki kolekcji.
 
  */
-
 
 
 //Master habity tez maja byc utrwalane w CSV
