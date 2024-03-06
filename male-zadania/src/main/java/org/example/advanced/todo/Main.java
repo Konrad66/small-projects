@@ -50,7 +50,7 @@ public class Main {
         System.out.println("Podaj nazwe nawyku");
         String habitName = scanner.next();
         habits.add(new Habit(habitName, false, 0, 0, false));
-        fileControl.saveToCSV();
+        //fileControl.saveToCSV();
     }
 
     private static void removeHabit() {
