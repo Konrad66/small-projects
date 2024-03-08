@@ -51,5 +51,4 @@ class Habit {
         }
         return habitName + " - " + oznaczenie + " (" + habitDoneCount + "/" + dayCount + ")";
     }
-
 }

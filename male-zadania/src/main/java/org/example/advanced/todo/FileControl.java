@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-
 public class FileControl {
     private static final String FILE_PATH_HABITS = "habits.csv";
     private static final String FILE_PATH_DATE = "date.txt";
