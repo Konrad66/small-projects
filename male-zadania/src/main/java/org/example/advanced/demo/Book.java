@@ -1,0 +1,23 @@
+package org.example.advanced.demo;
+
+public class Book {
+    private String title;
+    private int pages;
+
+    public Book(String title, int pages) {
+        this.title = title;
+        this.pages = pages;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", pages=" + pages +
+                '}';
+    }
+
+    public int getPages() {
+        return pages;
+    }
+}

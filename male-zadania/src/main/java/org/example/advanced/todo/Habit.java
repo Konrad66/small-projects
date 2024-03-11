@@ -17,7 +17,7 @@ class Habit {
     }
 
     void doHabit() {
-        if (done == false) {
+        if (!done) {
             habitDoneCount++;
             done = true;
         } else {

@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class FileControl {
     private static final String FILE_PATH_HABITS = "habits.csv";
     private static final String FILE_PATH_DATE = "date.txt";
+    MainController mainController;
 
     void readCSVHabits() {
         try (Scanner scanner = new Scanner(new File(FILE_PATH_HABITS))) {
@@ -25,9 +26,9 @@ public class FileControl {
                 Habit habit = new Habit(habitName, isDone, habitDoneCount, dayCount, mastered);
 
                 if (mastered) {
-                    Main.masteredHabits.add(habit);
+                   // mainController.masteredHabits.add(habit);
                 } else {
-                    Main.habits.add(habit);
+                    //mainController.habits.add(habit);
                 }
             }
             System.out.println("Nawyki zostały wczytane prawidłowo.");
@@ -65,13 +66,16 @@ public class FileControl {
 
     private void saveHabitsToCSV() {
         try (FileWriter fileWriter = new FileWriter(FILE_PATH_HABITS)) { //try with resource - wymaga zaimplementowanego AutoClosable
-            for (Habit habit : Main.habits) {
+            /*
+            for (Habit habit : mainController.habits) {
                 fileWriter.write(composeCSVLine(habit));
             }
-            for (Habit habit : Main.masteredHabits) {
+            for (Habit habit : mainController.masteredHabits) {
                 fileWriter.write(composeCSVLine(habit));
             }
             System.out.println("Progres został zapisany w pliku.");
+
+             */
         } catch (IOException e) {
             System.out.println("Wystąpił błąd podczas zapisywania progresu do pliku: " + e.getMessage());
         }
