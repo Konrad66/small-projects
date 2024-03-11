@@ -26,9 +26,9 @@ public class FileControl {
                 Habit habit = new Habit(habitName, isDone, habitDoneCount, dayCount, mastered);
 
                 if (mastered) {
-                   // mainController.masteredHabits.add(habit);
+                    mainController.masteredHabits.add(habit);
                 } else {
-                    //mainController.habits.add(habit);
+                    mainController.habits.add(habit);
                 }
             }
             System.out.println("Nawyki zostały wczytane prawidłowo.");
@@ -66,7 +66,6 @@ public class FileControl {
 
     private void saveHabitsToCSV() {
         try (FileWriter fileWriter = new FileWriter(FILE_PATH_HABITS)) { //try with resource - wymaga zaimplementowanego AutoClosable
-            /*
             for (Habit habit : mainController.habits) {
                 fileWriter.write(composeCSVLine(habit));
             }
@@ -74,8 +73,6 @@ public class FileControl {
                 fileWriter.write(composeCSVLine(habit));
             }
             System.out.println("Progres został zapisany w pliku.");
-
-             */
         } catch (IOException e) {
             System.out.println("Wystąpił błąd podczas zapisywania progresu do pliku: " + e.getMessage());
         }
