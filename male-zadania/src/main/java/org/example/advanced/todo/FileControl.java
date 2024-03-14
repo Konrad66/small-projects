@@ -82,3 +82,4 @@ public class FileControl {
         return habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + ";" + habit.mastered + ";" + "\n";
     }
 }
+
