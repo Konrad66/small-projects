@@ -35,9 +35,3 @@ Fail-Fast vs. Fail-Safe: Struktury danych w Java Collections Framework są zazwy
 
 
 //Master habity tez maja byc utrwalane w CSV
-
-
-
-/*
-
- */
