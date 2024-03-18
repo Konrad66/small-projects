@@ -14,7 +14,15 @@ public class MainController {
     private boolean exitFromAssistant = false;
 
     void control() {
-        fileControl.readCSVHabits();
+        List<Habit> habitsListFromCSV = fileControl.readCSVHabits();
+        for (Habit habit : habitsListFromCSV) {
+            if(habit.mastered){
+                masteredHabits.add(habit);
+            } else {
+                habits.add(habit);
+            }
+        }
+
         while (!exitFromAssistant) {
             if (fileControl.readLastStartDate().isBefore(LocalDate.now())) {
                 newDay();

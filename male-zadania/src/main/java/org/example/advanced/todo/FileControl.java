@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FileControl {
@@ -12,9 +14,9 @@ public class FileControl {
     private static final String FILE_PATH_DATE = "date.txt";
     MainController mainController;
 
-    void readCSVHabits() {
+    List<Habit> readCSVHabits() {
+        List<Habit> habitList = new ArrayList<>();
         try (Scanner scanner = new Scanner(new File(FILE_PATH_HABITS))) {
-
             while (scanner.hasNextLine()) {
                 String text = scanner.nextLine();
                 String[] data = text.split(";");
@@ -24,17 +26,13 @@ public class FileControl {
                 int dayCount = Integer.parseInt(data[3]);
                 boolean mastered = Boolean.parseBoolean(data[4]);
                 Habit habit = new Habit(habitName, isDone, habitDoneCount, dayCount, mastered);
-
-                if (mastered) {
-                    mainController.masteredHabits.add(habit);
-                } else {
-                    mainController.habits.add(habit);
-                }
+                habitList.add(habit);
             }
             System.out.println("Nawyki zostały wczytane prawidłowo.");
         } catch (FileNotFoundException e) {
             System.out.println("Nie znaleziono pliku: " + e.getMessage());
         }
+        return habitList;
     }
 
     LocalDate readLastStartDate() {
