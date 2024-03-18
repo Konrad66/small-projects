@@ -13,7 +13,6 @@ public class FileControl {
     private static final String FILE_PATH_HABITS = "habits.csv";
     private static final String FILE_PATH_DATE = "date.txt";
 
-
     List<Habit> readCSVHabits() {
         List<Habit> habitList = new ArrayList<>();
         try (Scanner scanner = new Scanner(new File(FILE_PATH_HABITS))) {

@@ -7,11 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
         FileControl fileControl = new FileControl();
-        MainController mainController = new MainController();
-        mainController.fileControl = fileControl;
+        MainController mainController = new MainController(fileControl);
         mainController.control();
-
-
     }
 }
 

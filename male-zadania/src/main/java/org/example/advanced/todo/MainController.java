@@ -7,11 +7,15 @@ import java.util.Scanner;
 
 public class MainController {
 
-    FileControl fileControl;
-    List<Habit> habits = new ArrayList<>();
-    List<Habit> masteredHabits = new ArrayList<>();
+    private FileControl fileControl;
+    private List<Habit> habits = new ArrayList<>();
+    private List<Habit> masteredHabits = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
     private boolean exitFromAssistant = false;
+
+    MainController(FileControl fileControl){
+        this.fileControl = fileControl;
+    }
 
     void control() {
         List<Habit> habitsListFromCSV = fileControl.readCSVHabits();
