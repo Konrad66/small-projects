@@ -46,9 +46,9 @@ public class FileControl {
     }
 
 
-    void saveToCSV(List<Habit> habits, List<Habit> masteredHabits) {
+    void saveToCSV(List<Habit> habits) {
         saveDate();
-        saveHabitsToCSV(habits, masteredHabits);
+        saveHabitsToCSV(habits);
     }
 
     private void saveDate() {
@@ -60,12 +60,9 @@ public class FileControl {
         }
     }
 
-    private void saveHabitsToCSV(List<Habit> habits, List<Habit> masteredHabits) {
+    private void saveHabitsToCSV(List<Habit> habits) {
         try (FileWriter fileWriter = new FileWriter(FILE_PATH_HABITS)) { //try with resource - wymaga zaimplementowanego AutoClosable
             for (Habit habit : habits) {
-                fileWriter.write(composeCSVLine(habit));
-            }
-            for (Habit habit : masteredHabits) {
                 fileWriter.write(composeCSVLine(habit));
             }
             System.out.println("Progres został zapisany w pliku.");

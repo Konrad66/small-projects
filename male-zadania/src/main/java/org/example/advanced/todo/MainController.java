@@ -8,8 +8,9 @@ import java.util.Scanner;
 public class MainController {
 
     private FileControl fileControl;
-    private List<Habit> habits = new ArrayList<>();
-    private List<Habit> masteredHabits = new ArrayList<>();
+    private List<Habit> allHabits = new ArrayList<>();
+    //private List<Habit> habits = new ArrayList<>();
+    //private List<Habit> masteredHabits = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
     private boolean exitFromAssistant = false;
 
@@ -18,15 +19,7 @@ public class MainController {
     }
 
     void control() {
-        List<Habit> habitsListFromCSV = fileControl.readCSVHabits();
-        for (Habit habit : habitsListFromCSV) {
-            if(habit.mastered){
-                masteredHabits.add(habit);
-            } else {
-                habits.add(habit);
-            }
-        }
-
+        allHabits = fileControl.readCSVHabits();
         while (!exitFromAssistant) {
             if (fileControl.readLastStartDate().isBefore(LocalDate.now())) {
                 newDay();
@@ -34,7 +27,7 @@ public class MainController {
             printOptions();
             doOption();
         }
-        fileControl.saveToCSV(habits, masteredHabits);
+        fileControl.saveToCSV(allHabits);
     }
 
     private void printOptions() {
@@ -65,20 +58,18 @@ public class MainController {
         String habitName;
         scanner.nextLine();
         habitName = scanner.nextLine();
-
-        habits.add(new Habit(habitName, false, 0, 0, false));
-        //fileControl.saveToCSV();
+        allHabits.add(new Habit(habitName, false, 0, 0, false));
     }
 
     private void removeHabit() {
         while (true) {
             System.out.println("Który z nawyków chcesz usunąć? Jak chcesz wrócic do menu wciśnij 0.");
-            printHabits();
+            printNonMasteredHabits();
             int removeHabit = scanner.nextInt();
             if (removeHabit == 0) {
                 break;
-            } else if (removeHabit > 0 && removeHabit <= habits.size()) {
-                habits.remove(removeHabit - 1);
+            } else if (removeHabit > 0 && removeHabit <= allHabits.size()) {
+                allHabits.remove(removeHabit - 1);
                 System.out.println("Nawyk został prawidłowo usunięty.");
             } else {
                 System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
@@ -86,23 +77,16 @@ public class MainController {
         }
     }
 
-    private void printHabits() {
-        int count = 1;
-        for (Habit habit : habits) {
-            System.out.println(count + ". " + habit);
-            count++;
-        }
-    }
 
     private void markHabit() {
         while (true) {
             System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić. Jesli chcesz wrócić do menu wpisz 0");
-            printHabits();
+            printNonMasteredHabits();
             int choice = scanner.nextInt();
             if (choice == 0) {
                 break;
-            } else if (choice > 0 && choice <= habits.size()) {
-                Habit chosenHabit = habits.get(choice - 1);
+            } else if (choice > 0 && choice <= allHabits.size()) {
+                Habit chosenHabit = allHabits.get(choice - 1);
                 chosenHabit.doHabit();
                 boolean allCompleted = areAllCompleted();
                 //alt + shift -> zaznaczanie wielu
@@ -124,20 +108,46 @@ public class MainController {
         double completePercentage = chosenHabit.habitDoneCount * 100.0 / chosenHabit.dayCount;
         if (chosenHabit.dayCount >= 30 && completePercentage >= 90) {
             chosenHabit.mastered = true;
-            masteredHabits.add(chosenHabit);
-            habits.remove(chosenHabit);
         }
     }
 
     private void printMasteredHabits() {
-        for (Habit habit : masteredHabits) {
+        for (Habit habit : masteredHabits()) {
             System.out.println("Gratulacje! Nawyk " + habit.getHabitName() + " został opanowany.");
         }
     }
 
+    private void printNonMasteredHabits() {
+        int count = 1;
+        for (Habit habit : nonMasteredHabits()) {
+            System.out.println(count + ". " + habit);
+            count++;
+        }
+    }
+
+    private List<Habit> masteredHabits(){
+        List<Habit> masteredHabits = new ArrayList<>();
+        for(Habit habit : allHabits){
+            if(habit.mastered){
+                masteredHabits.add(habit);
+            }
+        }
+        return masteredHabits;
+    }
+
+    private List<Habit> nonMasteredHabits(){
+        List<Habit> masteredHabits = new ArrayList<>();
+        for(Habit habit : allHabits){
+            if(!habit.mastered){
+                masteredHabits.add(habit);
+            }
+        }
+        return masteredHabits;
+    }
+
     private boolean areAllCompleted() {
         boolean wszystkieZrobione = true;
-        for (Habit habit : habits) {
+        for (Habit habit : nonMasteredHabits()) {
             if (!habit.done) {
                 wszystkieZrobione = false;
                 break;
@@ -150,7 +160,7 @@ public class MainController {
     }
 
     private void newDay() {
-        for (Habit habit : habits) {
+        for (Habit habit : nonMasteredHabits()) {
             habit.done = false;
             habit.dayCount++;
         }
