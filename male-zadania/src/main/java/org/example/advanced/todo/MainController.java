@@ -68,8 +68,9 @@ public class MainController {
             int removeHabit = scanner.nextInt();
             if (removeHabit == 0) {
                 break;
-            } else if (removeHabit > 0 && removeHabit <= allHabits.size()) {
-                allHabits.remove(removeHabit - 1);
+            } else if (removeHabit > 0 && removeHabit <= nonMasteredHabits().size()) {
+                Habit habitToRemove = nonMasteredHabits().get(removeHabit - 1);
+                allHabits.remove(habitToRemove);
                 System.out.println("Nawyk został prawidłowo usunięty.");
             } else {
                 System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
@@ -85,8 +86,8 @@ public class MainController {
             int choice = scanner.nextInt();
             if (choice == 0) {
                 break;
-            } else if (choice > 0 && choice <= allHabits.size()) {
-                Habit chosenHabit = allHabits.get(choice - 1);
+            } else if (choice > 0 && choice <= nonMasteredHabits().size()) {
+                Habit chosenHabit = nonMasteredHabits().get(choice - 1);
                 chosenHabit.doHabit();
                 boolean allCompleted = areAllCompleted();
                 //alt + shift -> zaznaczanie wielu
