@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class FileControl {
     private static final String FILE_PATH_HABITS = "habits.csv";
     private static final String FILE_PATH_DATE = "date.txt";
-    MainController mainController;
+
 
     List<Habit> readCSVHabits() {
         List<Habit> habitList = new ArrayList<>();
@@ -47,9 +47,9 @@ public class FileControl {
     }
 
 
-    void saveToCSV() {
+    void saveToCSV(List<Habit> habits, List<Habit> masteredHabits) {
         saveDate();
-        saveHabitsToCSV();
+        saveHabitsToCSV(habits, masteredHabits);
     }
 
     private void saveDate() {
@@ -59,15 +59,14 @@ public class FileControl {
         } catch (IOException e) {
             System.out.println("Wystąpił błąd podczas zapisywania daty do pliku:" + e.getMessage());
         }
-
     }
 
-    private void saveHabitsToCSV() {
+    private void saveHabitsToCSV(List<Habit> habits, List<Habit> masteredHabits) {
         try (FileWriter fileWriter = new FileWriter(FILE_PATH_HABITS)) { //try with resource - wymaga zaimplementowanego AutoClosable
-            for (Habit habit : mainController.habits) {
+            for (Habit habit : habits) {
                 fileWriter.write(composeCSVLine(habit));
             }
-            for (Habit habit : mainController.masteredHabits) {
+            for (Habit habit : masteredHabits) {
                 fileWriter.write(composeCSVLine(habit));
             }
             System.out.println("Progres został zapisany w pliku.");

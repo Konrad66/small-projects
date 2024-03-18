@@ -30,7 +30,7 @@ public class MainController {
             printOptions();
             doOption();
         }
-        fileControl.saveToCSV();
+        fileControl.saveToCSV(habits, masteredHabits);
     }
 
     private void printOptions() {

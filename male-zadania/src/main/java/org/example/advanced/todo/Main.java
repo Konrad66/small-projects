@@ -9,7 +9,6 @@ public class Main {
         FileControl fileControl = new FileControl();
         MainController mainController = new MainController();
         mainController.fileControl = fileControl;
-        fileControl.mainController = mainController;
         mainController.control();
 
 
