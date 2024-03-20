@@ -78,7 +78,6 @@ public class MainController {
         }
     }
 
-
     private void markHabit() {
         while (true) {
             System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić. Jesli chcesz wrócić do menu wpisz 0");
@@ -97,7 +96,6 @@ public class MainController {
                     newDay();
                     break;
                 }
-
                  */
             } else {
                 System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
@@ -192,5 +190,7 @@ Fail-Fast vs. Fail-Safe: Struktury danych w Java Collections Framework są zazwy
 
 
 /*
+dodać unikalny numer dla każdego habitu;
+wyświetlanie statystyk (w ilu procentach zrobiliśmy konkretny nawyk, ile mamy nawyków ile wykonanych ile opanowanych)
 
  */
