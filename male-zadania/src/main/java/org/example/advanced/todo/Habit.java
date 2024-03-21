@@ -2,13 +2,15 @@ package org.example.advanced.todo;
 
 class Habit {
 
+    private int habitID;
     private String habitName;
     boolean done;
     int habitDoneCount;
     int dayCount;
     boolean mastered;
 
-    Habit(String habitName, boolean done, int habitDoneCount, int dayCount, boolean mastered) {
+    Habit(int habitID, String habitName, boolean done, int habitDoneCount, int dayCount, boolean mastered) {
+        this.habitID = habitID;
         this.habitName = habitName;
         this.done = done;
         this.habitDoneCount = habitDoneCount;
@@ -40,6 +42,10 @@ class Habit {
 
     public int getDayCount() {
         return dayCount;
+    }
+
+    public int getHabitID() {
+        return habitID;
     }
 
     @Override

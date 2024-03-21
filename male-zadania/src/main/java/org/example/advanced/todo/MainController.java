@@ -58,7 +58,7 @@ public class MainController {
         String habitName;
         scanner.nextLine();
         habitName = scanner.nextLine();
-        allHabits.add(new Habit(habitName, false, 0, 0, false));
+        allHabits.add(new Habit(allHabits.size()+ 1, habitName, false, 0, 0, false));
     }
 
     private void removeHabit() {
@@ -120,6 +120,7 @@ public class MainController {
         int count = 1;
         for (Habit habit : nonMasteredHabits()) {
             System.out.println(count + ". " + habit);
+            //System.out.println(habit.getHabitID()+ ". " + habit);
             count++;
         }
     }
@@ -135,13 +136,13 @@ public class MainController {
     }
 
     private List<Habit> nonMasteredHabits(){
-        List<Habit> masteredHabits = new ArrayList<>();
+        List<Habit> nonMasteredHabits = new ArrayList<>();
         for(Habit habit : allHabits){
             if(!habit.mastered){
-                masteredHabits.add(habit);
+                nonMasteredHabits.add(habit);
             }
         }
-        return masteredHabits;
+        return nonMasteredHabits;
     }
 
     private boolean areAllCompleted() {
@@ -190,7 +191,7 @@ Fail-Fast vs. Fail-Safe: Struktury danych w Java Collections Framework są zazwy
 
 
 /*
-dodać unikalny numer dla każdego habitu;
+dodać unikalny numer dla każdego habitu; - dziala ale w przypadku usuniecia przedostatniego dodanego nawyku, nowe dodanie ma ten sam unikalny numer co ostatni nawyk
 wyświetlanie statystyk (w ilu procentach zrobiliśmy konkretny nawyk, ile mamy nawyków ile wykonanych ile opanowanych)
 
  */

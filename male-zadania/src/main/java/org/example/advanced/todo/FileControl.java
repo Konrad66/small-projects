@@ -19,12 +19,13 @@ public class FileControl {
             while (scanner.hasNextLine()) {
                 String text = scanner.nextLine();
                 String[] data = text.split(";");
-                String habitName = data[0];
-                boolean isDone = Boolean.parseBoolean(data[1]);
-                int habitDoneCount = Integer.parseInt(data[2]);
-                int dayCount = Integer.parseInt(data[3]);
-                boolean mastered = Boolean.parseBoolean(data[4]);
-                Habit habit = new Habit(habitName, isDone, habitDoneCount, dayCount, mastered);
+                int habitID = Integer.parseInt(data[0]);
+                String habitName = data[1];
+                boolean isDone = Boolean.parseBoolean(data[2]);
+                int habitDoneCount = Integer.parseInt(data[3]);
+                int dayCount = Integer.parseInt(data[4]);
+                boolean mastered = Boolean.parseBoolean(data[5]);
+                Habit habit = new Habit(habitID, habitName, isDone, habitDoneCount, dayCount, mastered);
                 habitList.add(habit);
             }
             System.out.println("Nawyki zostały wczytane prawidłowo.");
@@ -72,7 +73,7 @@ public class FileControl {
     }
 
     private String composeCSVLine(Habit habit) {
-        return habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + ";" + habit.mastered + ";" + "\n";
+        return habit.getHabitID() + ";" + habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + ";" + habit.mastered + ";" + "\n";
     }
 }
 
