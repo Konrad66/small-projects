@@ -37,6 +37,7 @@ public class MainController {
         System.out.println("3. Oznacz nawyki");
         System.out.println("4. Opanowane nawyki");
         System.out.println("5. Nowy dzień");
+        System.out.println("6. Statystyki");
         System.out.println("0. Wyjdź z asystenta");
     }
 
@@ -48,6 +49,7 @@ public class MainController {
             case "3" -> markHabit();
             case "4" -> printMasteredHabits();
             case "5" -> newDay();
+            case "6" -> printStatistic();
             case "0" -> exitFromAssistant = true;
             default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
         }
@@ -165,6 +167,10 @@ public class MainController {
             habit.dayCount++;
         }
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
+    }
+
+    private void printStatistic(){
+
     }
 }
 
