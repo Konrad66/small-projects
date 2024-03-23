@@ -170,7 +170,10 @@ public class MainController {
     }
 
     private void printStatistic(){
+        System.out.println("Poniżej znajdziesz kilka statystyk.");
 
+        //int masteredHabit =
+        System.out.println("Łączna liczba nawyków nad którymi aktualnie pracujesz to: " );
     }
 }
 
