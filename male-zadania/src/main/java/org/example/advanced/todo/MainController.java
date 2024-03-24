@@ -172,13 +172,21 @@ public class MainController {
     private void printStatistic() {
         System.out.println("Poniżej znajdziesz kilka statystyk.");
         int countMasteredHabit = 0;
+        int countNonMasteredHabit = 0;
         for (Habit habit : allHabits) {
             if (!habit.mastered){
                 countMasteredHabit++;
+            } else {
+                countNonMasteredHabit++;
             }
         }
-
         System.out.println("Łączna liczba nawyków nad którymi aktualnie pracujesz to: " + countMasteredHabit);
+        System.out.println("Łączna liczba opanowanych już nawyków to: " + countNonMasteredHabit);
+
+    }
+
+    private void prepareStatistics(){
+
     }
 }
 
