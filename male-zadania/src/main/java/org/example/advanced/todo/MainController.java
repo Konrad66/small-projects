@@ -14,7 +14,7 @@ public class MainController {
     private Scanner scanner = new Scanner(System.in);
     private boolean exitFromAssistant = false;
 
-    MainController(FileControl fileControl){
+    MainController(FileControl fileControl) {
         this.fileControl = fileControl;
     }
 
@@ -60,7 +60,7 @@ public class MainController {
         String habitName;
         scanner.nextLine();
         habitName = scanner.nextLine();
-        allHabits.add(new Habit(allHabits.size()+ 1, habitName, false, 0, 0, false));
+        allHabits.add(new Habit(allHabits.size() + 1, habitName, false, 0, 0, false));
     }
 
     private void removeHabit() {
@@ -127,20 +127,20 @@ public class MainController {
         }
     }
 
-    private List<Habit> masteredHabits(){
+    private List<Habit> masteredHabits() {
         List<Habit> masteredHabits = new ArrayList<>();
-        for(Habit habit : allHabits){
-            if(habit.mastered){
+        for (Habit habit : allHabits) {
+            if (habit.mastered) {
                 masteredHabits.add(habit);
             }
         }
         return masteredHabits;
     }
 
-    private List<Habit> nonMasteredHabits(){
+    private List<Habit> nonMasteredHabits() {
         List<Habit> nonMasteredHabits = new ArrayList<>();
-        for(Habit habit : allHabits){
-            if(!habit.mastered){
+        for (Habit habit : allHabits) {
+            if (!habit.mastered) {
                 nonMasteredHabits.add(habit);
             }
         }
@@ -169,11 +169,16 @@ public class MainController {
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
     }
 
-    private void printStatistic(){
+    private void printStatistic() {
         System.out.println("Poniżej znajdziesz kilka statystyk.");
+        int countMasteredHabit = 0;
+        for (Habit habit : allHabits) {
+            if (!habit.mastered){
+                countMasteredHabit++;
+            }
+        }
 
-        //int masteredHabit =
-        System.out.println("Łączna liczba nawyków nad którymi aktualnie pracujesz to: " );
+        System.out.println("Łączna liczba nawyków nad którymi aktualnie pracujesz to: " + countMasteredHabit);
     }
 }
 
