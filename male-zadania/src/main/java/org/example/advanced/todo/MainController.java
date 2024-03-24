@@ -183,6 +183,10 @@ public class MainController {
         System.out.println("Łączna liczba nawyków nad którymi aktualnie pracujesz to: " + countMasteredHabit);
         System.out.println("Łączna liczba opanowanych już nawyków to: " + countNonMasteredHabit);
 
+        for (Habit habit : allHabits) {
+            double countPercentageHabit = (double) habit.habitDoneCount / habit.dayCount;
+            System.out.println("Twój nawyk - " + habit.getHabitName() + " - jest wykonany w " + (countPercentageHabit *100) + " &");
+        }
     }
 
     private void prepareStatistics(){
@@ -217,3 +221,7 @@ dodać unikalny numer dla każdego habitu; - dziala ale w przypadku usuniecia pr
 wyświetlanie statystyk (w ilu procentach zrobiliśmy konkretny nawyk, ile mamy nawyków ile wykonanych ile opanowanych)
 
  */
+
+//todo
+//zapyta jeszcze raz o modyfikacje pdoczas wyswietlnia listy foreachem
+// zaokraglenie liczby
