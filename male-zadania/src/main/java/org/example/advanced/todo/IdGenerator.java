@@ -10,10 +10,10 @@ public class IdGenerator {
 
     private static final String FILE_PATH = "UniqueId.txt";
 
-    public int giveLastId(){
-        try(Scanner scanner = new Scanner(new File(FILE_PATH))){
+    public int giveLastId() {
+        try (Scanner scanner = new Scanner(new File(FILE_PATH))) {
             return scanner.nextInt();
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("Nie znaleziono pliku" + e);
         }
         return 0;
@@ -21,9 +21,9 @@ public class IdGenerator {
 
     public void saveNewId(int naszaLiczba) {
         //String text = String.valueOf(naszaLiczba);
-        try(FileWriter fileWriter = new FileWriter(FILE_PATH)){
+        try (FileWriter fileWriter = new FileWriter(FILE_PATH)) {
             fileWriter.write(naszaLiczba + "");
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Nie znaleziono pliku" + e);
         }
     }

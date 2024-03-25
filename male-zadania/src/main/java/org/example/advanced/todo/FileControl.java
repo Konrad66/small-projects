@@ -46,7 +46,6 @@ public class FileControl {
         return null;
     }
 
-
     void saveToCSV(List<Habit> habits) {
         saveDate();
         saveHabitsToCSV(habits);
@@ -76,6 +75,3 @@ public class FileControl {
         return habit.getHabitID() + ";" + habit.getHabitName() + ";" + habit.isDone() + ";" + habit.getHabitDoneCount() + ";" + habit.getDayCount() + ";" + habit.mastered + ";" + "\n";
     }
 }
-
-
-
