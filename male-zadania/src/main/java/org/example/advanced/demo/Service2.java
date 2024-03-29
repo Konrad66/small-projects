@@ -15,6 +15,4 @@ public class Service2 {
         }
         System.out.println("Ilość stron: " + allPages);
     }
-
-
 }

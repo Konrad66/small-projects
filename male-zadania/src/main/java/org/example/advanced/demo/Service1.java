@@ -3,7 +3,6 @@ package org.example.advanced.demo;
 public class Service1 {
     private BooksRepo booksRepo;
 
-
     public Service1(BooksRepo booksRepo) {
         this.booksRepo = booksRepo;
     }
@@ -15,6 +14,4 @@ public class Service1 {
             System.out.println(book);
         }
     }
-
-
 }
