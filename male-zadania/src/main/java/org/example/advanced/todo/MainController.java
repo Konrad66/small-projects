@@ -1,5 +1,7 @@
 package org.example.advanced.todo;
 
+import org.example.advanced.demo.generatorID.Generator;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +62,11 @@ public class MainController {
         String habitName;
         scanner.nextLine();
         habitName = scanner.nextLine();
-        allHabits.add(new Habit(allHabits.size() + 1, habitName, false, 0, 0, false));
+        IdGenerator idGenerator = new IdGenerator();
+        int newId = idGenerator.giveLastId();
+        //long actualTime = System.currentTimeMillis();
+        allHabits.add(new Habit(newId++, habitName, false, 0, 0, false));
+        idGenerator.saveNewId(newId);
     }
 
     private void removeHabit() {
@@ -184,13 +190,9 @@ public class MainController {
         System.out.println("Łączna liczba opanowanych już nawyków to: " + countNonMasteredHabit);
 
         for (Habit habit : allHabits) {
-            double countPercentageHabit = (double) habit.habitDoneCount / habit.dayCount;
-            System.out.println("Twój nawyk - " + habit.getHabitName() + " - jest wykonany w " + (countPercentageHabit * 100) + " &");
+            double countPercentageHabit = habit.habitDoneCount * 1.0 / habit.dayCount;
+            System.out.println("Twój nawyk - " + habit.getHabitName() + " - jest wykonany w " + (Math.round(countPercentageHabit * 100)) + " %");
         }
-    }
-
-    private void prepareStatistics() {
-
     }
 }
 
@@ -225,3 +227,12 @@ wyświetlanie statystyk (w ilu procentach zrobiliśmy konkretny nawyk, ile mamy 
 //todo
 //zapyta jeszcze raz o modyfikacje pdoczas wyswietlnia listy foreachem
 // zaokraglenie liczby
+
+
+//printf - doczytac jak dziala
+//ten temat sie wiaze z metoda String.format
+
+
+/*
+
+ */
