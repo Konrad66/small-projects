@@ -174,7 +174,7 @@ public class MainController {
         int countMasteredHabit = 0;
         int countNonMasteredHabit = 0;
         for (Habit habit : allHabits) {
-            if (!habit.mastered){
+            if (!habit.mastered) {
                 countMasteredHabit++;
             } else {
                 countNonMasteredHabit++;
@@ -185,11 +185,11 @@ public class MainController {
 
         for (Habit habit : allHabits) {
             double countPercentageHabit = (double) habit.habitDoneCount / habit.dayCount;
-            System.out.println("Twój nawyk - " + habit.getHabitName() + " - jest wykonany w " + (countPercentageHabit *100) + " &");
+            System.out.println("Twój nawyk - " + habit.getHabitName() + " - jest wykonany w " + (countPercentageHabit * 100) + " &");
         }
     }
 
-    private void prepareStatistics(){
+    private void prepareStatistics() {
 
     }
 }
