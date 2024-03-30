@@ -1,8 +1,5 @@
 package org.example.advanced.todo;
 
-import java.time.LocalDate;
-import java.util.*;
-
 public class Main {
 
     public static void main(String[] args) {

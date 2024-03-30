@@ -1,7 +1,5 @@
 package org.example.advanced.todo;
 
-import org.example.advanced.demo.generatorID.Generator;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
