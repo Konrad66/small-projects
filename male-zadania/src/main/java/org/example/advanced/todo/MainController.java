@@ -38,6 +38,7 @@ public class MainController {
         System.out.println("4. Opanowane nawyki");
         System.out.println("5. Nowy dzień");
         System.out.println("6. Statystyki");
+        System.out.println("7. Edytuj nawyk");
         System.out.println("0. Wyjdź z asystenta");
     }
 
@@ -50,6 +51,7 @@ public class MainController {
             case "4" -> printMasteredHabits();
             case "5" -> newDay();
             case "6" -> printStatistic();
+            case "7" -> editHabit();
             case "0" -> exitFromAssistant = true;
             default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
         }
@@ -191,6 +193,31 @@ public class MainController {
             double countPercentageHabit = habit.habitDoneCount * 1.0 / habit.dayCount;
             System.out.println("Twój nawyk - " + habit.getHabitName() + " - jest wykonany w " + (Math.round(countPercentageHabit * 100)) + " %");
         }
+    }
+
+    private void editHabit() {
+        while (true) {
+            int count = 1;
+            System.out.println("Wybierz nawyk, który chcesz edytować:");
+            for (Habit habit : allHabits) {
+                System.out.println(count + " " + habit);
+                count++;
+            }
+            int choice = scanner.nextInt();
+            if (choice == 0) {
+                break;
+            } else if (choice > 0 || choice <= nonMasteredHabits().size()) {
+                Habit habitToEdit = nonMasteredHabits().get(choice - 1);
+                System.out.println("Aktualna nazwa nawyku " + habitToEdit.getHabitName());
+                System.out.println("Podaj nową nazwę nawyku: ");
+                String newHabitName = scanner.nextLine();
+                habitToEdit.setHabitName(newHabitName);
+            } else {
+                System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
+
+            }
+        }
+
     }
 }
 

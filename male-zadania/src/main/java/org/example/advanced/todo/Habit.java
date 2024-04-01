@@ -27,6 +27,10 @@ class Habit {
         }
     }
 
+    public void setHabitName(String habitName) {
+        this.habitName = habitName;
+    }
+
     String getHabitName() {
         return habitName;
     }
