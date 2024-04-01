@@ -195,10 +195,12 @@ public class MainController {
         }
     }
 
+    //todo do sprawdzenia
     private void editHabit() {
         while (true) {
             int count = 1;
             System.out.println("Wybierz nawyk, który chcesz edytować:");
+            System.out.println("0. Powrót do menu");
             for (Habit habit : allHabits) {
                 System.out.println(count + " " + habit);
                 count++;
@@ -210,8 +212,10 @@ public class MainController {
                 Habit habitToEdit = nonMasteredHabits().get(choice - 1);
                 System.out.println("Aktualna nazwa nawyku " + habitToEdit.getHabitName());
                 System.out.println("Podaj nową nazwę nawyku: ");
-                String newHabitName = scanner.nextLine();
+                scanner.nextLine();
+                String newHabitName = scanner.next();
                 habitToEdit.setHabitName(newHabitName);
+                System.out.println("Nazwa nawyku została zaktualizowana. Jeśli chcesz wrócić do menu wpisz 0.");
             } else {
                 System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
 
@@ -256,8 +260,3 @@ wyświetlanie statystyk (w ilu procentach zrobiliśmy konkretny nawyk, ile mamy 
 
 //printf - doczytac jak dziala
 //ten temat sie wiaze z metoda String.format
-
-
-/*
-
- */
