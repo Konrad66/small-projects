@@ -34,11 +34,11 @@ public class MainController {
         System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
         System.out.println("1. Dodaj nawyk");
         System.out.println("2. Usuń nawyki");
-        System.out.println("3. Oznacz nawyki");
-        System.out.println("4. Opanowane nawyki");
-        System.out.println("5. Nowy dzień");
-        System.out.println("6. Statystyki");
-        System.out.println("7. Edytuj nawyk");
+        System.out.println("3. Edytuj nawyk");
+        System.out.println("4. Oznacz nawyki");
+        System.out.println("5. Opanowane nawyki");
+        System.out.println("6. Nowy dzień");
+        System.out.println("7. Statystyki");
         System.out.println("0. Wyjdź z asystenta");
     }
 
@@ -47,11 +47,11 @@ public class MainController {
         switch (choice) {
             case "1" -> addHabit();
             case "2" -> removeHabit();
-            case "3" -> markHabit();
-            case "4" -> printMasteredHabits();
-            case "5" -> newDay();
-            case "6" -> printStatistic();
-            case "7" -> editHabit();
+            case "3" -> editHabit();
+            case "4" -> markHabit();
+            case "5" -> printMasteredHabits();
+            case "6" -> newDay();
+            case "7" -> printStatistic();
             case "0" -> exitFromAssistant = true;
             default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
         }
