@@ -39,6 +39,7 @@ public class MainController {
         System.out.println("5. Opanowane nawyki");
         System.out.println("6. Nowy dzień");
         System.out.println("7. Statystyki");
+        System.out.println("8. Zresetuj nawyk");
         System.out.println("0. Wyjdź z asystenta");
     }
 
@@ -52,6 +53,7 @@ public class MainController {
             case "5" -> printMasteredHabits();
             case "6" -> newDay();
             case "7" -> printStatistic();
+            case "8" -> resetHabit();
             case "0" -> exitFromAssistant = true;
             default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
         }
@@ -80,6 +82,33 @@ public class MainController {
                 Habit habitToRemove = nonMasteredHabits().get(removeHabit - 1);
                 allHabits.remove(habitToRemove);
                 System.out.println("Nawyk został prawidłowo usunięty.");
+            } else {
+                System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
+            }
+        }
+    }
+
+    //todo do sprawdzenia
+    private void editHabit() {
+        while (true) {
+            int count = 1;
+            System.out.println("Wybierz nawyk, któremu chcesz zmienić nazwę:");
+            System.out.println("0. Powrót do menu");
+            for (Habit habit : allHabits) {
+                System.out.println(count + " " + habit);
+                count++;
+            }
+            int choice = scanner.nextInt();
+            if (choice == 0) {
+                break;
+            } else if (choice > 0 && choice <= nonMasteredHabits().size()) {
+                Habit habitToEdit = nonMasteredHabits().get(choice - 1);
+                System.out.println("Aktualna nazwa nawyku " + habitToEdit.getHabitName());
+                System.out.println("Podaj nową nazwę nawyku: ");
+                scanner.nextLine();
+                String newHabitName = scanner.next();
+                habitToEdit.setHabitName(newHabitName);
+                System.out.println("Nazwa nawyku została zaktualizowana. Jeśli chcesz wrócić do menu wpisz 0.");
             } else {
                 System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
             }
@@ -195,33 +224,27 @@ public class MainController {
         }
     }
 
-    //todo do sprawdzenia
-    private void editHabit() {
-        while (true) {
+    private void resetHabit(){
+        while (true){
             int count = 1;
-            System.out.println("Wybierz nawyk, który chcesz edytować:");
-            System.out.println("0. Powrót do menu");
+            System.out.println("Wybierz nawyk który chcesz zresetować:");
+            System.out.println("0. Powrót do menu.");
             for (Habit habit : allHabits) {
                 System.out.println(count + " " + habit);
                 count++;
             }
             int choice = scanner.nextInt();
-            if (choice == 0) {
+            if (choice == 0){
                 break;
-            } else if (choice > 0 || choice <= nonMasteredHabits().size()) {
-                Habit habitToEdit = nonMasteredHabits().get(choice - 1);
-                System.out.println("Aktualna nazwa nawyku " + habitToEdit.getHabitName());
-                System.out.println("Podaj nową nazwę nawyku: ");
-                scanner.nextLine();
-                String newHabitName = scanner.next();
-                habitToEdit.setHabitName(newHabitName);
-                System.out.println("Nazwa nawyku została zaktualizowana. Jeśli chcesz wrócić do menu wpisz 0.");
+            } else if (choice > 0 && choice <= nonMasteredHabits().size()) {
+                Habit habitToReset = nonMasteredHabits().get(choice - 1);
+                habitToReset.setDayCount(0);
+                habitToReset.setHabitDoneCount(0);
+                habitToReset.setDone(false);
             } else {
                 System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
-
             }
         }
-
     }
 }
 
@@ -260,3 +283,21 @@ wyświetlanie statystyk (w ilu procentach zrobiliśmy konkretny nawyk, ile mamy 
 
 //printf - doczytac jak dziala
 //ten temat sie wiaze z metoda String.format
+
+//todo
+//stworzyć aplikację
+
+//todo
+//stworzenie resetowania nawyku
+//dziennik postepu
+//historia nawyków ??? ale tu moze baza danych???
+
+
+//stworzenie kategorii
+
+// po stworzeniu categorii przerobienie menu na bardziej czytelne
+//statystyka pokazujaca ile w danym dniu zrobilismy nawykow
+//jakies powiadomienia o wykonuwaniu nawykow
+//tworzsenie celow i nagrod po ich wykonaniu
+
+

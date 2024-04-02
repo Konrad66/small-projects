@@ -31,6 +31,18 @@ class Habit {
         this.habitName = habitName;
     }
 
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
+    public void setHabitDoneCount(int habitDoneCount) {
+        this.habitDoneCount = habitDoneCount;
+    }
+
+    public void setDayCount(int dayCount) {
+        this.dayCount = dayCount;
+    }
+
     String getHabitName() {
         return habitName;
     }
