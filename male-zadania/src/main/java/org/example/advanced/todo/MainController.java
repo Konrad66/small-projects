@@ -42,7 +42,6 @@ public class MainController {
         System.out.println("5. Nowy dzień");
     }
 
-
     private void doOption() {
         String choice = scanner.next();
         switch (choice) {
@@ -70,9 +69,9 @@ public class MainController {
                 String selectOption = scanner.next();
                 switch (selectOption) {
                     case "1" -> markHabit(selectHabit);
-                    case "2" -> removeHabit();
-                    case "3" -> editHabit();
-                    case "4" -> resetHabit();
+                    case "2" -> removeHabit(selectHabit);
+                    case "3" -> editHabit(selectHabit);
+                    case "4" -> resetHabit(selectHabit);
                 }
             } else {
                 System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
@@ -84,7 +83,7 @@ public class MainController {
         System.out.println("Co chcesz zrobić z wybranym nawykiem?");
         System.out.println("1. Oznacz nawyki");
         System.out.println("2. Usuń nawyki");
-        System.out.println("3. Edytuj nawyk");
+        System.out.println("3. Edytuj nazwe");
         System.out.println("4. Zresetuj nawyk");
     }
 
@@ -106,71 +105,28 @@ public class MainController {
         idGenerator.saveNewId(newId);
     }
 
-    private void removeHabit() {
-        while (true) {
-            System.out.println("Który z nawyków chcesz usunąć? Jak chcesz wrócic do menu wciśnij 0.");
-            printNonMasteredHabits();
-            int removeHabit = scanner.nextInt();
-            if (removeHabit == 0) {
-                break;
-            } else if (removeHabit > 0 && removeHabit <= nonMasteredHabits().size()) {
-                Habit habitToRemove = nonMasteredHabits().get(removeHabit - 1);
-                allHabits.remove(habitToRemove);
-                System.out.println("Nawyk został prawidłowo usunięty.");
-            } else {
-                System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
-            }
-        }
-    }
-    //todo do sprawdzenia
+    private void removeHabit(int removeHabit) {
+        Habit habitToRemove = nonMasteredHabits().get(removeHabit - 1);
+        allHabits.remove(habitToRemove);
+        System.out.println("Nawyk został prawidłowo usunięty.");
 
-    private void editHabit() {
-        while (true) {
-            int count = 1;
-            System.out.println("Wybierz nawyk, któremu chcesz zmienić nazwę:");
-            System.out.println("0. Powrót do menu");
-            for (Habit habit : allHabits) {
-                System.out.println(count + " " + habit);
-                count++;
-            }
-            int choice = scanner.nextInt();
-            if (choice == 0) {
-                break;
-            } else if (choice > 0 && choice <= nonMasteredHabits().size()) {
-                Habit habitToEdit = nonMasteredHabits().get(choice - 1);
-                System.out.println("Aktualna nazwa nawyku " + habitToEdit.getHabitName());
-                System.out.println("Podaj nową nazwę nawyku: ");
-                scanner.nextLine();
-                String newHabitName = scanner.next();
-                habitToEdit.setHabitName(newHabitName);
-                System.out.println("Nazwa nawyku została zaktualizowana. Jeśli chcesz wrócić do menu wpisz 0.");
-            } else {
-                System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
-            }
-        }
     }
 
-    private void resetHabit() {
-        while (true) {
-            int count = 1;
-            System.out.println("Wybierz nawyk który chcesz zresetować:");
-            System.out.println("0. Powrót do menu.");
-            for (Habit habit : allHabits) {
-                System.out.println(count + " " + habit);
-                count++;
-            }
-            int choice = scanner.nextInt();
-            if (choice == 0) {
-                break;
-            } else if (choice > 0 && choice <= nonMasteredHabits().size()) {
-                Habit habitToReset = nonMasteredHabits().get(choice - 1);
-                habitToReset.setDayCount(0);
-                habitToReset.setHabitDoneCount(0);
-                habitToReset.setDone(false);
-            } else {
-                System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
-            }
-        }
+    private void editHabit(int choice) {
+        Habit habitToEdit = nonMasteredHabits().get(choice - 1);
+        System.out.println("Aktualna nazwa nawyku " + habitToEdit.getHabitName());
+        System.out.println("Podaj nową nazwę nawyku: ");
+        scanner.nextLine();
+        String newHabitName = scanner.next();
+        habitToEdit.setHabitName(newHabitName);
+        System.out.println("Nazwa nawyku została zaktualizowana. Jeśli chcesz wrócić do menu wpisz 0.");
+    }
+
+    private void resetHabit(int choice) {
+        Habit habitToReset = nonMasteredHabits().get(choice - 1);
+        habitToReset.setDayCount(0);
+        habitToReset.setHabitDoneCount(0);
+        habitToReset.setDone(false);
     }
 
     private void masterHabit(Habit chosenHabit) {
@@ -310,5 +266,3 @@ wyświetlanie statystyk (w ilu procentach zrobiliśmy konkretny nawyk, ile mamy 
 //statystyka pokazujaca ile w danym dniu zrobilismy nawykow
 //jakies powiadomienia o wykonuwaniu nawykow
 //tworzsenie celow i nagrod po ich wykonaniu
-
-

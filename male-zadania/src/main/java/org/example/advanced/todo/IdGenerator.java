@@ -20,7 +20,6 @@ public class IdGenerator {
     }
 
     public void saveNewId(int naszaLiczba) {
-        //String text = String.valueOf(naszaLiczba);
         try (FileWriter fileWriter = new FileWriter(FILE_PATH)) {
             fileWriter.write(naszaLiczba + "");
         } catch (IOException e) {
