@@ -32,31 +32,66 @@ public class MainController {
 
     private void printOptions() {
         System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
-        System.out.println("1. Dodaj nawyk");
-        System.out.println("2. Usuń nawyki");
-        System.out.println("3. Edytuj nawyk");
-        System.out.println("4. Oznacz nawyki");
-        System.out.println("5. Opanowane nawyki");
-        System.out.println("6. Nowy dzień");
-        System.out.println("7. Statystyki");
-        System.out.println("8. Zresetuj nawyk");
         System.out.println("0. Wyjdź z asystenta");
+        System.out.println("1. Dodaj nawyk");
+        System.out.println("2. Nawyki");
+        System.out.println("3. Statystyki");
+        //todo zmienic menu statystyk
+        System.out.println("4. Opanowane nawyki");
+        //todo usunąć nowy dzień
+        System.out.println("5. Nowy dzień");
     }
+
 
     private void doOption() {
         String choice = scanner.next();
         switch (choice) {
-            case "1" -> addHabit();
-            case "2" -> removeHabit();
-            case "3" -> editHabit();
-            case "4" -> markHabit();
-            case "5" -> printMasteredHabits();
-            case "6" -> newDay();
-            case "7" -> printStatistic();
-            case "8" -> resetHabit();
             case "0" -> exitFromAssistant = true;
+            case "1" -> addHabit();
+            case "2" -> doHabitOption();
+            case "3" -> printStatistic();
+            case "4" -> printMasteredHabits();
+            case "5" -> newDay();
+
             default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
         }
+    }
+
+    private void doHabitOption() {
+        while (true) {
+            System.out.println("Wybierz nawyk:");
+            System.out.println("0. Powrót do menu");
+            printNonMasteredHabits();
+            int selectHabit = scanner.nextInt();
+            if (selectHabit == 0) {
+                break;
+            } else if (selectHabit > 0 && selectHabit <= nonMasteredHabits().size()) {
+                printHabitOptions();
+                String selectOption = scanner.next();
+                switch (selectOption) {
+                    case "1" -> markHabit(selectHabit);
+                    case "2" -> removeHabit();
+                    case "3" -> editHabit();
+                    case "4" -> resetHabit();
+                }
+            } else {
+                System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
+            }
+        }
+    }
+
+    private void printHabitOptions() {
+        System.out.println("Co chcesz zrobić z wybranym nawykiem?");
+        System.out.println("1. Oznacz nawyki");
+        System.out.println("2. Usuń nawyki");
+        System.out.println("3. Edytuj nawyk");
+        System.out.println("4. Zresetuj nawyk");
+    }
+
+    private void markHabit(int choice) {
+        Habit chosenHabit = nonMasteredHabits().get(choice - 1);
+        chosenHabit.doHabit();
+        masterHabit(chosenHabit);
     }
 
     private void addHabit() {
@@ -87,8 +122,8 @@ public class MainController {
             }
         }
     }
-
     //todo do sprawdzenia
+
     private void editHabit() {
         while (true) {
             int count = 1;
@@ -115,25 +150,23 @@ public class MainController {
         }
     }
 
-    private void markHabit() {
+    private void resetHabit() {
         while (true) {
-            System.out.println("Twoje nawyki ponizej. Wybierz ktory udalo Ci się dziś zrobić. Jesli chcesz wrócić do menu wpisz 0");
-            printNonMasteredHabits();
+            int count = 1;
+            System.out.println("Wybierz nawyk który chcesz zresetować:");
+            System.out.println("0. Powrót do menu.");
+            for (Habit habit : allHabits) {
+                System.out.println(count + " " + habit);
+                count++;
+            }
             int choice = scanner.nextInt();
             if (choice == 0) {
                 break;
             } else if (choice > 0 && choice <= nonMasteredHabits().size()) {
-                Habit chosenHabit = nonMasteredHabits().get(choice - 1);
-                chosenHabit.doHabit();
-                boolean allCompleted = areAllCompleted();
-                //alt + shift -> zaznaczanie wielu
-                masterHabit(chosenHabit);
-                /*
-                if(allCompleted){
-                    newDay();
-                    break;
-                }
-                 */
+                Habit habitToReset = nonMasteredHabits().get(choice - 1);
+                habitToReset.setDayCount(0);
+                habitToReset.setHabitDoneCount(0);
+                habitToReset.setDone(false);
             } else {
                 System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
             }
@@ -224,28 +257,7 @@ public class MainController {
         }
     }
 
-    private void resetHabit(){
-        while (true){
-            int count = 1;
-            System.out.println("Wybierz nawyk który chcesz zresetować:");
-            System.out.println("0. Powrót do menu.");
-            for (Habit habit : allHabits) {
-                System.out.println(count + " " + habit);
-                count++;
-            }
-            int choice = scanner.nextInt();
-            if (choice == 0){
-                break;
-            } else if (choice > 0 && choice <= nonMasteredHabits().size()) {
-                Habit habitToReset = nonMasteredHabits().get(choice - 1);
-                habitToReset.setDayCount(0);
-                habitToReset.setHabitDoneCount(0);
-                habitToReset.setDone(false);
-            } else {
-                System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
-            }
-        }
-    }
+
 }
 
 //ConcurentModificationException - doczytać kiedy występuje i jak sobie z nim radzić
@@ -288,7 +300,6 @@ wyświetlanie statystyk (w ilu procentach zrobiliśmy konkretny nawyk, ile mamy 
 //stworzyć aplikację
 
 //todo
-//stworzenie resetowania nawyku
 //dziennik postepu
 //historia nawyków ??? ale tu moze baza danych???
 
