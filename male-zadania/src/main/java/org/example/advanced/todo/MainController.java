@@ -72,6 +72,7 @@ public class MainController {
                     case "2" -> removeHabit(selectHabit);
                     case "3" -> editHabit(selectHabit);
                     case "4" -> resetHabit(selectHabit);
+                    default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
                 }
             } else {
                 System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
@@ -89,16 +90,16 @@ public class MainController {
 
     private void doStatisticMenu(){
         while(true) {
-            System.out.println("Wybierz jakie statystyki chcesz wyświetlić:");
-            System.out.println("0. Powrót do menu");
             printStatisticMenu();
             int selectStatistic = scanner.nextInt();
             if(selectStatistic == 0){
                 break;
             } else if (selectStatistic > 0 && selectStatistic <= 3 ) {
-                String selectOption = scanner.next();
+                String selectOption = scanner.nextLine();
                 switch (selectOption){
                     case "1" -> printStatistic();
+                    case "2" -> printStatistic();
+                    default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
                 }
             } else {
                 System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
@@ -107,7 +108,11 @@ public class MainController {
     }
 
     private void printStatisticMenu(){
-
+        System.out.println("Wybierz jakie statystyki chcesz wyświetlić:");
+        System.out.println("0. Powrót do menu");
+        System.out.println("1. Liczba nieopanowanych nawyków");
+        System.out.println("2. Liczba opanowanych nawyków");
+        System.out.println("3. Zobacz swoje postępy");
     }
 
     private void markHabit(int choice) {
