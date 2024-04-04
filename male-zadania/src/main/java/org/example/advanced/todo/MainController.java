@@ -48,7 +48,7 @@ public class MainController {
             case "0" -> exitFromAssistant = true;
             case "1" -> addHabit();
             case "2" -> doHabitOption();
-            case "3" -> printStatistic();
+            case "3" -> doStatisticMenu();
             case "4" -> printMasteredHabits();
             case "5" -> newDay();
 
@@ -85,6 +85,29 @@ public class MainController {
         System.out.println("2. Usuń nawyki");
         System.out.println("3. Edytuj nazwe");
         System.out.println("4. Zresetuj nawyk");
+    }
+
+    private void doStatisticMenu(){
+        while(true) {
+            System.out.println("Wybierz jakie statystyki chcesz wyświetlić:");
+            System.out.println("0. Powrót do menu");
+            printStatisticMenu();
+            int selectStatistic = scanner.nextInt();
+            if(selectStatistic == 0){
+                break;
+            } else if (selectStatistic > 0 && selectStatistic <= 3 ) {
+                String selectOption = scanner.next();
+                switch (selectOption){
+                    case "1" -> printStatistic();
+                }
+            } else {
+                System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
+            }
+        }
+    }
+
+    private void printStatisticMenu(){
+
     }
 
     private void markHabit(int choice) {
