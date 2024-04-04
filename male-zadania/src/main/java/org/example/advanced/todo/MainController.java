@@ -9,8 +9,6 @@ public class MainController {
 
     private FileControl fileControl;
     private List<Habit> allHabits = new ArrayList<>();
-    //private List<Habit> habits = new ArrayList<>();
-    //private List<Habit> masteredHabits = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
     private boolean exitFromAssistant = false;
 
@@ -51,7 +49,6 @@ public class MainController {
             case "3" -> doStatisticMenu();
             case "4" -> printMasteredHabits();
             case "5" -> newDay();
-
             default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
         }
     }
@@ -88,17 +85,17 @@ public class MainController {
         System.out.println("4. Zresetuj nawyk");
     }
 
-    private void doStatisticMenu(){
-        while(true) {
+    private void doStatisticMenu() {
+        while (true) {
             printStatisticMenu();
             int selectStatistic = scanner.nextInt();
-            if(selectStatistic == 0){
+            if (selectStatistic == 0) {
                 break;
-            } else if (selectStatistic > 0 && selectStatistic <= 3 ) {
+            } else if (selectStatistic > 0 && selectStatistic <= 3) {
                 String selectOption = scanner.nextLine();
-                switch (selectOption){
-                    case "1" -> printStatistic();
-                    case "2" -> printStatistic();
+                switch (selectOption) {
+                    case "1" -> habitsStatistics();
+                    case "2" -> printProgress();
                     default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
                 }
             } else {
@@ -107,12 +104,11 @@ public class MainController {
         }
     }
 
-    private void printStatisticMenu(){
+    private void printStatisticMenu() {
         System.out.println("Wybierz jakie statystyki chcesz wyświetlić:");
         System.out.println("0. Powrót do menu");
-        System.out.println("1. Liczba nieopanowanych nawyków");
-        System.out.println("2. Liczba opanowanych nawyków");
-        System.out.println("3. Zobacz swoje postępy");
+        System.out.println("1. Podstawowe ");
+        System.out.println("2. Zobacz swój postęp");
     }
 
     private void markHabit(int choice) {
@@ -128,7 +124,6 @@ public class MainController {
         habitName = scanner.nextLine();
         IdGenerator idGenerator = new IdGenerator();
         int newId = idGenerator.giveLastId();
-        //long actualTime = System.currentTimeMillis();
         allHabits.add(new Habit(newId++, habitName, false, 0, 0, false));
         idGenerator.saveNewId(newId);
     }
@@ -174,7 +169,6 @@ public class MainController {
         int count = 1;
         for (Habit habit : nonMasteredHabits()) {
             System.out.println(count + ". " + habit);
-            //System.out.println(habit.getHabitID()+ ". " + habit);
             count++;
         }
     }
@@ -221,7 +215,7 @@ public class MainController {
         System.out.println("Witaj w nowym dniu. Powodzenia z dzisiejszymi nawykami.");
     }
 
-    private void printStatistic() {
+    private void habitsStatistics() {
         System.out.println("Poniżej znajdziesz kilka statystyk.");
         int countMasteredHabit = 0;
         int countNonMasteredHabit = 0;
@@ -234,14 +228,14 @@ public class MainController {
         }
         System.out.println("Łączna liczba nawyków nad którymi aktualnie pracujesz to: " + countMasteredHabit);
         System.out.println("Łączna liczba opanowanych już nawyków to: " + countNonMasteredHabit);
+    }
 
+    private void printProgress(){
         for (Habit habit : allHabits) {
             double countPercentageHabit = habit.habitDoneCount * 1.0 / habit.dayCount;
             System.out.println("Twój nawyk - " + habit.getHabitName() + " - jest wykonany w " + (Math.round(countPercentageHabit * 100)) + " %");
         }
     }
-
-
 }
 
 //ConcurentModificationException - doczytać kiedy występuje i jak sobie z nim radzić
@@ -263,8 +257,6 @@ Fail-Fast vs. Fail-Safe: Struktury danych w Java Collections Framework są zazwy
 
 
 //Master habity tez maja byc utrwalane w CSV
-
-
 
 /*
 dodać unikalny numer dla każdego habitu; - dziala ale w przypadku usuniecia przedostatniego dodanego nawyku, nowe dodanie ma ten sam unikalny numer co ostatni nawyk
