@@ -88,18 +88,15 @@ public class MainController {
     private void doStatisticMenu() {
         while (true) {
             printStatisticMenu();
-            int selectStatistic = scanner.nextInt();
-            if (selectStatistic == 0) {
+            String selectOption = scanner.next();
+            if (selectOption.equals("0")) {
                 break;
-            } else if (selectStatistic > 0 && selectStatistic <= 3) {
-                String selectOption = scanner.nextLine();
+            } else {
                 switch (selectOption) {
                     case "1" -> habitsStatistics();
                     case "2" -> printProgress();
                     default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
                 }
-            } else {
-                System.out.println("Wybór spoza zakresu. Spróbuj jeszcze raz.");
             }
         }
     }
@@ -132,7 +129,6 @@ public class MainController {
         Habit habitToRemove = nonMasteredHabits().get(removeHabit - 1);
         allHabits.remove(habitToRemove);
         System.out.println("Nawyk został prawidłowo usunięty.");
-
     }
 
     private void editHabit(int choice) {
@@ -230,7 +226,7 @@ public class MainController {
         System.out.println("Łączna liczba opanowanych już nawyków to: " + countNonMasteredHabit);
     }
 
-    private void printProgress(){
+    private void printProgress() {
         for (Habit habit : allHabits) {
             double countPercentageHabit = habit.habitDoneCount * 1.0 / habit.dayCount;
             System.out.println("Twój nawyk - " + habit.getHabitName() + " - jest wykonany w " + (Math.round(countPercentageHabit * 100)) + " %");
