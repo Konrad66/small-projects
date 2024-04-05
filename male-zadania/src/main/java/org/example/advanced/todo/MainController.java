@@ -34,10 +34,7 @@ public class MainController {
         System.out.println("1. Dodaj nawyk");
         System.out.println("2. Nawyki");
         System.out.println("3. Statystyki");
-        //todo zmienic menu statystyk
         System.out.println("4. Opanowane nawyki");
-        //todo usunąć nowy dzień
-        System.out.println("5. Nowy dzień");
     }
 
     private void doOption() {
@@ -48,7 +45,6 @@ public class MainController {
             case "2" -> doHabitOption();
             case "3" -> doStatisticMenu();
             case "4" -> printMasteredHabits();
-            case "5" -> newDay();
             default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
         }
     }
