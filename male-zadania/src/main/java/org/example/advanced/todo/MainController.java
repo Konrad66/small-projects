@@ -18,10 +18,10 @@ public class MainController {
 
     void control() {
         allHabits = fileControl.readCSVHabits();
+        if (fileControl.readLastStartDate().isBefore(LocalDate.now())) {
+            newDay();
+        }
         while (!exitFromAssistant) {
-            if (fileControl.readLastStartDate().isBefore(LocalDate.now())) {
-                newDay();
-            }
             printOptions();
             doOption();
         }
@@ -31,20 +31,22 @@ public class MainController {
     private void printOptions() {
         System.out.println("Witaj w asystencie budowania nawyków. Wybierz opcje z listy nieżej:");
         System.out.println("0. Wyjdź z asystenta");
-        System.out.println("1. Dodaj nawyk");
-        System.out.println("2. Nawyki");
-        System.out.println("3. Statystyki");
-        System.out.println("4. Opanowane nawyki");
+        System.out.println("1. Dodaj własny nawyk");
+        System.out.println("2. Dodaj z roponowanych nawyków");
+        System.out.println("3. Nawyki");
+        System.out.println("4. Statystyki");
+        System.out.println("5. Opanowane nawyki");
     }
 
     private void doOption() {
-        String choice = scanner.next();
+        String choice = scanner.nextLine();
         switch (choice) {
             case "0" -> exitFromAssistant = true;
             case "1" -> addHabit();
-            case "2" -> doHabitOption();
-            case "3" -> doStatisticMenu();
-            case "4" -> printMasteredHabits();
+            case "2" -> offeredHabits();
+            case "3" -> doHabitOption();
+            case "4" -> doStatisticMenu();
+            case "5" -> printMasteredHabits();
             default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
         }
     }
@@ -87,12 +89,11 @@ public class MainController {
             String selectOption = scanner.next();
             if (selectOption.equals("0")) {
                 break;
-            } else {
-                switch (selectOption) {
-                    case "1" -> habitsStatistics();
-                    case "2" -> printProgress();
-                    default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
-                }
+            }
+            switch (selectOption) {
+                case "1" -> habitsStatistics();
+                case "2" -> printProgress();
+                default -> System.out.println("Zły wybór. Wybierz numer z listy poniżej");
             }
         }
     }
@@ -108,6 +109,7 @@ public class MainController {
         Habit chosenHabit = nonMasteredHabits().get(choice - 1);
         chosenHabit.doHabit();
         masterHabit(chosenHabit);
+        areAllCompleted();
     }
 
     private void addHabit() {
@@ -209,23 +211,51 @@ public class MainController {
 
     private void habitsStatistics() {
         System.out.println("Poniżej znajdziesz kilka statystyk.");
-        int countMasteredHabit = 0;
-        int countNonMasteredHabit = 0;
-        for (Habit habit : allHabits) {
-            if (!habit.mastered) {
-                countMasteredHabit++;
-            } else {
-                countNonMasteredHabit++;
-            }
-        }
-        System.out.println("Łączna liczba nawyków nad którymi aktualnie pracujesz to: " + countMasteredHabit);
-        System.out.println("Łączna liczba opanowanych już nawyków to: " + countNonMasteredHabit);
+        int countMasteredHabit = masteredHabits().size();
+        int countNonMasteredHabit = nonMasteredHabits().size();
+
+        System.out.println("Łączna liczba nawyków nad którymi aktualnie pracujesz to: " + countNonMasteredHabit);
+        System.out.println("Łączna liczba opanowanych już nawyków to: " + countMasteredHabit);
     }
 
     private void printProgress() {
         for (Habit habit : allHabits) {
             double countPercentageHabit = habit.habitDoneCount * 1.0 / habit.dayCount;
             System.out.println("Twój nawyk - " + habit.getHabitName() + " - jest wykonany w " + (Math.round(countPercentageHabit * 100)) + " %");
+        }
+    }
+
+    private void offeredHabits() {
+        System.out.println("Wybierz poniżej");
+        System.out.println("0. Powrót do menu");
+        System.out.println("1. Zdrowotne");
+        System.out.println("2. Sportowe");
+
+        while (true) {
+            String choice = scanner.nextLine();
+            if (choice.equals("0")) {
+                break;
+            }
+
+            switch (choice) {
+                case "1":
+                    System.out.println("Wybierz nawyk który Cię interesuje:");
+                    System.out.println("0. Powrót do menu");
+                    System.out.println("1. Pij wodę");
+                    System.out.println("2. Wysypiaj się");
+                    int selectHabit = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (selectHabit) {
+                        case 1:
+                            IdGenerator idGenerator = new IdGenerator();
+                            int newId = idGenerator.giveLastId();
+                            allHabits.add(new Habit(newId++, "Pij wodę", false, 0, 0, false));
+                            idGenerator.saveNewId(newId);
+                    }
+                    break;
+                default:
+                    System.out.println("Nieprawidłowy wybór, spróbuj jeszcze raz.");
+            }
         }
     }
 }
@@ -264,8 +294,6 @@ wyświetlanie statystyk (w ilu procentach zrobiliśmy konkretny nawyk, ile mamy 
 //printf - doczytac jak dziala
 //ten temat sie wiaze z metoda String.format
 
-//todo
-//stworzyć aplikację
 
 //todo
 //dziennik postepu
@@ -275,6 +303,5 @@ wyświetlanie statystyk (w ilu procentach zrobiliśmy konkretny nawyk, ile mamy 
 //stworzenie kategorii
 
 // po stworzeniu categorii przerobienie menu na bardziej czytelne
-//statystyka pokazujaca ile w danym dniu zrobilismy nawykow
 //jakies powiadomienia o wykonuwaniu nawykow
 //tworzsenie celow i nagrod po ich wykonaniu
