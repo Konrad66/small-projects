@@ -12,7 +12,7 @@ public class MainController {
         System.out.println("Zagrajmy w wisielca, musisz odgadnąc słowo:");
         Scanner scanner = new Scanner(System.in);
         String guess = scanner.next();
-        if (guess.equals(word)){
+        if (guess.equals(word)) {
             System.out.println("Brawo odgadłeś słowo");
         } else {
             System.out.println("Nie udało się :( Spróbuj następnym razem.");
@@ -21,7 +21,7 @@ public class MainController {
         int result = word.length();
         System.out.println(result);
 
-        for (int i = 0; i < word.length(); i++){
+        for (int i = 0; i < word.length(); i++) {
             char letter = word.charAt(i);
             System.out.print(letter + "-");
         }
