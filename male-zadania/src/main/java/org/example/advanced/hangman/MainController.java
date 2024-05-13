@@ -36,6 +36,7 @@ public class MainController {
     // 3. Tryb gry dwuosobowej - na przemian
     // 4. Wybierz słowo - użytkownik może wybrać długość słowa i takie zostanie wylosowane (int result = word.length();)
     // 0. opuść program
+    // mozna dorobic "logowanie gracza" aby wybrac postac na ktorej beda sie liczyc pkt i robic statystyki
 
 
     //kolko i krzyzyk
