@@ -5,6 +5,38 @@ import java.util.Scanner;
 
 public class MainController {
 
+    private boolean running = true;
+    private Input input = new Input();
+
+    void startProgram() {
+        do {
+            printOptions();
+            int decision = input.readNumber();
+            executeOptions(decision);
+        } while (running);
+    }
+
+    void printOptions() {
+        System.out.println("Witaj w grze wisielec. Poniżej masz do wyboru kilka trybów rozgrywki.");
+
+        System.out.println("1. Tryb gry podstawowej");
+        System.out.println("0. Opuść program");
+    }
+
+    private void executeOptions(int decission) {
+        switch (decission) {
+            case 0:
+                running = false;
+                break;
+            case 1:
+                program();
+                break;
+            default:
+                System.out.println("Wybierz z opcji poniżej.");
+        }
+
+    }
+
     void program() {
         ArrayList<String> letters = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
