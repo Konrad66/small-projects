@@ -1,7 +1,6 @@
 package org.example.advanced.hangman;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class MainController {
 
@@ -39,13 +38,12 @@ public class MainController {
 
     void program() {
         ArrayList<String> letters = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
         HangmanService hangmanService = new HangmanService();
         String word = hangmanService.losujSlowo();
         while (true) {
             System.out.println("Zagrajmy w wisielca, musisz odgadnąc słowo:");
             System.out.println(hangmanService.zakodujSlowo(word, letters));
-            String guess = scanner.next();
+            String guess = input.readText();
             letters.add(guess);
             if (guess.equals(word)) {
                 System.out.println("Brawo odgadłeś słowo");
@@ -53,7 +51,6 @@ public class MainController {
                 System.out.println("Nie udało się :( Spróbuj następnym razem.");
             }
         }
-
     }
 
     //mam haslo niezakodowane
