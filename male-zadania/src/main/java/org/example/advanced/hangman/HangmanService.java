@@ -6,7 +6,7 @@ import java.util.List;
 public class HangmanService {
 
 
-    String losujSlowo(){
+    String losujSlowo() {
         List<String> words = new ArrayList<>();
         words.add("komputer");
         words.add("monitor");
@@ -26,21 +26,21 @@ public class HangmanService {
     //jesli ta litera == odgadnieta litera
     // zamien kreske na litere
 
-    String zakodujSlowo(String word, List<String> odgadnieteLitery){
+    String zakodujSlowo(String word, List<String> odgadnieteLitery) {
         String result = "";
         word = word.toLowerCase();
-        for(int i = 0; i < odgadnieteLitery.size(); i++) {
+        for (int i = 0; i < odgadnieteLitery.size(); i++) {
             odgadnieteLitery.set(i, odgadnieteLitery.get(i).toLowerCase());
         }
         for (int i = 0; i < word.length(); i++) {
             boolean odgadnieta = false;
-            for(int j = 0; j < odgadnieteLitery.size(); j++){
-                if ((word.charAt(i) +"").equals(odgadnieteLitery.get(j))) {
+            for (int j = 0; j < odgadnieteLitery.size(); j++) {
+                if ((word.charAt(i) + "").equals(odgadnieteLitery.get(j))) {
                     odgadnieta = true;
                 }
             }
             String symbol;
-            if(!odgadnieta){
+            if (!odgadnieta) {
                 symbol = "-";
             } else {
                 symbol = word.charAt(i) + "";
