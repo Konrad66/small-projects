@@ -5,7 +5,6 @@ import java.util.List;
 
 public class HangmanService {
 
-
     String losujSlowo() {
         List<String> words = new ArrayList<>();
         words.add("komputer");
@@ -81,6 +80,4 @@ public class HangmanService {
     // liste -> słowa
     // losował z listy jedno słowo
     //
-
-
 }
