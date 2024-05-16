@@ -39,10 +39,10 @@ public class MainController {
     void program() {
         ArrayList<String> letters = new ArrayList<>();
         HangmanService hangmanService = new HangmanService();
-        String word = hangmanService.losujSlowo();
+        String word = hangmanService.randomWord();
         while (true) {
             System.out.println("Zagrajmy w wisielca, musisz odgadnąc słowo:");
-            System.out.println(hangmanService.zakodujSlowo(word, letters));
+            System.out.println(hangmanService.encodeWord(word, letters));
             String guess = input.readText();
             letters.add(guess);
             if (guess.equals(word)) {

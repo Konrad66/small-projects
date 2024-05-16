@@ -5,7 +5,7 @@ import java.util.List;
 
 public class HangmanService {
 
-    String losujSlowo() {
+    String randomWord() {
         List<String> words = new ArrayList<>();
         words.add("komputer");
         words.add("monitor");
@@ -25,7 +25,7 @@ public class HangmanService {
     //jesli ta litera == odgadnieta litera
     // zamien kreske na litere
 
-    String zakodujSlowo(String word, List<String> odgadnieteLitery) {
+    String encodeWord(String word, List<String> odgadnieteLitery) {
         String result = "";
         word = word.toLowerCase();
         for (int i = 0; i < odgadnieteLitery.size(); i++) {
@@ -73,7 +73,7 @@ public class HangmanService {
         letters.add("k");
         letters.add("o");
         letters.add("h");
-        System.out.println(hangmanService.zakodujSlowo("Komputer", letters));
+        System.out.println(hangmanService.encodeWord("Komputer", letters));
         // A _ a
     }
 
