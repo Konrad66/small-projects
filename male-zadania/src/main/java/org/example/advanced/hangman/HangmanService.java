@@ -66,7 +66,6 @@ public class HangmanService {
         System.out.println(hangmanService.losujSlowo());
     }*/
 
-
     public static void main(String[] args) {
         HangmanService hangmanService = new HangmanService();
         ArrayList<String> letters = new ArrayList<>();
