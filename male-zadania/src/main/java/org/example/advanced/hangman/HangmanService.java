@@ -2,15 +2,16 @@ package org.example.advanced.hangman;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class HangmanService {
 
     String randomWord() {
-        List<String> words = new ArrayList<>();
-        words.add("komputer");
-        words.add("monitor");
-
-        return words.get(0);
+        FileControl fileControl = new FileControl();
+        List<String> words = fileControl.loadWords();
+        Random random = new Random();
+        int indexWord = random.nextInt(words.size());
+        return words.get(indexWord);
     }
 
     //masz slowo i odgadniete litery
@@ -25,21 +26,21 @@ public class HangmanService {
     //jesli ta litera == odgadnieta litera
     // zamien kreske na litere
 
-    String encodeWord(String word, List<String> odgadnieteLitery) {
+    String encodeWord(String word, List<String> guessedLetter) {
         String result = "";
         word = word.toLowerCase();
-        for (int i = 0; i < odgadnieteLitery.size(); i++) {
-            odgadnieteLitery.set(i, odgadnieteLitery.get(i).toLowerCase());
+        for (int i = 0; i < guessedLetter.size(); i++) {
+            guessedLetter.set(i, guessedLetter.get(i).toLowerCase());
         }
         for (int i = 0; i < word.length(); i++) {
-            boolean odgadnieta = false;
-            for (int j = 0; j < odgadnieteLitery.size(); j++) {
-                if ((word.charAt(i) + "").equals(odgadnieteLitery.get(j))) {
-                    odgadnieta = true;
+            boolean guessed = false;
+            for (int j = 0; j < guessedLetter.size(); j++) {
+                if ((word.charAt(i) + "").equals(guessedLetter.get(j))) {
+                    guessed = true;
                 }
             }
             String symbol;
-            if (!odgadnieta) {
+            if (!guessed) {
                 symbol = "-";
             } else {
                 symbol = word.charAt(i) + "";
@@ -48,23 +49,6 @@ public class HangmanService {
         }
         return result;
     }
-/*
-    String zakodujSlowo2(String word, char odgadnietaLitera){
-        String result = "";
-        for (char letter: word.toCharArray() ) {
-            if(letter != odgadnietaLitera){
-                result += " - ";
-            } else {
-                result += odgadnietaLitera;
-            }
-        }
-        return result;
-    }*/
-
-   /* public static void main(String[] args) {
-        HangmanService hangmanService = new HangmanService();
-        System.out.println(hangmanService.losujSlowo());
-    }*/
 
     public static void main(String[] args) {
         HangmanService hangmanService = new HangmanService();
