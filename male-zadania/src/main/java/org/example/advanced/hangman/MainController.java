@@ -22,8 +22,8 @@ public class MainController {
         System.out.println("0. Opuść program");
     }
 
-    private void executeOptions(int decission) {
-        switch (decission) {
+    private void executeOptions(int decision) {
+        switch (decision) {
             case 0:
                 running = false;
                 break;
@@ -33,7 +33,6 @@ public class MainController {
             default:
                 System.out.println("Wybierz z opcji poniżej.");
         }
-
     }
 
     void program() {
@@ -45,6 +44,9 @@ public class MainController {
             System.out.println(hangmanService.encodeWord(word, letters));
             String guess = input.readText();
             letters.add(guess);
+
+
+
             if (guess.equals(word)) {
                 System.out.println("Brawo odgadłeś słowo");
             } else {
