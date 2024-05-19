@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class FileControl {
 
-    private static String FILE_PATH_WORDS = "words.csv";
+    private static final String FILE_PATH_WORDS = "words.csv";
 
     List<String> loadWords() {
         List<String> words = new ArrayList<>();
@@ -16,8 +16,9 @@ public class FileControl {
             while (scanner.hasNextLine()) {
                 String text = scanner.nextLine();
                 String[] data = text.split(";");
-                String word = data[1];
-                words.add(word);
+                for (String word : data) {
+                    words.add(word);
+                }
             }
             System.out.println("Plik został poprawnie załadowany");
         } catch (IOException e) {
