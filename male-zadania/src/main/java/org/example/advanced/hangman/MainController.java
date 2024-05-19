@@ -18,7 +18,7 @@ public class MainController {
     void printOptions() {
         System.out.println("Witaj w grze wisielec. Poniżej masz do wyboru kilka trybów rozgrywki.");
 
-        System.out.println("1. Tryb gry podstawowej");
+        System.out.println("1. Tryb gry jednoosobowej");
         System.out.println("0. Opuść program");
     }
 
@@ -39,19 +39,11 @@ public class MainController {
         ArrayList<String> letters = new ArrayList<>();
         HangmanService hangmanService = new HangmanService();
         String word = hangmanService.randomWord();
+        System.out.println("Zagrajmy w wisielca, musisz odgadnąc słowo:");
         while (true) {
-            System.out.println("Zagrajmy w wisielca, musisz odgadnąc słowo:");
             System.out.println(hangmanService.encodeWord(word, letters));
             String guess = input.readText();
             letters.add(guess);
-
-
-
-            if (guess.equals(word)) {
-                System.out.println("Brawo odgadłeś słowo");
-            } else {
-                System.out.println("Nie udało się :( Spróbuj następnym razem.");
-            }
         }
     }
 

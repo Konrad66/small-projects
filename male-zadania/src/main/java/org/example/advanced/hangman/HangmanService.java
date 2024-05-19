@@ -50,17 +50,13 @@ public class HangmanService {
         return result;
     }
 
-    public static void main(String[] args) {
-        HangmanService hangmanService = new HangmanService();
-        ArrayList<String> letters = new ArrayList<>();
-        letters.add("k");
-        letters.add("o");
-        letters.add("h");
-        System.out.println(hangmanService.encodeWord("Komputer", letters));
-        // A _ a
-    }
-
-    // liste -> słowa
-    // losował z listy jedno słowo
-    //
+//    public static void main(String[] args) {
+//        HangmanService hangmanService = new HangmanService();
+//        ArrayList<String> letters = new ArrayList<>();
+//        letters.add("k");
+//        letters.add("o");
+//        letters.add("h");
+//        System.out.println(hangmanService.encodeWord("Komputer", letters));
+//        // A _ a
+//    }
 }
