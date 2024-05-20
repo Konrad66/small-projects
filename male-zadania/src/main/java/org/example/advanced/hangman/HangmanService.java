@@ -28,6 +28,7 @@ public class HangmanService {
 
     String encodeWord(String word, List<String> guessedLetter) {
         String result = "";
+        int correctAttempts;
         word = word.toLowerCase();
         for (int i = 0; i < guessedLetter.size(); i++) {
             guessedLetter.set(i, guessedLetter.get(i).toLowerCase());
