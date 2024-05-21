@@ -6,6 +6,8 @@ import java.util.Random;
 
 public class HangmanService {
 
+
+
     String randomWord() {
         FileControl fileControl = new FileControl();
         List<String> words = fileControl.loadWords();
@@ -28,7 +30,6 @@ public class HangmanService {
 
     String encodeWord(String word, List<String> guessedLetter) {
         String result = "";
-        int correctAttempts;
         word = word.toLowerCase();
         for (int i = 0; i < guessedLetter.size(); i++) {
             guessedLetter.set(i, guessedLetter.get(i).toLowerCase());
@@ -49,6 +50,12 @@ public class HangmanService {
             result += " " + symbol + " ";
         }
         return result;
+    }
+
+
+    boolean userGuessed(String word, List<String> guessedLetter){
+        String encodeWord = encodeWord(word, guessedLetter);
+        return !encodeWord.contains("-");
     }
 
 //    public static void main(String[] args) {
