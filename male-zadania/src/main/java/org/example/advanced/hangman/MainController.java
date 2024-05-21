@@ -39,12 +39,14 @@ public class MainController {
         ArrayList<String> letters = new ArrayList<>();
         HangmanService hangmanService = new HangmanService();
         String word = hangmanService.randomWord();
-        System.out.println("Zagrajmy w wisielca, musisz odgadnąc słowo:");
-        while (true) {
+        System.out.println("Celem gry jest odgadnięcie zakodowanego słowa. Powodzenia!");
+        do{
+            System.out.println("Zgadnij litere: ");
             System.out.println(hangmanService.encodeWord(word, letters));
             String guess = input.readText();
             letters.add(guess);
-        }
+        } while (!hangmanService.userGuessed(word,letters));
+
     }
 
     //mam haslo niezakodowane
