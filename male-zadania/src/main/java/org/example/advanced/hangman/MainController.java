@@ -40,12 +40,13 @@ public class MainController {
         HangmanService hangmanService = new HangmanService();
         String word = hangmanService.randomWord();
         System.out.println("Celem gry jest odgadnięcie zakodowanego słowa. Powodzenia!");
-        do{
+        do {
             System.out.println("Zgadnij litere: ");
+            System.out.println(word);
             System.out.println(hangmanService.encodeWord(word, letters));
             String guess = input.readText();
             letters.add(guess);
-        } while (!hangmanService.userGuessed(word,letters));
+        } while (!hangmanService.userGuessed(word, letters));
 
     }
 

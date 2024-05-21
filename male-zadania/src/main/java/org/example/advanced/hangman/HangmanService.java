@@ -7,7 +7,6 @@ import java.util.Random;
 public class HangmanService {
 
 
-
     String randomWord() {
         FileControl fileControl = new FileControl();
         List<String> words = fileControl.loadWords();
@@ -53,7 +52,7 @@ public class HangmanService {
     }
 
 
-    boolean userGuessed(String word, List<String> guessedLetter){
+    boolean userGuessed(String word, List<String> guessedLetter) {
         String encodeWord = encodeWord(word, guessedLetter);
         return !encodeWord.contains("-");
     }
