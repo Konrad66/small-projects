@@ -57,6 +57,51 @@ public class HangmanService {
         return !encodeWord.contains("-");
     }
 
+
+    void printHangman(int wrongAnswer){
+        System.out.println("  ---------");
+        System.out.println("  |       |");
+        System.out.println("          |");
+        System.out.println("          |");
+        System.out.println("          |");
+        System.out.println("          |");
+        System.out.println("         ---");
+        if (wrongAnswer >= 1){
+            System.out.println("  ---------");
+            System.out.println("  |       |");
+            System.out.println("  O       |");
+            System.out.println("          |");
+            System.out.println("          |");
+            System.out.println("          |");
+            System.out.println("         ---");
+        }
+        if (wrongAnswer >= 2 ){
+            System.out.println("  ---------");
+            System.out.println("  |       |");
+            System.out.println("  O       |");
+            System.out.println("--|--     |");
+            System.out.println("          |");
+            System.out.println("          |");
+            System.out.println("         ---");
+
+
+        }
+
+
+
+//        System.out.println("  ---------");
+//        System.out.println("  |       |");
+//        System.out.println("  O       |");
+//        System.out.println("--|--     |");
+//        System.out.println(" / \\      |");
+//        System.out.println("          |");
+//        System.out.println("         ---");
+
+//        System.out.println("");
+//
+//        System.out.println(" / \\      |");
+    }
+
 //    public static void main(String[] args) {
 //        HangmanService hangmanService = new HangmanService();
 //        ArrayList<String> letters = new ArrayList<>();
@@ -66,4 +111,16 @@ public class HangmanService {
 //        System.out.println(hangmanService.encodeWord("Komputer", letters));
 //        // A _ a
 //    }
+
+
+
+    /*
+      ---------
+      |       |
+      O       |
+    --|--     |
+     / \      |
+              |
+             ---
+    */
 }
