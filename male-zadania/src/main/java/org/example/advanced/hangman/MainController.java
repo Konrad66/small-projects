@@ -40,14 +40,39 @@ public class MainController {
         HangmanService hangmanService = new HangmanService();
         String word = hangmanService.randomWord();
         System.out.println("Celem gry jest odgadnięcie zakodowanego słowa. Powodzenia!");
-        do {
+//        do {
+//            System.out.println("Zgadnij litere: ");
+//            System.out.println(word);
+//            System.out.println(hangmanService.encodeWord(word, letters));
+//            String guess = input.readText();
+//            letters.add(guess);
+////            if (!word.contains(letters.)){
+////                hangmanService.printHangman();
+////            }
+//            if (hangmanService.userGuessed(word, letters)){
+//                System.out.println("Brawo! Odgadłeś słowo!");
+//            }
+//        } while (!hangmanService.userGuessed(word, letters));
+
+        int wrongAnswer = 0;
+
+        while (true){
             System.out.println("Zgadnij litere: ");
             System.out.println(word);
             System.out.println(hangmanService.encodeWord(word, letters));
             String guess = input.readText();
             letters.add(guess);
-        } while (!hangmanService.userGuessed(word, letters));
-
+            if (hangmanService.userGuessed(word, letters)){
+                System.out.println("Brawo! Odgadłeś słowo!");
+                break;
+            } else {
+                wrongAnswer++;
+                hangmanService.printHangman(wrongAnswer);
+            }
+            if (wrongAnswer == 7){
+                System.out.println("Niestety tym razem sie nie udało. Spróbuj nastepnym razem.");
+            }
+        }
     }
 
     //mam haslo niezakodowane
