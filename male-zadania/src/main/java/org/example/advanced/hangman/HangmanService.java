@@ -57,94 +57,77 @@ public class HangmanService {
         return !encodeWord.contains("-");
     }
 
-
     void printHangman(int wrongAnswer){
-        System.out.println("  ---------");
-        System.out.println("  |       |");
-        System.out.println("          |");
-        System.out.println("          |");
-        System.out.println("          |");
-        System.out.println("          |");
-        System.out.println("         ---");
-        if (wrongAnswer >= 1){
-            System.out.println("  ---------");
-            System.out.println("  |       |");
-            System.out.println("  O       |");
-            System.out.println("          |");
-            System.out.println("          |");
-            System.out.println("          |");
-            System.out.println("         ---");
+        if(wrongAnswer >= 0 && wrongAnswer < HANGMAN_STAGES.length){
+            System.out.println(HANGMAN_STAGES[wrongAnswer]);
         }
-        if (wrongAnswer >= 2 ){
-            System.out.println("  ---------");
-            System.out.println("  |       |");
-            System.out.println("  O       |");
-            System.out.println("  |       |");
-            System.out.println("          |");
-            System.out.println("          |");
-            System.out.println("         ---");
-        }
-        if (wrongAnswer >= 3 ){
-            System.out.println("  ---------");
-            System.out.println("  |       |");
-            System.out.println("  O       |");
-            System.out.println("--|       |");
-            System.out.println("          |");
-            System.out.println("          |");
-            System.out.println("         ---");
-        }
-        if (wrongAnswer >= 4 ){
-            System.out.println("  ---------");
-            System.out.println("  |       |");
-            System.out.println("  O       |");
-            System.out.println("--|--     |");
-            System.out.println("          |");
-            System.out.println("          |");
-            System.out.println("         ---");
-        }
-        if (wrongAnswer >= 5 ){
-            System.out.println("  ---------");
-            System.out.println("  |       |");
-            System.out.println("  O       |");
-            System.out.println("--|--     |");
-            System.out.println(" /        |");
-            System.out.println("          |");
-            System.out.println("         ---");
-        }
-        if (wrongAnswer >= 6 ){
-            System.out.println("  ---------");
-            System.out.println("  |       |");
-            System.out.println("  O       |");
-            System.out.println("--|--     |");
-            System.out.println(" / \\      |");
-            System.out.println("          |");
-            System.out.println("         ---");
-        }
-
-
-//        System.out.println("  ---------");
-//        System.out.println("  |       |");
-//        System.out.println("  O       |");
-//        System.out.println("--|--     |");
-//        System.out.println(" / \\      |");
-//        System.out.println("          |");
-//        System.out.println("         ---");
-
-//        System.out.println("");
-//
-//        System.out.println(" / \\      |");
     }
 
-//    public static void main(String[] args) {
-//        HangmanService hangmanService = new HangmanService();
-//        ArrayList<String> letters = new ArrayList<>();
-//        letters.add("k");
-//        letters.add("o");
-//        letters.add("h");
-//        System.out.println(hangmanService.encodeWord("Komputer", letters));
-//        // A _ a
-//    }
-
+    private static final String[] HANGMAN_STAGES = {
+            """
+          +---+
+          |   |
+              |
+              |
+              |
+              |
+        =========
+        """,
+            """
+          +---+
+          |   |
+          O   |
+              |
+              |
+              |
+        =========
+        """,
+            """
+          +---+
+          |   |
+          O   |
+          |   |
+              |
+              |
+        =========
+        """,
+            """
+          +---+
+          |   |
+          O   |
+         /|   |
+              |
+              |
+        =========
+        """,
+            """
+          +---+
+          |   |
+          O   |
+         /|\\  |
+              |
+              |
+        =========
+        """,
+            """
+          +---+
+          |   |
+          O   |
+         /|\\  |
+         /    |
+              |
+        =========
+        """,
+            """
+          +---+
+          |   |
+          O   |
+         /|\\  |
+         / \\  |
+              |
+        =========
+        """
+    };
 
 
     /*
