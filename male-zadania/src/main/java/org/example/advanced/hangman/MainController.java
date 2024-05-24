@@ -62,12 +62,18 @@ public class MainController {
             System.out.println(hangmanService.encodeWord(word, letters));
             String guess = input.readText();
             letters.add(guess);
+            if (!word.contains(guess)){
+                wrongAnswer++;
+                hangmanService.printHangman(wrongAnswer);
+            }
+            if (wrongAnswer == 6) {
+                System.out.println("Tym razem się nie udało. Spróbuj następnym razem.");
+                break;
+            }
             if (hangmanService.userGuessed(word, letters)) {
                 System.out.println("Brawo! Odgadłeś słowo!");
                 break;
             }
-//            wrongAnswer++;
-//            hangmanService.printHangman(wrongAnswer);
         }
     }
 
