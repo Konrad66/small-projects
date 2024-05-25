@@ -67,7 +67,7 @@ public class MainController {
                 hangmanService.printHangman(wrongAnswer);
             }
             if (wrongAnswer == 6) {
-                System.out.println("Tym razem się nie udało. Spróbuj następnym razem.");
+                System.out.println("Tym razem się nie udało. Spróbuj następnym razem. Słowo to " + word);
                 break;
             }
             if (hangmanService.userGuessed(word, letters)) {
