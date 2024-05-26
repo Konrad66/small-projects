@@ -13,6 +13,6 @@ public class Input {
     }
 
     String readText() {
-        return scanner.nextLine();
+        return scanner.nextLine().toLowerCase();
     }
 }
