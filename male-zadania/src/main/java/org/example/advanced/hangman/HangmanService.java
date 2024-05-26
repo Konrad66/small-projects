@@ -5,7 +5,6 @@ import java.util.Random;
 
 public class HangmanService {
 
-
     String randomWord() {
         FileControl fileControl = new FileControl();
         List<String> words = fileControl.loadWords();
@@ -13,18 +12,6 @@ public class HangmanService {
         int indexWord = random.nextInt(words.size());
         return words.get(indexWord);
     }
-
-    //masz slowo i odgadniete litery
-    //zacznij od pustego napisu jako wynik
-    //zamieniam slowo i odgadniete litery na male
-    //dla kazdej litery slowa
-    // która nie jest zadna z odgadnietych liter
-    //dodaj do wyniku kreske
-    // w przeciwnym razie dodaj odgadnieta litere
-
-
-    //jesli ta litera == odgadnieta litera
-    // zamien kreske na litere
 
     String encodeWord(String word, List<String> guessedLetter) {
         String result = "";
@@ -50,14 +37,13 @@ public class HangmanService {
         return result;
     }
 
-
     boolean userGuessed(String word, List<String> guessedLetter) {
         String encodeWord = encodeWord(word, guessedLetter);
         return !encodeWord.contains("-");
     }
 
-    void printHangman(int wrongAnswer){
-        if(wrongAnswer >= 0 && wrongAnswer < HANGMAN_STAGES.length){
+    void printHangman(int wrongAnswer) {
+        if (wrongAnswer >= 0 && wrongAnswer < HANGMAN_STAGES.length) {
             System.out.println(HANGMAN_STAGES[wrongAnswer]);
         }
     }
@@ -127,15 +113,4 @@ public class HangmanService {
         =========
         """
     };
-
-
-    /*
-      ---------
-      |       |
-      O       |
-    --|--     |
-     / \      |
-              |
-             ---
-    */
 }
