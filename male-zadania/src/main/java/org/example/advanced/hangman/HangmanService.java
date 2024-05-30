@@ -1,7 +1,6 @@
 package org.example.advanced.hangman;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class HangmanService {
 
@@ -113,4 +112,12 @@ public class HangmanService {
         =========
         """
     };
+
+//    List<Character> availableLetters(){
+//        List<Character> availableLetters  = new ArrayList<>();
+//        for (char letter = 'a'; letter <= 'z'; letter++) {
+//            availableLetters.add(letter);
+//        }
+//        return availableLetters;
+//    }
 }
