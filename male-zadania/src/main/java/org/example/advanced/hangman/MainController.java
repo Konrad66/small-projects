@@ -56,9 +56,9 @@ public class MainController {
         int wrongAnswer = 0;
 
         while (true) {
-            System.out.println("Zgadnij litere: ");
             System.out.println();
-            //System.out.println(word);
+            System.out.println("Zgadnij litere: ");
+            System.out.println(word);
             System.out.println(hangmanService.encodeWord(word, letters));
             String guess = input.readText();
 
@@ -70,7 +70,7 @@ public class MainController {
             }
             if (wrongAnswer == 6) {
                 System.out.println("Tym razem się nie udało. Spróbuj następnym razem. Słowo to " + word);
-                //letters.removeAll(word);
+                
                 break;
             }
             if (hangmanService.userGuessed(word, letters)) {
@@ -132,6 +132,9 @@ public class MainController {
             }
         }
     }
+
+
+
 
     //jak zakonc
 
