@@ -36,6 +36,8 @@ public class HangmanService {
         return result;
     }
 
+
+    //todo omówić metodę czy nie lepiej jest zrobić ją w metodzie wyżej jako jedną a nie 2 osobne
     boolean userGuessed(String word, List<String> guessedLetter) {
         String encodeWord = encodeWord(word, guessedLetter);
         return !encodeWord.contains("-");
@@ -112,12 +114,4 @@ public class HangmanService {
         =========
         """
     };
-
-//    List<Character> availableLetters(){
-//        List<Character> availableLetters  = new ArrayList<>();
-//        for (char letter = 'a'; letter <= 'z'; letter++) {
-//            availableLetters.add(letter);
-//        }
-//        return availableLetters;
-//    }
 }

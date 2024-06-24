@@ -46,16 +46,18 @@ public class MainController {
         String word = hangmanService.randomWord();
         System.out.println("Celem gry jest odgadnięcie zakodowanego słowa. Powodzenia!");
 
+        int wrongAnswer = 0;
+
         List<Character> availableLetters = new ArrayList<>();
-        char ch;
-        for (ch = 'A'; ch <= 'Z'; ++ch) {
-            System.out.print(ch + " ");
+        for (char ch = 'a'; ch <= 'z'; ++ch) {
             availableLetters.add(ch);
         }
 
-        int wrongAnswer = 0;
-
         while (true) {
+            for (Character c : availableLetters) {
+                System.out.print(c + " ");
+            }
+
             System.out.println();
             System.out.println("Zgadnij litere: ");
             System.out.println(word);
@@ -63,6 +65,7 @@ public class MainController {
             String guess = input.readText();
 
             letters.add(guess);
+            availableLetters.remove(Character.valueOf(guess.charAt(0)));
 
             if (!word.contains(guess)) {
                 wrongAnswer++;
@@ -70,11 +73,12 @@ public class MainController {
             }
             if (wrongAnswer == 6) {
                 System.out.println("Tym razem się nie udało. Spróbuj następnym razem. Słowo to " + word);
-                
+                letters.clear();
                 break;
             }
             if (hangmanService.userGuessed(word, letters)) {
                 System.out.println("Brawo! Odgadłeś słowo!");
+                letters.clear();
                 break;
             }
         }
@@ -134,6 +138,8 @@ public class MainController {
     }
 
 
+    //todo zgadywanie po pełnym słowie
+    //todo wersja dwuosobowa
 
 
     //jak zakonc
