@@ -43,16 +43,14 @@ public class MainController {
     }
 
     private void soloPlayerVersion() {
-        String word = hangmanService.randomWord();
+        String word = hangmanService.getCorrectWord();
         System.out.println("Celem gry jest odgadnięcie zakodowanego słowa. Powodzenia!");
 
         int wrongAnswer = 0;
 
-        List<Character> availableLetters = new ArrayList<>();
-        for (char ch = 'a'; ch <= 'z'; ++ch) {
-            availableLetters.add(ch);
-        }
 
+
+        List<Character> availableLetters = hangmanService.availableLetters();
         while (true) {
             for (Character c : availableLetters) {
                 System.out.print(c + " ");
@@ -64,6 +62,32 @@ public class MainController {
             System.out.println(hangmanService.encodeWord(word, letters));
             String guess = input.readText();
 
+            hangmanService.tryInput(guess);
+
+
+
+            //uzytkownik wpisal slowo
+            //sprawdzamy czy slowo jest dłuzsze niz 1
+            //sprawdzamy czy slowo jest takie samo jak zakodowane
+
+            if (guess.length() > 1) {
+                if (word.equals(guess)) {
+                    System.out.println("Brawo, odgadłeś słowo!");
+                    letters.clear();
+                    break;
+                } else {
+                    wrongAnswer++;
+                    hangmanService.printHangman(wrongAnswer);
+                }
+                if (wrongAnswer == 6) {
+                    System.out.println("Tym razem się nie udało. Spróbuj następnym razem. Słowo to " + word);
+                    letters.clear();
+                    break;
+                }
+                continue;
+            }
+
+
             letters.add(guess);
             availableLetters.remove(Character.valueOf(guess.charAt(0)));
 
@@ -71,11 +95,13 @@ public class MainController {
                 wrongAnswer++;
                 hangmanService.printHangman(wrongAnswer);
             }
+
             if (wrongAnswer == 6) {
                 System.out.println("Tym razem się nie udało. Spróbuj następnym razem. Słowo to " + word);
                 letters.clear();
                 break;
             }
+
             if (hangmanService.userGuessed(word, letters)) {
                 System.out.println("Brawo! Odgadłeś słowo!");
                 letters.clear();

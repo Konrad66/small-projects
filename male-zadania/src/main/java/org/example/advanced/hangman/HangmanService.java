@@ -4,12 +4,18 @@ import java.util.*;
 
 public class HangmanService {
 
+    private String correctWord = randomWord();
+
     String randomWord() {
         FileControl fileControl = new FileControl();
         List<String> words = fileControl.loadWords();
         Random random = new Random();
         int indexWord = random.nextInt(words.size());
         return words.get(indexWord);
+    }
+
+    public String getCorrectWord() {
+        return correctWord;
     }
 
     String encodeWord(String word, List<String> guessedLetter) {
@@ -42,6 +48,19 @@ public class HangmanService {
         String encodeWord = encodeWord(word, guessedLetter);
         return !encodeWord.contains("-");
     }
+
+    void tryInput(String guess) {
+
+    }
+
+    List<Character> availableLetters() {
+        List<Character> availableLetters = new ArrayList<>();
+        for (char ch = 'a'; ch <= 'z'; ++ch) {
+            availableLetters.add(ch);
+        }
+        return availableLetters;
+    }
+
 
     void printHangman(int wrongAnswer) {
         if (wrongAnswer >= 0 && wrongAnswer < HANGMAN_STAGES.length) {
