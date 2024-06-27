@@ -5,6 +5,9 @@ import java.util.*;
 public class HangmanService {
 
     private String correctWord = randomWord();
+    private List<Character> availableLetters = preaperAvailableLetters();
+    private int wrongAnswer = 0;
+
 
     String randomWord() {
         FileControl fileControl = new FileControl();
@@ -18,16 +21,21 @@ public class HangmanService {
         return correctWord;
     }
 
-    String encodeWord(String word, List<String> guessedLetter) {
+    public List<Character> getAvailableLetters() {
+        return availableLetters;
+    }
+
+    String encodeWord(String word) {
         String result = "";
         word = word.toLowerCase();
-        for (int i = 0; i < guessedLetter.size(); i++) {
-            guessedLetter.set(i, guessedLetter.get(i).toLowerCase());
+        List<Character> notAvailableLetters = getNotAvailableLetters();
+        for (int i = 0; i < notAvailableLetters.size(); i++) {
+            notAvailableLetters.set(i, Character.toLowerCase(notAvailableLetters.get(i)));
         }
         for (int i = 0; i < word.length(); i++) {
             boolean guessed = false;
-            for (int j = 0; j < guessedLetter.size(); j++) {
-                if ((word.charAt(i) + "").equals(guessedLetter.get(j))) {
+            for (int j = 0; j < notAvailableLetters.size(); j++) {
+                if (word.charAt(i) == (notAvailableLetters.get(j))) {
                     guessed = true;
                 }
             }
@@ -42,18 +50,53 @@ public class HangmanService {
         return result;
     }
 
+    List<Character> getNotAvailableLetters() {
+        List<Character> notAvailableLetters = new ArrayList<>();
+        List<Character> allLetters = preaperAvailableLetters();
+
+        for (Character letter : allLetters) {
+            if (!availableLetters.contains(letter)) {
+                notAvailableLetters.add(letter);
+            }
+        }
+        return notAvailableLetters;
+    }
+
+    void clearLetters() {
+        availableLetters = preaperAvailableLetters();
+    }
+
 
     //todo omówić metodę czy nie lepiej jest zrobić ją w metodzie wyżej jako jedną a nie 2 osobne
-    boolean userGuessed(String word, List<String> guessedLetter) {
-        String encodeWord = encodeWord(word, guessedLetter);
+    boolean userGuessed(String word) {
+        String encodeWord = encodeWord(word);
         return !encodeWord.contains("-");
     }
 
-    void tryInput(String guess) {
+    TryResult tryInput(String guess) {
 
+        if (correctWord.equals(guess) || userGuessed(correctWord)) {
+            clearLetters();
+            return TryResult.YOU_GUESSED_WORD;
+        }
+
+        if (guess.length() <= 1) {
+            availableLetters.remove(Character.valueOf(guess.charAt(0)));
+            if (correctWord.contains(guess)) {
+                return TryResult.YOU_GUESSED_LETTER;
+            }
+        }
+
+        wrongAnswer++;
+        printHangman(wrongAnswer);
+        if (wrongAnswer == 6) {
+            clearLetters();
+            return TryResult.YOU_DONT_GUESSED_WORD;
+        }
+        return TryResult.YOU_DONT_GUESSED;
     }
 
-    List<Character> availableLetters() {
+    private List<Character> preaperAvailableLetters() {
         List<Character> availableLetters = new ArrayList<>();
         for (char ch = 'a'; ch <= 'z'; ++ch) {
             availableLetters.add(ch);
