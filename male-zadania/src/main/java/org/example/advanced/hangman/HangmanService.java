@@ -5,9 +5,8 @@ import java.util.*;
 public class HangmanService {
 
     private String correctWord = randomWord();
-    private List<Character> availableLetters = preaperAvailableLetters();
+    private List<Character> availableLetters = prepareAvailableLetters();
     private int wrongAnswer = 0;
-
 
     String randomWord() {
         FileControl fileControl = new FileControl();
@@ -25,17 +24,17 @@ public class HangmanService {
         return availableLetters;
     }
 
-    String encodeWord(String word) {
+    String encodeWord() {
         String result = "";
-        word = word.toLowerCase();
+        correctWord = correctWord.toLowerCase();
         List<Character> notAvailableLetters = getNotAvailableLetters();
         for (int i = 0; i < notAvailableLetters.size(); i++) {
             notAvailableLetters.set(i, Character.toLowerCase(notAvailableLetters.get(i)));
         }
-        for (int i = 0; i < word.length(); i++) {
+        for (int i = 0; i < correctWord.length(); i++) {
             boolean guessed = false;
             for (int j = 0; j < notAvailableLetters.size(); j++) {
-                if (word.charAt(i) == (notAvailableLetters.get(j))) {
+                if (correctWord.charAt(i) == (notAvailableLetters.get(j))) {
                     guessed = true;
                 }
             }
@@ -43,7 +42,7 @@ public class HangmanService {
             if (!guessed) {
                 symbol = "-";
             } else {
-                symbol = word.charAt(i) + "";
+                symbol = correctWord.charAt(i) + "";
             }
             result += " " + symbol + " ";
         }
@@ -52,7 +51,7 @@ public class HangmanService {
 
     List<Character> getNotAvailableLetters() {
         List<Character> notAvailableLetters = new ArrayList<>();
-        List<Character> allLetters = preaperAvailableLetters();
+        List<Character> allLetters = prepareAvailableLetters();
 
         for (Character letter : allLetters) {
             if (!availableLetters.contains(letter)) {
@@ -62,21 +61,24 @@ public class HangmanService {
         return notAvailableLetters;
     }
 
-    void clearLetters() {
-        availableLetters = preaperAvailableLetters();
+    private List<Character> prepareAvailableLetters() {
+        List<Character> availableLetters = new ArrayList<>();
+        for (char ch = 'a'; ch <= 'z'; ++ch) {
+            availableLetters.add(ch);
+        }
+        return availableLetters;
     }
 
-
-    //todo omówić metodę czy nie lepiej jest zrobić ją w metodzie wyżej jako jedną a nie 2 osobne
-    boolean userGuessed(String word) {
-        String encodeWord = encodeWord(word);
-        return !encodeWord.contains("-");
+    void restartGame() {
+        availableLetters = prepareAvailableLetters();
+        wrongAnswer = 0;
+        correctWord = randomWord();
     }
 
     TryResult tryInput(String guess) {
 
-        if (correctWord.equals(guess) || userGuessed(correctWord)) {
-            clearLetters();
+        if (correctWord.equals(guess) || !encodeWord().contains("-")) {
+            restartGame();
             return TryResult.YOU_GUESSED_WORD;
         }
 
@@ -90,20 +92,11 @@ public class HangmanService {
         wrongAnswer++;
         printHangman(wrongAnswer);
         if (wrongAnswer == 6) {
-            clearLetters();
+            restartGame();
             return TryResult.YOU_DONT_GUESSED_WORD;
         }
         return TryResult.YOU_DONT_GUESSED;
     }
-
-    private List<Character> preaperAvailableLetters() {
-        List<Character> availableLetters = new ArrayList<>();
-        for (char ch = 'a'; ch <= 'z'; ++ch) {
-            availableLetters.add(ch);
-        }
-        return availableLetters;
-    }
-
 
     void printHangman(int wrongAnswer) {
         if (wrongAnswer >= 0 && wrongAnswer < HANGMAN_STAGES.length) {
