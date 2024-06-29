@@ -1,9 +1,5 @@
 package org.example.advanced.hangman;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 
 public class MainController {
 
@@ -35,95 +31,83 @@ public class MainController {
                 soloPlayerVersion();
                 break;
             case 2:
-                //twoPlayerVersion();
+                twoPlayerVersion();
             default:
                 System.out.println("Wybierz z opcji poniżej.");
         }
     }
 
     private void soloPlayerVersion() {
-        String word = hangmanService.getCorrectWord();
         System.out.println("Celem gry jest odgadnięcie zakodowanego słowa. Powodzenia!");
-
-
-        List<Character> availableLetters = hangmanService.getAvailableLetters();
-
         while (true) {
-            for (Character c : availableLetters) {
-                System.out.print(c + " ");
-            }
-
+            printAlphabet();
             System.out.println();
-            System.out.println("Zgadnij litere: ");
-            System.out.println(word);
-            System.out.println(hangmanService.encodeWord(word));
+            System.out.println("Zgadnij słowo: ");
+            System.out.println(hangmanService.getCorrectWord());
+            System.out.println(hangmanService.encodeWord());
             String guess = input.readText();
-
             TryResult result = hangmanService.tryInput(guess);
-            switch (result){
-                case YOU_GUESSED_WORD -> System.out.println("Brawo! Odgadłeś słowo!");
-                case YOU_DONT_GUESSED_WORD -> System.out.println("Przegrałeś!");
-                case YOU_DONT_GUESSED -> System.out.println("Nie trafiłeś. Spróbuj jeszcze raz.");
-                case YOU_GUESSED_LETTER -> System.out.println("Prawiodłowa litera! Brawo!");
-            }
+            printResult(result);
         }
     }
 
+
 //    private void twoPlayerVersion() {
 //        System.out.println("Tryb rywalizacji w którym na zmianę gracz wybiera słowo do odgadnięcia dla drugiego gracza. Powodzenia!");
-//        System.out.println("Proszę aby gracz 1 wpisał słowo dla gracza 2:");
+//        System.out.println("Wpisz słowo dla swojego przeciwnika: ");
 //        String word1 = input.readText();
 //        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 //
 //
-//        int wrongAnswer = 0;
-//
 //        while (true) {
-//            System.out.println("Poniżej masz słowo do odgadnięcia powodzenia:");
-//            System.out.println(hangmanService.encodeWord(word1, letters));
+//            printAlphabet();
+//            System.out.println();
+//            System.out.println("Zgadnij słowo: ");
+//            System.out.println(hangmanService.getCorrectWord());
+//            System.out.println(hangmanService.encodeWord());
 //            String guess = input.readText();
-//            letters.add(guess);
-//            if (!word1.contains(guess)) {
-//                wrongAnswer++;
-//                hangmanService.printHangman(wrongAnswer);
-//            }
-//            if (wrongAnswer == 6) {
-//                System.out.println("Tym razem się nie udało. Spróbuj następnym razem. Słowo to " + word1);
-//                break;
-//            }
-//            if (hangmanService.userGuessed(word1, letters)) {
-//                System.out.println("Brawo! Odgadłeś słowo!");
-//                break;
-//            }
+//            TryResult result = hangmanService.tryInput(guess);
+//            printResult(result);
 //        }
 //
 //        System.out.println("Pora się odegrać, wpisz słowo dla gracza 1:");
 //        String word2 = input.readText();
 //        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-//        wrongAnswer = 0;
 //
 //        while (true) {
-//            System.out.println("Poniżej masz słowo do odgadnięcia powodzenia:");
-//            System.out.println(hangmanService.encodeWord(word2, letters));
+//            printAlphabet();
+//            System.out.println();
+//            System.out.println("Zgadnij słowo: ");
+//            System.out.println(hangmanService.getCorrectWord());
+//            System.out.println(hangmanService.encodeWord());
 //            String guess = input.readText();
-//            letters.add(guess);
-//            if (!word2.contains(guess)) {
-//                wrongAnswer++;
-//                hangmanService.printHangman(wrongAnswer);
-//            }
-//            if (wrongAnswer == 6) {
-//                System.out.println("Tym razem się nie udało. Spróbuj następnym razem. Słowo to " + word2);
-//                break;
-//            }
-//            if (hangmanService.userGuessed(word2, letters)) {
-//                System.out.println("Brawo! Odgadłeś słowo!");
-//                break;
-//            }
+//            TryResult result = hangmanService.tryInput(guess);
+//            printResult(result);
 //        }
 //    }
 
-    //todo wersja dwuosobowa
+    private void printAlphabet() {
+        for (Character c : hangmanService.getAvailableLetters()) {
+            System.out.print(c + " ");
+        }
+    }
 
+    private void printResult(TryResult result) {
+        switch (result) {
+            case YOU_GUESSED_WORD:
+                System.out.println("Brawo! Odgadłeś słowo!");
+                return;
+            case YOU_DONT_GUESSED_WORD:
+                System.out.println("Przegrałeś!");
+                return;
+            case YOU_DONT_GUESSED:
+                System.out.println("Nie trafiłeś. Spróbuj jeszcze raz.");
+                break;
+            case YOU_GUESSED_LETTER:
+                System.out.println("Prawiodłowa litera! Brawo!");
+                break;
+        }
+    }
 
 // mozna dorobic "logowanie gracza" aby wybrac postac na ktorej beda sie liczyc pkt i robic statystyki
 }
