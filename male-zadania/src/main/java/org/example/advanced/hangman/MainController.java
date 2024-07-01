@@ -52,17 +52,28 @@ public class MainController {
 
     private void twoPlayerVersion() {
         System.out.println("Tryb rywalizacji w którym sami wpisujecie słowa do odgadnięcia. Powodzenia!");
-        System.out.println("Wpisz słowo dla swojego przeciwnika: ");
-        String word1 = input.readText();
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("Wpisz ile rund chcecie rozegrac.");
 
-        play(word1);
+        int numberOfRounds = input.readNumber();
+        hangmanService.setNumberOfRounds(numberOfRounds);
 
-        System.out.println("Pora się odegrać, wpisz słowo dla gracza 1:");
-        String word2 = input.readText();
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        for(int i = 0; i < hangmanService.getNumberOfRounds(); i++){
+            System.out.println("Wpisz słowo dla swojego przeciwnika: ");
+            System.out.println("Gracz 1");
+            String word1 = input.readText();
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
-        play(word2);
+            play(word1);
+
+            System.out.println("Pora się odegrać, wpisz słowo dla gracza 1:");
+            System.out.println("Gracz 2");
+            String word2 = input.readText();
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
+            play(word2);
+        }
+
+
     }
 
     private void printAlphabet() {

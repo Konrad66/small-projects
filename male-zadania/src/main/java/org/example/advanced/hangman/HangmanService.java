@@ -7,6 +7,7 @@ public class HangmanService {
     private String correctWord = randomWord();
     private List<Character> availableLetters = prepareAvailableLetters();
     private int wrongAnswer = 0;
+    int numberOfRounds = 0;
 
     String randomWord() {
         FileControl fileControl = new FileControl();
@@ -104,9 +105,11 @@ public class HangmanService {
         }
     }
 
-    void   preparedTwoPlayerVersion(String userWord){
+    void preparedTwoPlayerVersion(String userWord){
         correctWord = userWord;
     }
+
+
 
 
     private static final String[] HANGMAN_STAGES = {
@@ -174,4 +177,12 @@ public class HangmanService {
         =========
         """
     };
+
+    int getNumberOfRounds() {
+        return numberOfRounds;
+    }
+
+    void setNumberOfRounds(int numberOfRounds) {
+        this.numberOfRounds = numberOfRounds;
+    }
 }
