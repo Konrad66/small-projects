@@ -41,9 +41,8 @@ public class MainController {
         System.out.println("Celem gry jest odgadnięcie zakodowanego słowa. Powodzenia!");
         while (true) {
             printAlphabet();
-            System.out.println();
             System.out.println("Zgadnij słowo: ");
-            System.out.println(hangmanService.getCorrectWord());
+            //System.out.println(hangmanService.getCorrectWord());
             System.out.println(hangmanService.encodeWord());
             String guess = input.readText();
             TryResult result = hangmanService.tryInput(guess);
@@ -51,45 +50,26 @@ public class MainController {
         }
     }
 
+    private void twoPlayerVersion() {
+        System.out.println("Tryb rywalizacji w którym sami wpisujecie słowa do odgadnięcia. Powodzenia!");
+        System.out.println("Wpisz słowo dla swojego przeciwnika: ");
+        String word1 = input.readText();
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
-//    private void twoPlayerVersion() {
-//        System.out.println("Tryb rywalizacji w którym na zmianę gracz wybiera słowo do odgadnięcia dla drugiego gracza. Powodzenia!");
-//        System.out.println("Wpisz słowo dla swojego przeciwnika: ");
-//        String word1 = input.readText();
-//        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-//
-//
-//        while (true) {
-//            printAlphabet();
-//            System.out.println();
-//            System.out.println("Zgadnij słowo: ");
-//            System.out.println(hangmanService.getCorrectWord());
-//            System.out.println(hangmanService.encodeWord());
-//            String guess = input.readText();
-//            TryResult result = hangmanService.tryInput(guess);
-//            printResult(result);
-//        }
-//
-//        System.out.println("Pora się odegrać, wpisz słowo dla gracza 1:");
-//        String word2 = input.readText();
-//        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-//
-//        while (true) {
-//            printAlphabet();
-//            System.out.println();
-//            System.out.println("Zgadnij słowo: ");
-//            System.out.println(hangmanService.getCorrectWord());
-//            System.out.println(hangmanService.encodeWord());
-//            String guess = input.readText();
-//            TryResult result = hangmanService.tryInput(guess);
-//            printResult(result);
-//        }
-//    }
+        play(word1);
+
+        System.out.println("Pora się odegrać, wpisz słowo dla gracza 1:");
+        String word2 = input.readText();
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
+        play(word2);
+    }
 
     private void printAlphabet() {
         for (Character c : hangmanService.getAvailableLetters()) {
             System.out.print(c + " ");
         }
+        System.out.println();
     }
 
     private void printResult(TryResult result) {
@@ -106,6 +86,23 @@ public class MainController {
             case YOU_GUESSED_LETTER:
                 System.out.println("Prawiodłowa litera! Brawo!");
                 break;
+        }
+    }
+
+    private void play(String word){
+        while (true) {
+            printAlphabet();
+            System.out.println("Zgadnij słowo: ");
+            hangmanService.preparedTwoPlayerVersion(word);
+            System.out.println(hangmanService.encodeWord());
+            String guess = input.readText();
+            TryResult result = hangmanService.tryInput(guess);
+            printResult(result);
+            if(result.equals(TryResult.YOU_GUESSED_WORD)){
+                break;
+            } else if (result.equals(TryResult.YOU_DONT_GUESSED_WORD)) {
+                break;
+            }
         }
     }
 

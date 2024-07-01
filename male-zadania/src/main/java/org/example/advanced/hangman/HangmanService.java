@@ -104,6 +104,11 @@ public class HangmanService {
         }
     }
 
+    void   preparedTwoPlayerVersion(String userWord){
+        correctWord = userWord;
+    }
+
+
     private static final String[] HANGMAN_STAGES = {
             """
           +---+
