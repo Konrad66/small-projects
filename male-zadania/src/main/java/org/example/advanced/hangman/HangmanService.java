@@ -105,7 +105,7 @@ public class HangmanService {
         }
     }
 
-    void preparedTwoPlayerVersion(String userWord){
+    void setUserWord(String userWord){
         correctWord = userWord;
     }
 

@@ -39,15 +39,8 @@ public class MainController {
 
     private void soloPlayerVersion() {
         System.out.println("Celem gry jest odgadnięcie zakodowanego słowa. Powodzenia!");
-        while (true) {
-            printAlphabet();
-            System.out.println("Zgadnij słowo: ");
-            //System.out.println(hangmanService.getCorrectWord());
-            System.out.println(hangmanService.encodeWord());
-            String guess = input.readText();
-            TryResult result = hangmanService.tryInput(guess);
-            printResult(result);
-        }
+        System.out.println(hangmanService.getCorrectWord());
+        play();
     }
 
     private void twoPlayerVersion() {
@@ -58,22 +51,12 @@ public class MainController {
         hangmanService.setNumberOfRounds(numberOfRounds);
 
         for(int i = 0; i < hangmanService.getNumberOfRounds(); i++){
-            System.out.println("Wpisz słowo dla swojego przeciwnika: ");
-            System.out.println("Gracz 1");
-            String word1 = input.readText();
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            prepareWordForUser(1);
+            play();
 
-            play(word1);
-
-            System.out.println("Pora się odegrać, wpisz słowo dla gracza 1:");
-            System.out.println("Gracz 2");
-            String word2 = input.readText();
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-
-            play(word2);
+            prepareWordForUser(2);
+            play();
         }
-
-
     }
 
     private void printAlphabet() {
@@ -100,11 +83,10 @@ public class MainController {
         }
     }
 
-    private void play(String word){
+    private void play(){
         while (true) {
             printAlphabet();
             System.out.println("Zgadnij słowo: ");
-            hangmanService.preparedTwoPlayerVersion(word);
             System.out.println(hangmanService.encodeWord());
             String guess = input.readText();
             TryResult result = hangmanService.tryInput(guess);
@@ -116,6 +98,15 @@ public class MainController {
             }
         }
     }
+
+    private void prepareWordForUser(int user){
+        System.out.println("Gracz " + user);
+        System.out.println("Wpisz słowo dla swojego przeciwnika: ");
+        String word = input.readText();
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        hangmanService.setUserWord(word);
+    }
+
 
 // mozna dorobic "logowanie gracza" aby wybrac postac na ktorej beda sie liczyc pkt i robic statystyki
 }
