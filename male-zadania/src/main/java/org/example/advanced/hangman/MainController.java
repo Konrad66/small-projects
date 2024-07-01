@@ -84,19 +84,15 @@ public class MainController {
     }
 
     private void play(){
-        while (true) {
+        TryResult result;
+        do {
             printAlphabet();
             System.out.println("Zgadnij słowo: ");
             System.out.println(hangmanService.encodeWord());
             String guess = input.readText();
-            TryResult result = hangmanService.tryInput(guess);
+            result = hangmanService.tryInput(guess);
             printResult(result);
-            if(result.equals(TryResult.YOU_GUESSED_WORD)){
-                break;
-            } else if (result.equals(TryResult.YOU_DONT_GUESSED_WORD)) {
-                break;
-            }
-        }
+        } while (!result.equals(TryResult.YOU_GUESSED_WORD) && !result.equals(TryResult.YOU_DONT_GUESSED_WORD));
     }
 
     private void prepareWordForUser(int user){
@@ -106,7 +102,6 @@ public class MainController {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         hangmanService.setUserWord(word);
     }
-
 
 // mozna dorobic "logowanie gracza" aby wybrac postac na ktorej beda sie liczyc pkt i robic statystyki
 }
