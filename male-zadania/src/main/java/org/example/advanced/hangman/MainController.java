@@ -39,7 +39,7 @@ public class MainController {
 
     private void soloPlayerVersion() {
         System.out.println("Celem gry jest odgadnięcie zakodowanego słowa. Powodzenia!");
-        System.out.println(hangmanService.getCorrectWord());
+        //System.out.println(hangmanService.getCorrectWord());
         play();
     }
 
@@ -73,6 +73,7 @@ public class MainController {
                 return;
             case YOU_DONT_GUESSED_WORD:
                 System.out.println("Przegrałeś!");
+                System.out.println("Słowo to " + hangmanService.getCorrectWord());
                 return;
             case YOU_DONT_GUESSED:
                 System.out.println("Nie trafiłeś. Spróbuj jeszcze raz.");

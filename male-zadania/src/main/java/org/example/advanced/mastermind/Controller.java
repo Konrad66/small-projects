@@ -7,13 +7,12 @@ public class Controller {
 
     void play(){
         System.out.println("Witaj w grze mastermind. Powodzenia!");
+
         System.out.println("Wybierz ile znakow chcesz odgadnac");
         int numberOfSymbols = input.readNumber();
-
-
         service.setNumberOfSymbols(numberOfSymbols);
 
-        service.mastermind();
+        service.randomCode();
     }
 
 
