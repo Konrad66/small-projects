@@ -44,6 +44,7 @@ public class Service {
             }
         }
 
+        //todo zrobic warunek do wygrania i przegrania + powtarzanie rozgrywki + znalexc i sprobowac znalezc błąd w drukowaniu wyników + zastanowic sie co dodac od siebie do gry + pomyslec nad kolejna gra
 
         List<String> results = new ArrayList<>();
         for (int i = 0; i < symbolsEncode.size(); i++) {
