@@ -40,20 +40,61 @@ public class Service {
         for (int i = 0; i < symbolsEncode.size(); i++) {
             if (symbolsEncode.get(i).equals(String.valueOf(guess.charAt(i)))) {
                 redCounter++;
+
             }
         }
 
 
-        //dostajemy znak
-        // sprawdzamy znak z kazdym miejscem zakodowanego hasla
-        // jezeli znak zgadza sie z ktoryms w zakodowanym hasle/
-        // prinmtujemy odpowiedz
-        String red = "R";
-        System.out.println(redCounter);
-        for (int j = 0; j < redCounter; j++){
-            System.out.print(red + " ");
+        List<String> results = new ArrayList<>();
+        for (int i = 0; i < symbolsEncode.size(); i++) {
+            String result = "B";
+            for (int j = 0; j < guess.length(); j++) {
+                if (symbolsEncode.get(i).equals(String.valueOf(guess.charAt(j)))) {
+                    if (i == j) {
+                        result = "R";
+                        break;
+                    } else {
+                        result = "W";
+                    }
+                }
+            }
+            results.add(result);
         }
+        System.out.println(results);
     }
+
+    // +++-
+    // //++
+    //RW     // RWW ?
+
+    // +---
+    // //++
+    // W
+
+    //- For each color in your guess that is in the correct color but is NOT in the correct position in the code sequence,
+    // the computer display a small white color on the right side of the current guess.
+    // +---
+    // /+++
+    //W
+    //WWW?
+
+    //String = "R"
+    // + # ! = wersja dla nas
+    // # ! # !       -     - nasze odp
+
+// R W
+
+
+    /// sprawdzanie
+    // ?!-!
+    // ?!??
+    // [R, R, B, W]
+
+
+    //dostajemy znak
+    // sprawdzamy znak z kazdym miejscem zakodowanego hasla
+    // jezeli znak zgadza sie z ktoryms w zakodowanym hasle/
+    // prinmtujemy odpowiedz
 
 
 //    String encodeSymbol(){
