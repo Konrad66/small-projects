@@ -12,7 +12,12 @@ public class Controller {
         int numberOfSymbols = input.readNumber();
         service.setNumberOfSymbols(numberOfSymbols);
 
-        service.randomCode();
+
+        service.drawSymbol();
+        System.out.println();
+        String guess = input.readText();
+
+        service.checkAnswer(guess);
     }
 
 

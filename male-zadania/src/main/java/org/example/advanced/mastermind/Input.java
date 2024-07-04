@@ -11,4 +11,8 @@ public class Input {
         scanner.nextLine();
         return number;
     }
+
+    String readText(){
+        return scanner.nextLine();
+    }
 }
