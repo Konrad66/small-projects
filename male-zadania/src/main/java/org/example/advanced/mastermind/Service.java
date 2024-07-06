@@ -9,6 +9,13 @@ public class Service {
     private List<String> symbols = new ArrayList<>(List.of("+", "-", "*", "=", "!", "?", "/", "#"));
     private int numberOfSymbols = 0;
     private List<String> symbolsEncode = new ArrayList<>();
+    private List<String> results = new ArrayList<>();
+
+    //todo zrobic warunek do wygrania i przegrania
+    //todo powtarzanie rozgrywki
+    //todo sprobowac znalezc błąd w drukowaniu wyników
+    //todo zastanowic sie co dodac od siebie do gry
+    //todo pomyslec nad kolejna gra
 
 
     void drawSymbol() {
@@ -20,14 +27,6 @@ public class Service {
         printEncodeSymbols();
     }
 
-    private int getNumberOfSymbols() {
-        return numberOfSymbols;
-    }
-
-    void setNumberOfSymbols(int numberOfSymbols) {
-        this.numberOfSymbols = numberOfSymbols;
-    }
-
     private void printEncodeSymbols() {
         for (String symbol : symbolsEncode) {
             System.out.print(symbol);
@@ -35,18 +34,6 @@ public class Service {
     }
 
     void checkAnswer(String guess) {
-        int redCounter = 0;
-        int whiteCounter = 0;
-        for (int i = 0; i < symbolsEncode.size(); i++) {
-            if (symbolsEncode.get(i).equals(String.valueOf(guess.charAt(i)))) {
-                redCounter++;
-
-            }
-        }
-
-        //todo zrobic warunek do wygrania i przegrania + powtarzanie rozgrywki + znalexc i sprobowac znalezc błąd w drukowaniu wyników + zastanowic sie co dodac od siebie do gry + pomyslec nad kolejna gra
-
-        List<String> results = new ArrayList<>();
         for (int i = 0; i < symbolsEncode.size(); i++) {
             String result = "B";
             for (int j = 0; j < guess.length(); j++) {
@@ -63,6 +50,22 @@ public class Service {
         }
         System.out.println(results);
     }
+
+    private int getNumberOfSymbols() {
+        return numberOfSymbols;
+    }
+
+    void setNumberOfSymbols(int numberOfSymbols) {
+        this.numberOfSymbols = numberOfSymbols;
+    }
+
+//    void conditionToWin() {
+//        for (int i = 0; i < results.size(); i++) {
+//            if (results.get(i).equals("R")) {
+//                playerWin = true;
+//            }
+//        }
+//    }
 
     // +++-
     // //++
