@@ -35,8 +35,11 @@ public class Controller {
         int numberOfSymbols = input.readNumber();
         service.setNumberOfSymbols(numberOfSymbols);
         service.drawSymbol();
-        System.out.println();
-        String guess = input.readText();
-        service.checkAnswer(guess);
+
+        String guess;
+        do {
+            guess = input.readText();
+            service.checkAnswer(guess);
+        } while (!service.isCorrectGuess(guess));
     }
 }

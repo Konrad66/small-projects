@@ -31,9 +31,11 @@ public class Service {
         for (String symbol : symbolsEncode) {
             System.out.print(symbol);
         }
+        System.out.println();
     }
 
     void checkAnswer(String guess) {
+        results.clear();
         for (int i = 0; i < symbolsEncode.size(); i++) {
             String result = "B";
             for (int j = 0; j < guess.length(); j++) {
@@ -59,13 +61,15 @@ public class Service {
         this.numberOfSymbols = numberOfSymbols;
     }
 
-//    void conditionToWin() {
-//        for (int i = 0; i < results.size(); i++) {
-//            if (results.get(i).equals("R")) {
-//                playerWin = true;
-//            }
-//        }
-//    }
+    boolean isCorrectGuess(String guess) {
+        for (int i = 0; i < numberOfSymbols; i++){
+            System.out.println(i);
+            if (symbolsEncode.get(i).equals(String.valueOf(guess.charAt(i)))){
+                return true;
+            }
+        }
+        return false;
+    }
 
     // +++-
     // //++
@@ -137,5 +141,3 @@ public class Service {
 //uzytkownik ma mozliwosc wpisania niewiadomych
 // po wpisaniu wszystkich
 // program sprawdza czy sie zgadzaja
-
-
