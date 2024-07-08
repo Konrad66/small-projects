@@ -9,7 +9,7 @@ public class StringEdit {
         input2.setCharAt(j,')');
         System.out.println(input2);
         System.out.println(input);
-        input = input2.toString()
+        input = input2.toString();
         System.out.println(input);
     }
 }
