@@ -17,7 +17,19 @@ public class Service {
         //todo powtarzanie rozgrywki
         //todo sprobowac znalezc błąd w drukowaniu wyników
     //todo zastanowic sie co dodac od siebie do gry
+    //tryb dla dwóch graczy
+    //jakieś statystyki (punktacja, po jakim czasie odgadneliśmy hasło)
+    //może by się udało w LibGDX graficzną wersje albo coś innego
+    //może historię rozgrywek?
     //todo pomyslec nad kolejna gra
+    //gra w kółko i krzyżyk
+    //może kolejna aplikacja do zarządzania czymś? (biblioteka, wypożyczalnia samochodów, zarządzanie danymi osobowymi,
+    //blackjack
+    //wojna
+    //kamien papier nozyce
+    //poker
+
+
 
 
     void drawSymbol() {
