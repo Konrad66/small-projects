@@ -10,15 +10,18 @@ public class Service {
     private int numberOfSymbols = 0;
     private List<String> symbolsEncode = new ArrayList<>();
     private List<String> results = new ArrayList<>();
+    private int attempts = 0;
+    private final int maxAttempts = 10;
 
-    //todo zrobic warunek do wygrania i przegrania
-    //todo powtarzanie rozgrywki
-    //todo sprobowac znalezc błąd w drukowaniu wyników
+        //todo zrobic warunek do wygrania i przegrania
+        //todo powtarzanie rozgrywki
+        //todo sprobowac znalezc błąd w drukowaniu wyników
     //todo zastanowic sie co dodac od siebie do gry
     //todo pomyslec nad kolejna gra
 
 
     void drawSymbol() {
+        symbolsEncode.clear();
         Random random = new Random();
         for (int i = 0; i < getNumberOfSymbols(); i++) {
             int randomIndex = random.nextInt(symbols.size());
@@ -36,6 +39,7 @@ public class Service {
 
     void checkAnswer(String guess) {
         results.clear();
+        attempts++;
         for (int i = 0; i < symbolsEncode.size(); i++) {
             String result = "B";
             for (int j = 0; j < guess.length(); j++) {
@@ -61,14 +65,22 @@ public class Service {
         this.numberOfSymbols = numberOfSymbols;
     }
 
+    public int getAttempts() {
+        return attempts;
+    }
+
     boolean isCorrectGuess(String guess) {
-        for (int i = 0; i < numberOfSymbols; i++){
+        for (int i = 0; i < numberOfSymbols; i++) {
             System.out.println(i);
-            if (symbolsEncode.get(i).equals(String.valueOf(guess.charAt(i)))){
+            if (symbolsEncode.get(i).equals(String.valueOf(guess.charAt(i)))) {
                 return true;
             }
         }
         return false;
+    }
+
+    boolean hasAttemptsLeft(){
+        return attempts > maxAttempts;
     }
 
     // +++-

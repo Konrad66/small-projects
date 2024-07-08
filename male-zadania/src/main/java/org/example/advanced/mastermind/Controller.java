@@ -40,6 +40,8 @@ public class Controller {
         do {
             guess = input.readText();
             service.checkAnswer(guess);
-        } while (!service.isCorrectGuess(guess));
+            System.out.println("Pozostało Ci " + (10 - service.getAttempts()) + " prob!");
+
+        } while (!service.isCorrectGuess(guess) || service.hasAttemptsLeft());
     }
 }
