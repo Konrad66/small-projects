@@ -1,6 +1,6 @@
 package org.example.advanced.mastermind;
 
-public class Controller {
+class Controller {
 
     private boolean running = true;
     private Service service = new Service();
@@ -31,6 +31,7 @@ public class Controller {
     }
 
     private void play() {
+        service.restartGame();
         System.out.println("Wybierz ile znakow chcesz odgadnac");
         int numberOfSymbols = input.readNumber();
         service.setNumberOfSymbols(numberOfSymbols);
@@ -41,7 +42,6 @@ public class Controller {
             guess = input.readText();
             service.checkAnswer(guess);
             System.out.println("Pozostało Ci " + (10 - service.getAttempts()) + " prob!");
-
-        } while (!service.isCorrectGuess(guess) || service.hasAttemptsLeft());
+        } while (!service.isCorrectGuess(guess) && service.hasAttemptsLeft());
     }
 }

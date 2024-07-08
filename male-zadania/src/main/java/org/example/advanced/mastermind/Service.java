@@ -13,9 +13,9 @@ public class Service {
     private int attempts = 0;
     private final int maxAttempts = 10;
 
-        //todo zrobic warunek do wygrania i przegrania
-        //todo powtarzanie rozgrywki
-        //todo sprobowac znalezc błąd w drukowaniu wyników
+    //todo zrobic warunek do wygrania i przegrania
+    //todo powtarzanie rozgrywki
+    //todo sprobowac znalezc błąd w drukowaniu wyników
     //todo zastanowic sie co dodac od siebie do gry
     //tryb dla dwóch graczy
     //jakieś statystyki (punktacja, po jakim czasie odgadneliśmy hasło)
@@ -29,8 +29,11 @@ public class Service {
     //kamien papier nozyce
     //poker
 
+    //todo
 
-
+    void restartGame() {
+        attempts = 0;
+    }
 
     void drawSymbol() {
         symbolsEncode.clear();
@@ -49,7 +52,9 @@ public class Service {
         System.out.println();
     }
 
+    //todo sprawdzić uważnie debugerem i soutami
     void checkAnswer(String guess) {
+        StringBuilder guessBuilder = new StringBuilder(guess);
         results.clear();
         attempts++;
         for (int i = 0; i < symbolsEncode.size(); i++) {
@@ -58,14 +63,33 @@ public class Service {
                 if (symbolsEncode.get(i).equals(String.valueOf(guess.charAt(j)))) {
                     if (i == j) {
                         result = "R";
+                        results.add(result);
                         break;
-                    } else {
-                        result = "W";
                     }
+                    guessBuilder.setCharAt(j, ')');
+                    guess = guessBuilder.toString();
+                }
+            }
+
+        }
+
+        for (int i = 0; i < symbolsEncode.size(); i++) {
+            String result = "B";
+            for (int j = 0; j < guess.length(); j++) {
+                if (symbolsEncode.get(i).equals(String.valueOf(guess.charAt(j)))) {
+                    if (i != j) {
+                        result = "W";
+                        results.add(result);
+                        break;
+                    }
+                    guessBuilder.setCharAt(j, ')');
+                    guess = guessBuilder.toString();
                 }
             }
             results.add(result);
         }
+
+
         System.out.println(results);
     }
 
@@ -77,22 +101,27 @@ public class Service {
         this.numberOfSymbols = numberOfSymbols;
     }
 
-    public int getAttempts() {
+    int getAttempts() {
         return attempts;
     }
 
     boolean isCorrectGuess(String guess) {
+        // /++!
+        // ----  -> false
+        // /--- -> true
         for (int i = 0; i < numberOfSymbols; i++) {
-            System.out.println(i);
-            if (symbolsEncode.get(i).equals(String.valueOf(guess.charAt(i)))) {
-                return true;
+            if (!symbolsEncode.get(i).equals(String.valueOf(guess.charAt(i)))) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
-    boolean hasAttemptsLeft(){
-        return attempts > maxAttempts;
+    boolean hasAttemptsLeft() {
+        if (attempts >= maxAttempts) {
+            return false;
+        }
+        return true;
     }
 
     // +++-
@@ -165,3 +194,22 @@ public class Service {
 //uzytkownik ma mozliwosc wpisania niewiadomych
 // po wpisaniu wszystkich
 // program sprawdza czy sie zgadzaja
+
+
+//+++ - zakodowane hasło
+// dodatkowa zmienna
+
+// +--
+// +++
+// R, B, B
+
+//ładowanie naszego hasła
+
+// ++-
+
+
+// -=*/#/
+// /))))/
+// [B, B, B, W, B, W]
+
+
