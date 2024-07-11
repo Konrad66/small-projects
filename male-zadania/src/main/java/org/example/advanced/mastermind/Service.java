@@ -8,8 +8,7 @@ public class Service {
 
     private List<String> symbols = new ArrayList<>(List.of("+", "-", "*", "=", "!", "?", "/", "#"));
     private int numberOfSymbols = 0;
-    private List<String> symbolsEncode = new ArrayList<>();
-    private List<String> results = new ArrayList<>();
+    private String symbolsEncode = "";
     private int attempts = 0;
     private final int maxAttempts = 10;
 
@@ -35,62 +34,48 @@ public class Service {
     }
 
     void drawSymbol() {
-        symbolsEncode.clear();
+        symbolsEncode = "";
         Random random = new Random();
         for (int i = 0; i < getNumberOfSymbols(); i++) {
             int randomIndex = random.nextInt(symbols.size());
-            symbolsEncode.add(symbols.get(randomIndex));
+            symbolsEncode += symbols.get(randomIndex);
         }
         printEncodeSymbols();
     }
 
     private void printEncodeSymbols() {
-        for (String symbol : symbolsEncode) {
-            System.out.print(symbol);
-        }
-        System.out.println();
+        System.out.println(symbolsEncode);
     }
 
-    //todo sprawdzić uważnie debugerem i soutami
-    void checkAnswer(String guess) {
+    String checkAnswer(String guess) {
         StringBuilder guessBuilder = new StringBuilder(guess);
-        results.clear();
+        StringBuilder symbolsEncodeBuilder = new StringBuilder(symbolsEncode);
+        char unavailableSymbol = ')';
+        String result = "";
         attempts++;
-        for (int i = 0; i < symbolsEncode.size(); i++) {
-            String result = "B";
-            for (int j = 0; j < guess.length(); j++) {
-                if (symbolsEncode.get(i).equals(String.valueOf(guess.charAt(j)))) {
-                    if (i == j) {
-                        result = "R";
-                        results.add(result);
-                        break;
-                    }
-                    guessBuilder.setCharAt(j, ')');
-                    guess = guessBuilder.toString();
-                }
+        for (int i = 0; i < symbolsEncode.length(); i++) {
+            if (symbolsEncodeBuilder.charAt(i) == guessBuilder.charAt(i)) {
+                result += "R";
+                guessBuilder.setCharAt(i, unavailableSymbol);
+                symbolsEncodeBuilder.setCharAt(i, unavailableSymbol);
             }
-
         }
 
-        for (int i = 0; i < symbolsEncode.size(); i++) {
-            String result = "B";
+        for (int i = 0; i < symbolsEncodeBuilder.length(); i++) {
             for (int j = 0; j < guess.length(); j++) {
-                if (symbolsEncode.get(i).equals(String.valueOf(guess.charAt(j)))) {
-                    if (i != j) {
-                        result = "W";
-                        results.add(result);
-                        break;
-                    }
-                    guessBuilder.setCharAt(j, ')');
-                    guess = guessBuilder.toString();
+                char guessSymbol = guessBuilder.charAt(j);
+                char encodeSymbol = symbolsEncodeBuilder.charAt(i);
+                if (encodeSymbol == guessSymbol && encodeSymbol != unavailableSymbol && i != j) {
+                    result += "W";
+                    guessBuilder.setCharAt(j, unavailableSymbol);
+                    symbolsEncodeBuilder.setCharAt(i, unavailableSymbol);
+                    break;
                 }
             }
-            results.add(result);
         }
-
-
-        System.out.println(results);
+        return result;
     }
+
 
     private int getNumberOfSymbols() {
         return numberOfSymbols;
@@ -109,7 +94,7 @@ public class Service {
         // ----  -> false
         // /--- -> true
         for (int i = 0; i < numberOfSymbols; i++) {
-            if (!symbolsEncode.get(i).equals(String.valueOf(guess.charAt(i)))) {
+            if (symbolsEncode.charAt(i) != guess.charAt(i)) {
                 return false;
             }
         }

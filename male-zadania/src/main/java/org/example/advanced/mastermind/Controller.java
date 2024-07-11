@@ -40,7 +40,7 @@ class Controller {
         String guess;
         do {
             guess = input.readText();
-            service.checkAnswer(guess);
+            System.out.println(service.checkAnswer(guess));
             System.out.println("Pozostało Ci " + (10 - service.getAttempts()) + " prob!");
         } while (!service.isCorrectGuess(guess) && service.hasAttemptsLeft());
     }
