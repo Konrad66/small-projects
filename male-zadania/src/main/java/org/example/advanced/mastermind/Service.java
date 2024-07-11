@@ -29,7 +29,6 @@ public class Service {
     //kamien papier nozyce
     //poker
 
-    //todo
 
     void restartGame() {
         attempts = 0;
