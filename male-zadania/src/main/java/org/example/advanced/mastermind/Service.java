@@ -48,42 +48,9 @@ public class Service {
     }
 
     String checkAnswer(String guess) {
-        StringBuilder guessBuilder = new StringBuilder(guess);
-        StringBuilder symbolsEncodeBuilder = new StringBuilder(symbolsEncode);
-        char unavailableSymbol = ')';
+        AnswerChecker answerChecker = new AnswerChecker();
         attempts++;
-        int reds = deleteReds(guessBuilder, symbolsEncodeBuilder, unavailableSymbol);
-        int whites = deleteWhites(guessBuilder, symbolsEncodeBuilder, unavailableSymbol);
-        return "R".repeat(reds) + "W".repeat(whites);
-    }
-
-    private int deleteReds(StringBuilder guessBuilder, StringBuilder symbolsEncodeBuilder, char unavailableSymbol) {
-        int howManyReds = 0;
-        for (int i = 0; i < symbolsEncode.length(); i++) {
-            if (symbolsEncodeBuilder.charAt(i) == guessBuilder.charAt(i)) {
-                howManyReds++;
-                guessBuilder.setCharAt(i, unavailableSymbol);
-                symbolsEncodeBuilder.setCharAt(i, unavailableSymbol);
-            }
-        }
-        return howManyReds;
-    }
-
-    private int deleteWhites(StringBuilder guessBuilder, StringBuilder symbolsEncodeBuilder, char unavailableSymbol) {
-        int howManyWhites = 0;
-        for (int i = 0; i < symbolsEncodeBuilder.length(); i++) {
-            for (int j = 0; j < guessBuilder.length(); j++) {
-                char guessSymbol = guessBuilder.charAt(j);
-                char encodeSymbol = symbolsEncodeBuilder.charAt(i);
-                if (encodeSymbol == guessSymbol && encodeSymbol != unavailableSymbol && i != j) {
-                    howManyWhites++;
-                    guessBuilder.setCharAt(j, unavailableSymbol);
-                    symbolsEncodeBuilder.setCharAt(i, unavailableSymbol);
-                    break;
-                }
-            }
-        }
-        return howManyWhites;
+        return answerChecker.checkAnswer(guess,symbolsEncode);
     }
 
 
