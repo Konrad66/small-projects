@@ -15,12 +15,24 @@ class Service {
                 cardDeck.add(new Card(i, j));
             }
         }
+        for (Card card : cardDeck) {
+            System.out.println(card);
+        }
     }
 
 
     void shuffleCards() {
+        List<Card> playerDeck = new ArrayList<>();
         Random random = new Random();
-        int randomIndex = random.nextInt(cardDeck.size());
+        for(int i = 0; i < cardDeck.size(); i++){
+            for (int j = 0; j < 28; j++){
+                int randomIndex = random.nextInt(cardDeck.size());
+
+
+            }
+
+
+        }
 
 
     }
@@ -30,4 +42,14 @@ class Service {
     //mamy listę kart chcemy je rozdzielić na 1 gracza;
 
 
+
 }
+
+//chcemy wylosować połowę elementów z jednej listy i dodać je do drugiej listy
+
+
+
+
+
+// 56 kart
+// 28 na gracza

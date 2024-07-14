@@ -28,9 +28,45 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "color=" + color +
-                ", figures=" + figures +
-                '}';
+        StringBuilder displayCard = new StringBuilder();
+
+        switch (figures) {
+            case 11:
+                displayCard.append("jack");
+                break;
+            case 12:
+                displayCard.append("queen");
+                break;
+            case 13:
+                displayCard.append("king");
+                break;
+            case 14:
+                displayCard.append("ace");
+                break;
+            case 15:
+                displayCard.append("joker");
+                break;
+            default:
+                displayCard.append(false);
+                break;
+        }
+
+        displayCard.append(" of ");
+
+        switch (color) {
+            case 0:
+                displayCard.append("trefl");
+                break;
+            case 1:
+                displayCard.append("karo");
+                break;
+            case 2:
+                displayCard.append("kier");
+                break;
+            case 3:
+                displayCard.append("pik");
+                break;
+        }
+        return displayCard.toString();
     }
 }
