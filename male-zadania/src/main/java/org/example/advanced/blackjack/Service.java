@@ -1,4 +1,4 @@
-package org.example.advanced.war_card_game;
+package org.example.advanced.blackjack;
 
 import java.util.ArrayList;
 import java.util.List;

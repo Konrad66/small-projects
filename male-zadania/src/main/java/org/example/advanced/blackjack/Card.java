@@ -1,4 +1,4 @@
-package org.example.advanced.war_card_game;
+package org.example.advanced.blackjack;
 
 public class Card {
 
