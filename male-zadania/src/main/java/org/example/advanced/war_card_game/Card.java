@@ -2,20 +2,22 @@ package org.example.advanced.war_card_game;
 
 public class Card {
 
-    int color;
-    int figures;
+  private  int color;
+   private int rank;
 
-    public Card(int color, int figures) {
+    //todo jak wykorzystac ENUM w przypadku tej klasy
+
+    public Card(int color, int rank) {
         this.color = color;
-        this.figures = figures;
+        this.rank = rank;
     }
 
-    public int getFigures() {
-        return figures;
+    public int getRank() {
+        return rank;
     }
 
-    public void setFigures(int figures) {
-        this.figures = figures;
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
     public int getColor() {
@@ -30,7 +32,7 @@ public class Card {
     public String toString() {
         StringBuilder displayCard = new StringBuilder();
 
-        switch (figures) {
+        switch (rank) {
             case 11:
                 displayCard.append("jack");
                 break;
@@ -47,7 +49,7 @@ public class Card {
                 displayCard.append("joker");
                 break;
             default:
-                displayCard.append(false);
+                displayCard.append(rank);
                 break;
         }
 

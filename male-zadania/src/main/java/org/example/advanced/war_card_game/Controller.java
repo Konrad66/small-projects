@@ -30,7 +30,7 @@ class Controller {
     }
 
     private void play(){
-        service.shuffleCards();
         service.createCards();
+        service.dealCards();
     }
 }
