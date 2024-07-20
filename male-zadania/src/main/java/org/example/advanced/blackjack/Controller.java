@@ -30,7 +30,13 @@ class Controller {
     }
 
     private void play(){
-        service.createCards();
+        System.out.println("Iloma chcesz zagrac taliami? Maksymalna liczba talli to 8.");
+        int choice = input.readNumber();
+        service.setNumberOfDecks(choice);
+        service.createDecks();
+        //Player player1 = service.getPlayer();
+
+
         service.dealCards();
     }
 }
