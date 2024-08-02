@@ -74,8 +74,7 @@ public class Board {
     }
 }
 
-//TODO
-//dzidziczenie i abstract poczytać + dodatkowo zadanie z dziedziczenia
+//TODO dzidziczenie i abstract poczytać + dodatkowo zadanie z dziedziczenia
 
 
 /*

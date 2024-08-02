@@ -1,60 +1,57 @@
 package org.example.advanced.blackjack;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 class Service {
 
-   private List<Card> cardDeck;
-   private int maxNumberOfDecks = 8;
-   private int numberOfDecks = 0;
+    private List<Card> cardsDeck = new ArrayList<>();
+    private Player player;
+    private Dealer dealer;
 
-    void createDecks() {
-        cardDeck = new ArrayList<>();
-        for (int k = 0; k < maxNumberOfDecks; k++) {
-            createDeck();
-        }
-        for (Card card : cardDeck) {
-            System.out.println(card);
-        }
+
+    Service() {
+        createDeck();
+        shuffleDeck();
+        player = new Player(drawCard(), drawCard(), 1000);
+        dealer = new Dealer(drawCard());
     }
 
-    private void createDeck(){
+    private void createDeck() {
         for (Color color : Color.values()) {
             for (Rank rank : Rank.values()) {
-                cardDeck.add(new Card(color, rank));
+                cardsDeck.add(new Card(color, rank));
             }
         }
     }
 
-    void dealCards() {
-        List<Card> playerDeck = new ArrayList<>();
-        Random random = new Random();
-        for (int i = 0; i < 2; i++) {
-            int randomIndex = random.nextInt(cardDeck.size());
-            playerDeck.add(cardDeck.get(randomIndex));
-        }
+    private void shuffleDeck() {
+        Collections.shuffle(cardsDeck);
+    }
+
+    private Card drawCard() {
+        return cardsDeck.remove(0);
+    }
+
+    Player getPlayer() {
+        return player;
+    }
+
+    Dealer getDealer() {
+//        Card dealerCard = dealer.getCard2();
+//        dealerCard.setHidden(false);
+        return dealer;
     }
 
 
-//    Card dealCard(){
-//        return
-//    }
+    void decide(String choice) {
 
-
-
-    public int getNumberOfDecks() {
-        return numberOfDecks;
     }
 
-    public void setNumberOfDecks(int numberOfDecks) {
-        this.numberOfDecks = numberOfDecks;
-    }
-
-//    Player getPlayer(){
-//        return new Player()
-//    }
+    //todo stworzenie krupiera narazie w service
+    //todo gracz decyduje czy chce pasowac czy dobierac karte
+    //todo warunek do wygrania
+    //todo w przypadku komputera mozna zrobi ze jeden dobiera np od sumy 15 a drugi np tylko od 17
+    //
 }
 
 
@@ -63,3 +60,7 @@ class Service {
 // krupier rozdaje dwie karty, a następnie gracz może prosić o dobranie kart, aż osiągnie 21 punktów
 // Z kolei krupier dopiera karty do 17 oczek
 // w grze moze maksymalnie uczestniczyc 7 graczy;
+//karta krupiera odzsłania się w momencie jak wszyscy gracze spasują
+
+
+//wykładamy dwie karty, mamy informacje

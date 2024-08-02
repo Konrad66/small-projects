@@ -2,9 +2,18 @@ package org.example.advanced.blackjack;
 
 public class Player {
 
+
+    //lista zamiast osobno definiowac karty w zmiennych
+
     private Card card1;
     private Card card2;
     private int money;
+
+    public Player(Card card1, Card card2, int money) {
+        this.card1 = card1;
+        this.card2 = card2;
+        this.money = money;
+    }
 
     public Card getCard1() {
         return card1;
@@ -14,11 +23,12 @@ public class Player {
         return card2;
     }
 
-    public Player(Card card2, Card card1, int money) {
-        this.card2 = card2;
-        this.card1 = card1;
-        this.money = money;
+    public int countPoint(){
+        return card1.getRank().power + card2.getRank().power;
     }
 
-
+    @Override
+    public String toString() {
+        return card1 + " \n" + card2 + " \nMoney left: " + money;
+    }
 }

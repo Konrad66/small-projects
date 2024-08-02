@@ -24,8 +24,7 @@ public class RandomNumbers {
         int randomNumberFromRange = random.nextInt(start, end + 1);
 
         System.out.println(randomNumberFromRange);
-        //TODO poczytać
-        //przeciążenie - overloading
+        //TODO poczytac przeciążenie - overloading
         sayHello();
         sayHello("Konrad");
     }

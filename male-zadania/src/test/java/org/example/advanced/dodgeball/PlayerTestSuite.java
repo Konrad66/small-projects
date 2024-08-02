@@ -43,7 +43,6 @@ class PlayerTestSuite {
     }
 
 
-    //TODO
-    //sprawdzić co się stanie jeżeli wybiorę inny ruch
+    //TODO sprawdzić co się stanie jeżeli wybiorę inny ruch
 
 }

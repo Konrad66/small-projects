@@ -4,6 +4,7 @@ public class Card {
 
     private Color color;
     private Rank rank;
+    private boolean hidden = true;
 
     public Card(Color color, Rank rank) {
         this.color = color;
@@ -16,6 +17,14 @@ public class Card {
 
     public Rank getRank() {
         return rank;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 
     @Override
