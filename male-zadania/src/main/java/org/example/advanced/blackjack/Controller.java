@@ -30,6 +30,7 @@ class Controller {
     }
 
     private void play() {
+        System.out.println("Ile chcesz obstawić");
         Player player = service.getPlayer();
         Dealer dealer = service.getDealer();
         System.out.println("Player 1:");

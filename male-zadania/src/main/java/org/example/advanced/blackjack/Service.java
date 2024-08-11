@@ -17,9 +17,9 @@ class Service {
     }
 
     private void createDeck() {
-        for (Color color : Color.values()) {
-            for (Rank rank : Rank.values()) {
-                cardsDeck.add(new Card(color, rank));
+        for (Suit suit : Suit.values()) {
+            for (CardValue cardValue : CardValue.values()) {
+                cardsDeck.add(new Card(suit, cardValue));
             }
         }
     }

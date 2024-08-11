@@ -2,33 +2,24 @@ package org.example.advanced.blackjack;
 
 public class Card {
 
-    private Color color;
-    private Rank rank;
-    private boolean hidden = true;
+    private final Suit suit;
+    private final CardValue cardValue;
 
-    public Card(Color color, Rank rank) {
-        this.color = color;
-        this.rank = rank;
+    public Card(Suit suit, CardValue cardValue) {
+        this.suit = suit;
+        this.cardValue = cardValue;
     }
 
-    public Color getColor() {
-        return color;
+    public Suit getColor() {
+        return suit;
     }
 
-    public Rank getRank() {
-        return rank;
-    }
-
-    public boolean isHidden() {
-        return hidden;
-    }
-
-    public void setHidden(boolean hidden) {
-        this.hidden = hidden;
+    public CardValue getRank() {
+        return cardValue;
     }
 
     @Override
     public String toString() {
-        return rank + " of " + color;
+        return cardValue + " of " + suit;
     }
 }

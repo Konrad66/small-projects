@@ -1,9 +1,15 @@
 package org.example.advanced.blackjack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
 
 
     //lista zamiast osobno definiowac karty w zmiennych
+
+    private List<Card> playerCards = new ArrayList<>();
+
 
     private Card card1;
     private Card card2;
