@@ -9,28 +9,7 @@ class Service {
     private Dealer dealer;
 
 
-    Service() {
-        createDeck();
-        shuffleDeck();
-        player = new Player(drawCard(), drawCard(), 1000);
-        dealer = new Dealer(drawCard());
-    }
 
-    private void createDeck() {
-        for (Suit suit : Suit.values()) {
-            for (CardValue cardValue : CardValue.values()) {
-                cardsDeck.add(new Card(suit, cardValue));
-            }
-        }
-    }
-
-    private void shuffleDeck() {
-        Collections.shuffle(cardsDeck);
-    }
-
-    private Card drawCard() {
-        return cardsDeck.remove(0);
-    }
 
     Player getPlayer() {
         return player;
