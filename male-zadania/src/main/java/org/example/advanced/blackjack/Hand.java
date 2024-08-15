@@ -6,28 +6,38 @@ import java.util.List;
 public class Hand {
 
     private List<Card> playersCard = new ArrayList<>();
-    int sum = 0;
+    int handValue = 0;
 
 
-    void addCard(Card card){
+    void addCard(Card card) {
         playersCard.add(card);
     }
 
-    void calculateValue(){
+    void calculateValue() {
         for (Card card : playersCard) {
-
-            if (sum != 21){
-                if(card.getRank().power == CardValue.ACE.power){
-                    int newValueOfACE = CardValue.ACE.power - 10;
-                    sum += newValueOfACE;
+            handValue += card.getRank().power;
+            if (getHandValue() > 21){
+                if (card.getRank().power == CardValue.ACE.power){
+                    int newHandValue = handValue - 10;
                 }
             }
-            sum += card.getRank().power;
+
+            if (card.getRank().power == CardValue.ACE.power) {
+                if (getHandValue() > 21) {
+                    int newValueOfACE = CardValue.ACE.power - 10;
+                    handValue += newValueOfACE;
+                }
+            }
+            handValue += card.getRank().power;
         }
     }
 
-    boolean isBust(){
-        if (sum > 21){
+    public int getHandValue() {
+        return handValue;
+    }
+
+    boolean isBust() {
+        if (getHandValue() > 21) {
             return true;
         }
         return false;
