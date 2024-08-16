@@ -6,29 +6,29 @@ import java.util.List;
 public class Hand {
 
     private List<Card> playersCard = new ArrayList<>();
-    int handValue = 0;
+    private int handValue;
 
 
     void addCard(Card card) {
         playersCard.add(card);
     }
 
+    void clearHand(){
+        playersCard.clear();
+    }
+
     void calculateValue() {
+        handValue = 0;
+        int aceCount = 0;
         for (Card card : playersCard) {
             handValue += card.getRank().power;
-            if (getHandValue() > 21){
-                if (card.getRank().power == CardValue.ACE.power){
-                    int newHandValue = handValue - 10;
-                }
-            }
-
             if (card.getRank().power == CardValue.ACE.power) {
-                if (getHandValue() > 21) {
-                    int newValueOfACE = CardValue.ACE.power - 10;
-                    handValue += newValueOfACE;
-                }
+                aceCount++;
             }
-            handValue += card.getRank().power;
+        }
+        while (getHandValue() > 21 && aceCount > 0) {
+            handValue -= 10;
+            aceCount--;
         }
     }
 
@@ -37,9 +37,6 @@ public class Hand {
     }
 
     boolean isBust() {
-        if (getHandValue() > 21) {
-            return true;
-        }
-        return false;
+        return getHandValue() > 21;
     }
 }
