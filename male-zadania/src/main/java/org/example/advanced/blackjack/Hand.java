@@ -11,13 +11,19 @@ public class Hand {
 
     void addCard(Card card) {
         playersCard.add(card);
+        calculateValue();
     }
 
     void clearHand(){
         playersCard.clear();
+        handValue = 0;
     }
 
-    void calculateValue() {
+    public List<Card> getPlayersCard() {
+        return playersCard;
+    }
+
+     void calculateValue() {
         handValue = 0;
         int aceCount = 0;
         for (Card card : playersCard) {
@@ -32,7 +38,7 @@ public class Hand {
         }
     }
 
-    public int getHandValue() {
+    int getHandValue() {
         return handValue;
     }
 
