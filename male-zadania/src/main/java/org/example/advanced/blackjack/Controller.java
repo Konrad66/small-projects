@@ -39,10 +39,23 @@ class Controller {
         System.out.println("Dealer: ");
         System.out.println(dealer);
         System.out.println("*****************");
-        System.out.println(player.countPoint());
+        System.out.println("Wybierz czy chcesz pociągnąć kolejną kartę czy chcesz spasować ruch");
+        int choice = input.readNumber();
 
+        decideAction(choice, player);
+    }
 
+    void decideAction(int choice, Player player){
 
+        switch (choice){
+            case 1: //draw
+                player.takeCard();
+                break;
+            case 2: //pass
+                //System.out.println("Gracz " + );
+                break;
+        }
+    }
 
 
 
@@ -122,6 +135,8 @@ class Controller {
          */
 
 
+
+
 //        int choice = input.readNumber();
 //        service.numberOfDecksChecker(choice);
 //        service.createDecks();
@@ -130,5 +145,6 @@ class Controller {
 //        service.dealCards();
 //        service.dealRandomCard();
 
-    }
+
+
 }

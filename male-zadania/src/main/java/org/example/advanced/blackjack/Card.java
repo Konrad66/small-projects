@@ -10,12 +10,12 @@ public class Card {
         this.cardValue = cardValue;
     }
 
-    public Suit getColor() {
-        return suit;
-    }
-
     public CardValue getRank() {
         return cardValue;
+    }
+
+    int getPower() {
+        return cardValue.power;
     }
 
     @Override

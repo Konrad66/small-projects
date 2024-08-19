@@ -4,21 +4,19 @@ import java.util.*;
 
 class Service {
 
-    private List<Card> cardsDeck = new ArrayList<>();
     private Player player;
     private Dealer dealer;
-
-
-
 
     Player getPlayer() {
         return player;
     }
 
     Dealer getDealer() {
-//        Card dealerCard = dealer.getCard2();
-//        dealerCard.setHidden(false);
         return dealer;
+    }
+
+
+    void startGame(){
     }
 
 

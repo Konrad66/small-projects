@@ -6,69 +6,78 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HandTestSuite {
 
-    Hand playerHand = new Hand();
-    Card card1 = new Card(Suit.CLUBS, CardValue.ACE);
-    Card card2 = new Card(Suit.HEARTS, CardValue.ACE);
-    Card card3 = new Card(Suit.DIAMONDS, CardValue.EIGHT);
-    Card card4 = new Card(Suit.SPADES, CardValue.KING);
+   private Hand playerHand = new Hand();
+   private Card ace = new Card(Suit.CLUBS, CardValue.ACE);
+   private Card eight = new Card(Suit.DIAMONDS, CardValue.EIGHT);
+   private Card king = new Card(Suit.SPADES, CardValue.KING);
 
     @Test
     public void shouldAddCardsToPlayerHands() {
-        playerHand.addCard(card1);
-        playerHand.addCard(card4);
+        playerHand.addCard(ace);
+        playerHand.addCard(king);
         assertEquals(2, playerHand.getPlayersCard().size());
     }
 
     @Test
     public void testIsBust() {
-        playerHand.addCard(card4);
-        playerHand.addCard(card4);
-        playerHand.addCard(card3);
+        playerHand.addCard(king);
+        playerHand.addCard(king);
+        playerHand.addCard(eight);
         assertTrue(playerHand.isBust());
     }
 
     @Test
     public void testIsntBust() {
-        playerHand.addCard(card1);
-        playerHand.addCard(card4);
-        playerHand.addCard(card3);
+        playerHand.addCard(ace);
+        playerHand.addCard(king);
+        playerHand.addCard(eight);
         assertFalse(playerHand.isBust());
     }
 
     @Test
-    public void testCalculateValue() {
-        playerHand.addCard(card1);
-        playerHand.addCard(card2);
-        playerHand.addCard(card3);
-        assertEquals(20, playerHand.getHandValue());
+    public void testCalculateValueWithTwoAces() {
+        playerHand.addCard(ace);
+        playerHand.addCard(ace);
+        playerHand.addCard(eight);
+        assertEquals(20, playerHand.calculateValue());
     }
 
     @Test
-    public void test2CalculateValue() {
-        playerHand.addCard(card1);
-        playerHand.addCard(card4);
-        playerHand.addCard(card3);
-        playerHand.calculateValue();
-        assertEquals(19, playerHand.getHandValue());
+    public void test2CalculateValueWithAce() {
+        playerHand.addCard(ace);
+        playerHand.addCard(king);
+        playerHand.addCard(eight);
+        assertEquals(19, playerHand.calculateValue());
     }
 
     @Test
     public void testClearHand(){
-        playerHand.addCard(card1);
-        playerHand.addCard(card4);
-        playerHand.addCard(card3);
+        playerHand.addCard(ace);
+        playerHand.addCard(king);
+        playerHand.addCard(eight);
         playerHand.clearHand();
         assertEquals(0, playerHand.getPlayersCard().size());
     }
 
     @Test
     public void testClearHandAndCalculateHandValue(){
-        playerHand.addCard(card1);
-        playerHand.addCard(card4);
-        playerHand.addCard(card3);
+        playerHand.addCard(ace);
+        playerHand.addCard(king);
+        playerHand.addCard(eight);
         playerHand.clearHand();
-        assertEquals(0, playerHand.getHandValue());
+        assertEquals(0, playerHand.calculateValue());
     }
+
+    @Test
+    public void test3CalculateValue() {
+        playerHand.addCard(ace);
+        playerHand.addCard(king);
+        assertEquals(21, playerHand.calculateValue());
+    }
+
+
+    //todo testy parametryzowane
+
 
 
 }
