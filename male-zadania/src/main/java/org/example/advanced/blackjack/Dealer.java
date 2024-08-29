@@ -5,8 +5,7 @@ public class Dealer {
     private Card card1;
     private Card card2;
 
-    public Dealer(Card card1) {
-        this.card1 = card1;
+    public Dealer() {
     }
 
     public Card getCard1() {

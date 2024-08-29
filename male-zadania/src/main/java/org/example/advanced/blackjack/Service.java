@@ -1,35 +1,32 @@
 package org.example.advanced.blackjack;
 
-import java.util.*;
 
 class Service {
 
-    private Player player;
-    private Dealer dealer;
+    private Player player = new Player();
+    private Dealer dealer = new Dealer();
+    private Deck deck = new Deck();
 
-    Player getPlayer() {
+
+    void startGame() {
+
+    }
+
+    public Player getPlayer() {
         return player;
     }
 
-    Dealer getDealer() {
+    public Dealer getDealer() {
         return dealer;
     }
 
 
-    void startGame(){
-    }
-
-
-    void decide(String choice) {
-
-    }
-
-    //todo stworzenie krupiera narazie w service
-    //todo gracz decyduje czy chce pasowac czy dobierac karte
-    //todo warunek do wygrania
-    //todo w przypadku komputera mozna zrobi ze jeden dobiera np od sumy 15 a drugi np tylko od 17
-    //
 }
+//todo stworzenie krupiera narazie w service
+//todo gracz decyduje czy chce pasowac czy dobierac karte
+//todo warunek do wygrania
+//todo w przypadku komputera mozna zrobi ze jeden dobiera np od sumy 15 a drugi np tylko od 17
+//
 
 
 //zalozenia blackjack

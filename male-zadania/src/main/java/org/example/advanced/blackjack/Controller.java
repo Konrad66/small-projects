@@ -17,20 +17,24 @@ class Controller {
     private void printOptions() {
         System.out.println("Witaj w grze karcianej - wojna.");
         System.out.println("0. Opuść gre");
-        System.out.println("1. Zagraj z komputerem");
+        System.out.println("1. Zagraj");
     }
 
     private void executeOptions(int choice) {
         switch (choice) {
             case 0:
                 running = false;
+                break;
             case 1:
                 play();
+            default:
+                System.out.println("Zły wybór, wybierz jeszcze raz.");
         }
     }
 
     private void play() {
         System.out.println("Ile chcesz obstawić");
+
         Player player = service.getPlayer();
         Dealer dealer = service.getDealer();
         System.out.println("Player 1:");
@@ -49,11 +53,13 @@ class Controller {
 
         switch (choice){
             case 1: //draw
-                player.takeCard();
+               // player.takeCard();
                 break;
             case 2: //pass
-                //System.out.println("Gracz " + );
+                System.out.println("Gracz pasuje");
                 break;
+            default:
+                System.out.println("Zły wybór, wybierz jeszcze raz.");
         }
     }
 

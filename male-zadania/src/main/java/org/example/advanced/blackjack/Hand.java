@@ -6,6 +6,7 @@ import java.util.List;
 public class Hand {
 
     private List<Card> playersCard = new ArrayList<>();
+    private int money;
 
     void addCard(Card card) {
         playersCard.add(card);
