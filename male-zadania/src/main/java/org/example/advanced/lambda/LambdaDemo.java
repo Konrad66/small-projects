@@ -12,7 +12,7 @@ public class LambdaDemo {
         start.setAction(new StartAction());
         start.setAction(new InnerClass());
 
-        class LocalClassStartAction implements ButtonAction{
+        class LocalClassStartAction implements ButtonAction {
 
             @Override
             public void onClickAction() {
@@ -20,7 +20,7 @@ public class LambdaDemo {
             }
         }
         LocalClassStartAction buttonAction = new LocalClassStartAction();
-        ButtonAction buttonActionStartInner = new ButtonAction(){
+        ButtonAction buttonActionStartInner = new ButtonAction() {
             @Override
             public void onClickAction() {
                 System.out.println("Startujemy z abstr. klasy");
@@ -28,27 +28,26 @@ public class LambdaDemo {
         };
 
 
+        //todo klasy anonimowe poczytac
+        //w klasie anonimowje nie mozemy zrobic Construktora
 
 
         start.setAction(buttonAction);
-        start.setAction(buttonActionStartInner);
-        start.setAction( () -> System.out.println("Startujemy z lambdy. klasy"));
+        start.setAction(() -> System.out.println("Startujemy z abstr. klasy"));
+        start.setAction(() -> System.out.println("Startujemy z lambdy. klasy"));
 
         List<String> names = List.of("Kamil", "Maria", "Marta");
         for (String name : names) {
             System.out.println(name);
         }
 
-        names.forEach( name -> System.out.println(name));
-
-
+        names.forEach(name -> System.out.println(name));
 
 
         System.out.println(buttonAction.getClass());
         System.out.println(buttonActionStartInner.getClass());
 
         start.onClick();
-
 
 
 //        exit.onClick();
@@ -64,7 +63,7 @@ public class LambdaDemo {
         System.out.println("Kończymy program");
     }
 
-    static class InnerClass implements ButtonAction{
+    static class InnerClass implements ButtonAction {
 
         @Override
         public void onClickAction() {
@@ -75,7 +74,7 @@ public class LambdaDemo {
 
 }
 
- class Button {
+class Button {
     private int width;
     private int height;
     private String color;
@@ -98,7 +97,8 @@ public class LambdaDemo {
     }
 }
 
-
+//interface funkcyjny
+@FunctionalInterface
 interface ButtonAction {
 
     void onClickAction();
@@ -106,15 +106,13 @@ interface ButtonAction {
 }
 
 
-class StartAction implements ButtonAction{
+class StartAction implements ButtonAction {
 
     @Override
     public void onClickAction() {
         System.out.println("start");
     }
 }
-
-
 
 
 class ButtonExit extends Button {
