@@ -13,6 +13,7 @@ public class PersonDemo {
                 37, 61, 67, 89, 3, 5, 7, 7, 11, 71, 73, 97, 19, 19, 23, 29};
 
         StreamService streamService = new MyStreamService();
+        int maxValue = Arrays.stream(primeNumbers).max().getAsInt();
 
         //miejsce na Twoje testy zaimplementowanych metod. Jeśli umiesz możesz wykonać testy jednostkowe udowadniające
         //poprawne działanie zaimplementowanych metod
@@ -22,6 +23,10 @@ public class PersonDemo {
 
 
         streamService.sortAndPrint(names);
+        System.out.println(streamService.distinctAndCountNumbers(primeNumbers));
+        System.out.println(streamService.computeMaleNames(names));
+
+       // System.out.println(streamService.printNumbersOfRange(primeNumbers,););
     }
 
 }
