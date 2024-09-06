@@ -1,9 +1,11 @@
 package org.example.advanced.stream;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 public class MyStreamService implements StreamService {
@@ -28,26 +30,31 @@ public class MyStreamService implements StreamService {
 
     @Override
     public int distinctAndCountNumbers(int[] numbers) {
-       return  (int)Arrays.stream(numbers)
-               .distinct()
-               .count();
+        return (int) Arrays.stream(numbers)
+                .distinct()
+                .count();
     }
 
     @Override
     public List<String> computeMaleNames(List<String> names) {
-       return names.stream()
+        return names.stream()
                 .filter(name -> !name.endsWith("a"))
                 .collect(Collectors.toList());
     }
 
     @Override
     public void printNumbersOfRange(int[] numbers, int minValue, int maxValue) {
-//        Arrays.stream(numbers)
-//                .min().
+        Arrays.stream(numbers)
+                .filter(number -> number >= minValue && number <= maxValue)
+                .distinct()
+                .forEach(System.out::println);
     }
 
     @Override
     public List<Integer> computeNamesLength(List<String> names) {
+//        return names.stream()
+//                .
+
         return List.of();
     }
 
