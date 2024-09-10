@@ -50,13 +50,14 @@ public class MyStreamService implements StreamService {
                 .forEach(System.out::println);
     }
 
-    @Override
-    public List<Integer> computeNamesLength(List<String> names) {
+    //Zwraca listę liczb odpowiadających ilością liter w imionac
+//    @Override
+//    public List<Integer> computeNamesLength(List<String> names) {
 //        return names.stream()
-//                .
-
-        return List.of();
-    }
+//                .flatMapToInt(name -> name.chars())
+//                .filter(ch -> Character.isLetter(ch))
+//                .collect(Collectors.toList());
+//    }
 
     @Override
     public List<Person> buildPeopleWithNames(List<String> names) {

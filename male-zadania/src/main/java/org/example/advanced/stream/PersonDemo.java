@@ -29,6 +29,10 @@ public class PersonDemo {
 
         System.out.println("/////////");
         streamService.printNumbersOfRange(primeNumbers, minValue, maxValue);
+
+
+        System.out.println("/////////");
+        streamService.computeNamesLength(names);
     }
 
 }
