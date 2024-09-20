@@ -51,13 +51,15 @@ public class MyStreamService implements StreamService {
     }
 
     //Zwraca listę liczb odpowiadających ilością liter w imionac
-//    @Override
-//    public List<Integer> computeNamesLength(List<String> names) {
+    @Override
+    public List<Integer> computeNamesLength(List<String> names) {
 //        return names.stream()
 //                .flatMapToInt(name -> name.chars())
 //                .filter(ch -> Character.isLetter(ch))
 //                .collect(Collectors.toList());
-//    }
+
+        return null;
+    }
 
     @Override
     public List<Person> buildPeopleWithNames(List<String> names) {
