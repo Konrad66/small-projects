@@ -6,9 +6,9 @@ public class Player {
 
 
 
-
-
     int getHandValue() {
        return playerHand.calculateValue();
+
     }
+
 }

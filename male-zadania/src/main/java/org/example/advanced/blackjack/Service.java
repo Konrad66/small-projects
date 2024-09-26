@@ -9,16 +9,11 @@ class Service {
 
 
     void startGame() {
+        deck.restartDeck();
 
     }
 
-    public Player getPlayer() {
-        return player;
-    }
 
-    public Dealer getDealer() {
-        return dealer;
-    }
 
 
 }

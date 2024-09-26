@@ -33,20 +33,7 @@ class Controller {
     }
 
     private void play() {
-        System.out.println("Ile chcesz obstawić");
 
-        Player player = service.getPlayer();
-        Dealer dealer = service.getDealer();
-        System.out.println("Player 1:");
-        System.out.println(player);
-        System.out.println("*****************");
-        System.out.println("Dealer: ");
-        System.out.println(dealer);
-        System.out.println("*****************");
-        System.out.println("Wybierz czy chcesz pociągnąć kolejną kartę czy chcesz spasować ruch");
-        int choice = input.readNumber();
-
-        decideAction(choice, player);
     }
 
     void decideAction(int choice, Player player){
