@@ -19,7 +19,7 @@ public class Service {
     void createNewContact(){
 
 
-        Contact contact = new Contact();
+        //Contact contact = new Contact();
     }
 
 

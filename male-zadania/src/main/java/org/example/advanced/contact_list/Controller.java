@@ -39,10 +39,10 @@ public class Controller {
                 service.createNewContact();
                 break;
             case 3:
-                service.deleteContact();
+                //service.deleteContact();
                 break;
             case 4:
-                service.editContact();
+                //service.editContact();
                 break;
             default:
                 System.out.println("Niepoprawny wybor. Sprobuj jeszcze raz.");
