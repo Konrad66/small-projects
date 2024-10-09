@@ -22,7 +22,6 @@ wariant trudniejszy: Liczby wprowadzane ani liczby losowane nie mogą się  powt
 
     public static void main(String[] args) {
 
-        List<Integer> numbers = new ArrayList<>();
         Set<Integer> myNumbers = new HashSet<>();
         Set<Integer> randomNumbers = new HashSet<>();
         Scanner scanner = new Scanner(System.in);
@@ -30,9 +29,6 @@ wariant trudniejszy: Liczby wprowadzane ani liczby losowane nie mogą się  powt
 
         System.out.println("Wybierz 6 liczb z zakresu 1-24");
 
-        for (int i = 1; i < 25; i++) {
-            numbers.add(i);
-        }
 
         while (myNumbers.size() < 6) {
             System.out.println("Podaj liczbę. Aktualnie podałeś: " + myNumbers.size());
@@ -51,7 +47,7 @@ wariant trudniejszy: Liczby wprowadzane ani liczby losowane nie mogą się  powt
         System.out.println();
 
         while (randomNumbers.size() < 6) {
-            int randomNumber = random.nextInt(numbers.size()) + 1;
+            int randomNumber = random.nextInt(24) + 1;
             randomNumbers.add(randomNumber);
         }
 
