@@ -6,7 +6,7 @@ public class Controller {
     private boolean running = true;
     private Service service = new Service();
 
-    void startProgram(){
+    void startProgram() {
         do {
             printOptions();
             int decision = input.readNumber();
@@ -15,7 +15,7 @@ public class Controller {
     }
 
 
-    void printOptions(){
+    void printOptions() {
         System.out.println("Witaj w swojej liscie kontaktow. Czego potrzebujesz?");
         System.out.println("0. Opusc program.");
         System.out.println("1. Lista kontaktow.");
@@ -25,10 +25,13 @@ public class Controller {
 
     }
 
-    void executeOptions(int decision){
+    void executeOptions(int decision) {
         //int decision = input.readNumber();
+        String name = input.readText();
+        String phoneNumber = input.readText();
+        String email = input.readText();
 
-        switch (decision){
+        switch (decision) {
             case 0:
                 running = false;
                 break;
@@ -36,7 +39,7 @@ public class Controller {
                 service.printContacts();
                 break;
             case 2:
-                service.createNewContact();
+                service.createNewContact(name, phoneNumber, email);
                 break;
             case 3:
                 //service.deleteContact();

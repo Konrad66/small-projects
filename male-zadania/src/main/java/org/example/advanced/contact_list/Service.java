@@ -7,19 +7,16 @@ public class Service {
 
     List<Contact> contactList = new ArrayList<>();
 
-
-
-
     void printContacts(){
         for (Contact contact : contactList) {
             System.out.println(contact);
         }
     }
 
-    void createNewContact(){
+    void createNewContact(String name, String phoneNumber, String email){
+        Contact contact = new Contact(name, phoneNumber, email);
+        contactList.add(contact);
 
-
-        //Contact contact = new Contact();
     }
 
 
