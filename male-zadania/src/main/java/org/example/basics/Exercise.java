@@ -2,7 +2,7 @@ package org.example.basics;
 
 import java.util.Scanner;
 
-public class exercise {
+public class Exercise {
 
     public static void main(String[] args) {
         String text = "Dzisiaj 13 pazdziernika jest deszczowy dzien.";
