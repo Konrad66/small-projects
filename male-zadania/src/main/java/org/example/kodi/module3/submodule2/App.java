@@ -21,13 +21,10 @@ public class App {
         books.add(theBook3);
 
         System.out.println("Size of que " + books.size());
-        Book temporaryBook;
-        temporaryBook = books.poll();
-        temporaryBook = books.poll();
-        temporaryBook = books.poll();
-        temporaryBook = books.poll();
-        temporaryBook = books.poll();
-        temporaryBook = books.poll();
+        Book temporaryBook = null;
+        while (!books.isEmpty()){
+            temporaryBook = books.poll();
+        }
 
         System.out.println("Last book taken from queue was: " + temporaryBook);
         System.out.println("Size of que " + books.size());
