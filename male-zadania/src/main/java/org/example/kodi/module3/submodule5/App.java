@@ -5,24 +5,35 @@ import java.util.*;
 public class App {
     public static void main(String[] args) {
         List<Book> booksList = new LinkedList<>();
-        Map<Book, Book> bookHashMap = new HashMap<>();
+
+        Map<Book, Integer> bookHashMap = new HashMap<>();
         int sizeOfCollections = 800_000;
 
         for (int i = 0; i < sizeOfCollections; i++) {
-            booksList.add(new Book("Neal Shusterman", "Kosiarze"));
+            booksList.add(i, new Book("Neal Shusterman", "Kosiarze"));
         }
+
+        Book firstBook = booksList.get(0);
+        Book lastBook = booksList.get(booksList.size() - 1);
 
         for (int i = 0; i < 5_000; i++) {
-            bookHashMap.put(new Book(i + 1), new Book("Neal Shusterman", "Kosiarze"));
+            String author = "Neal Shusterman" + i;
+            String title = "Kosiarze" + i;
+            Integer value = i;
+            Book book = new Book(author, title);
+            bookHashMap.put(book, value);
         }
 
+        Book firstBookMap = new Book("Neal Shusterman0", "Kosiarze0");
+        Book lastBookMap = new Book("Neal Shusterman4999", "Kosiarze4999");
+
         long begin = System.nanoTime();
-        booksList.remove(0);
+        booksList.remove(firstBook);
         long end = System.nanoTime();
         System.out.println("Removing first element has take: " + (end - begin) + " ns");
 
         begin = System.nanoTime();
-        booksList.remove(booksList.size() - 1);
+        booksList.remove(lastBook);
         end = System.nanoTime();
         System.out.println("Removing last element has take: " + (end - begin) + " ns");
 
@@ -48,44 +59,46 @@ public class App {
 
         System.out.println("--------------------");
 
-
         System.out.println("Hash map has " + bookHashMap.size() + " elements");
         begin = System.nanoTime();
-        bookHashMap.get();
+        bookHashMap.get(firstBookMap);
         end = System.nanoTime();
         System.out.println("Find first element has take: " + (end - begin) + " ns ");
 
         begin = System.nanoTime();
-        bookHashMap.get("Book");
+        bookHashMap.get(lastBookMap);
         end = System.nanoTime();
         System.out.println("Find last element has take: " + (end - begin) + " ns ");
+
+        begin = System.nanoTime();
+        bookHashMap.remove(firstBookMap);
+        end = System.nanoTime();
+        System.out.println("Removing first element has take: " + (end - begin) + " ns");
+
+        begin = System.nanoTime();
+        bookHashMap.remove(lastBookMap);
+        end = System.nanoTime();
+        System.out.println("Removing last element has take: " + (end - begin) + " ns");
+
+        begin = System.nanoTime();
+        bookHashMap.put(new Book("Neal Shusterman0", "Kosiarze0"), 0);
+        end = System.nanoTime();
+        System.out.println("Adding element on the first index has take: " + (end - begin) + " ns ");
+
+        begin = System.nanoTime();
+        bookHashMap.put(new Book("Neal Shusterman5000", "Kosiarze5000"), 5000);
+        end = System.nanoTime();
+        System.out.println("Adding element on the last index has take: " + (end - begin) + " ns ");
     }
 }
 
 class Book {
     private String author;
     private String title;
-    private int yearOfPublish;
 
     public Book(String author, String title) {
         this.author = author;
         this.title = title;
-    }
-
-    public Book(int yearOfPublish) {
-        this.yearOfPublish = yearOfPublish;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public int getYearOfPublish() {
-        return yearOfPublish;
     }
 
     @Override
@@ -106,3 +119,5 @@ class Book {
         return "Title of book: " + title + " and author of book: " + author;
     }
 }
+
+//jezeli dwa metody sa sobie rowne
