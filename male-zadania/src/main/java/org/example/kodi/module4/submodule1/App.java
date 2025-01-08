@@ -12,8 +12,12 @@ public class App {
         companies.add("SONY");
         companies.add("ALCATEL");
 
-        for (String company : companies) {
-            System.out.print(company + ", ");
+        for (int i = 0; i < companies.size(); i++) {
+            if (i != companies.size() - 1) {
+                System.out.print(companies.get(i) + ", ");
+            } else {
+                System.out.println(companies.get(i));
+            }
         }
     }
 }

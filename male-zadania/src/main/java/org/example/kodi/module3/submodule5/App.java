@@ -10,7 +10,7 @@ public class App {
         int sizeOfCollections = 800_000;
 
         for (int i = 0; i < sizeOfCollections; i++) {
-            booksList.add(i, new Book("Neal Shusterman", "Kosiarze"));
+            booksList.add(new Book("Neal Shusterman", "Kosiarze" + i));
         }
 
         Book firstBook = booksList.get(0);
