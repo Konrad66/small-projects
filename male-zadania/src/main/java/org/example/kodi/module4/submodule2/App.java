@@ -1,9 +1,6 @@
 package org.example.kodi.module4.submodule2;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class App {
 
@@ -16,41 +13,59 @@ public class App {
         orderStorage.addOrder(3);
         orderStorage.addOrder(4);
 
-        boolean orderExist = orderStorage.orderExist(4);
-        System.out.println("Przed dodaniem takiego samego zamowienia, kolekcja ma rozmiar " + orderStorage);
-        orderStorage.addOrder(1);
-        orderStorage.addOrder(5);
-        orderStorage.removeOrder(3);
+        System.out.println("Przed dodaniem takiego samego zamowienia, kolekcja ma rozmiar " + orderStorage.getSize());
 
+        printOperationResult(orderStorage.orderExist(4), 4);
+        printOperationResult(orderStorage.addOrder(5), 5);
+        printOperationResult(orderStorage.addOrder(1), 1);
+        orderStorage.removeOrder(3);
         orderStorage.printOrders();
+        System.out.println("Kolekcja ma rozmiar " + orderStorage.getSize());
     }
 
-
+    private static void printOperationResult(boolean result, int orderNumber) {
+        if (result) {
+            System.out.println("Wykonano operacje pomyślnie dla zamówienia " + orderNumber);
+        } else {
+            System.out.println("Nie można wykonac operacji dla zamówienia " + orderNumber);
+        }
+    }
 }
 
 class Order {
 
-    private Set<Integer> ordersList;
+    private Set<Integer> ordersSet;
 
     public Order() {
-        this.ordersList = new HashSet<>();
+        this.ordersSet = new HashSet<>();
     }
 
-    void addOrder(int orderNumber) {
-        ordersList.add(orderNumber);
+    boolean addOrder(int orderNumber) {
+        return ordersSet.add(orderNumber);
     }
 
-    void removeOrder(int orderNumber) {
-        ordersList.remove(orderNumber);
+    boolean removeOrder(int orderNumber) {
+        return ordersSet.remove(orderNumber);
     }
 
     boolean orderExist(int orderNumber) {
-        return ordersList.contains(orderNumber);
+        return ordersSet.contains(orderNumber);
     }
 
-    void printOrders(){
-        for (Integer order : ordersList) {
-            System.out.println(order);
+    void printOrders() {
+        for (Integer order : ordersSet) {
+            System.out.print(order);
         }
+    }
+
+    int getSize() {
+        return ordersSet.size();
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "ordersList=" + ordersSet +
+                '}';
     }
 }
